@@ -5,7 +5,7 @@ import Strategies from "../../componets/safe_components/strategies";
 import Feedback from "../../componets/safe_components/feedback";
 import Footer from "../../componets/safe_components/footer";
 import { DAOs } from "../../utils/blockchain";
-import { CovalentClient } from "@covalenthq/client-sdk";
+import { GoldRushClient } from "@covalenthq/client-sdk";
 import { useState } from "react";
 import { useEffect } from "react";
 import { parseUnits, formatUnits } from "viem";
@@ -14,7 +14,7 @@ import { Providers } from "../../Providers";
 import { getTokenHoldersSum } from "../../api/api";
 
 export const SafeDao = () => {
-	const client = new CovalentClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+	const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 	const [tokens, setTokens] = useState([]);
 	const [sumDao, setSumDao] = useState(0);
 	const [sumUsersLpTokens, setSumUsersLpTokens] = useState(0);

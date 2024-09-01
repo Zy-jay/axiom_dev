@@ -1,5 +1,5 @@
-import axiomlogo from "../../assets/images/images_home/axiom_logo.svg";
-import React, { useState, useEffect } from "react";
+import axiomlogo from "../../assets/images/images_home/axiom_logo.png";
+import React, { useState } from "react";
 import drop_down from "../../assets/images/images_home/drop-down.svg";
 import vector from "../../assets/images/images_home/vector.svg";
 import ellipse_header from "../../assets/images/images_home/ellipse_header.svg";
@@ -49,10 +49,10 @@ const Header = () => {
 					>
 						<div className="fixed">
 							<div className="header-nav">
-								<div className="image-container">
+								<div style={{ display: "flex", alignContent: "center" }} className="image-container">
 									<a href="/" style={{ cursor: "pointer" }}>
-										<img src={axiomlogo} alt="Главная страница" />
-									</a>{" "}
+										<img width={231} src={axiomlogo} alt="Главная страница" />
+									</a>
 								</div>
 								<img
 									className="burger"

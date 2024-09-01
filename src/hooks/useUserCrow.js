@@ -1,6 +1,6 @@
-import { CovalentClient } from "@covalenthq/client-sdk";
+import { GoldRushClient } from "@covalenthq/client-sdk";
 import { useQuery } from "react-query";
-const client = new CovalentClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 
 const quryFetch = (daoType) => {
   return [

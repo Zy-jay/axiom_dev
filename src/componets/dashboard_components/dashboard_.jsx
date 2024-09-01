@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useAccount, useReadContracts } from "wagmi";
 // import { useContractRead } from '@wagmi/core'
-// import { CovalentClient } from "@covalenthq/client-sdk";
+// import { GoldRushClient } from "@covalenthq/client-sdk";
 // import { parseUnits, formatUnits } from "viem";
 import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
 // import bitcoinLogo from "../../assets/images/images_swap/bitcoin-logo.svg";
@@ -61,7 +61,7 @@ import ultra from "../../assets/images/images_dashboard/ultra.webp";
 // import bigInt from "big-integer";
 
 const Dashboard = () => {
-	// const client = new CovalentClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+	// const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 
 	const { address } = useAccount();
 

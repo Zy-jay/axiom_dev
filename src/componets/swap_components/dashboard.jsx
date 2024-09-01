@@ -46,7 +46,7 @@ import airDaoLogo from "../../assets/images/images_dashboard/air.webp";
 import ultraDaoLogo from "../../assets/images/images_dashboard/ultra.webp";
 import safeDaoLogo from "../../assets/images/images_dashboard/safedaologo.png";
 import altDaoLogo from "../../assets/images/images_dashboard/altportfolio.webp";
-import { CovalentClient } from "@covalenthq/client-sdk";
+import { GoldRushClient } from "@covalenthq/client-sdk";
 import { getTokenHoldersSum } from "../../api/api.js";
 import { useChainId } from "wagmi";
 import { useSwitchChain } from "wagmi";
@@ -167,7 +167,7 @@ const Dashboard = () => {
 		}
 	}, [pathname]);
 
-	const client = new CovalentClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+	const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 	useEffect(() => {
 		client.BalanceService.getTokenBalancesForWalletAddress(
 			"arbitrum-mainnet",

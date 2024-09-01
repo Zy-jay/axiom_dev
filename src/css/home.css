@@ -411,25 +411,56 @@ img.howWeWorkRectangle_itemTwo {
 
 .strategies-conteiner {
   display: flex;
-  width: 100%;
+  flex-wrap: wrap; /* Позволяет элементам перенестись на новую строку */
+  max-width: 1300px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирует контейнер */
+  gap: 25px; /* Расстояние между элементами */
   justify-content: space-between;
 }
 
 .strategies-conteiner-item {
-  width: 21.41vw;
-  height: 24.9vw;
   position: relative;
+  display: flex;
+  min-width: 411px;
+  max-width: 636px;
+  height: 478px;
+  border-radius: 20px;
+  padding: 0 0 0px 10px;
+  /* border: 1px #ffffff; */
+  /* position: relative; */
+  backdrop-filter: blur(2px);
+  flex: 1 1 calc(30% - 10px); /* Элементы делятся на три равные части */
+  background-image: url("../assets/images/images_home/rings.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-color: rgba(128, 128, 128, 0.067);
+  box-sizing: border-box;
 }
-
+.strategies-conteiner-item .full-width {
+  flex: 1 1 calc(50% - 20px); /* Элементы делятся на две равные части */
+}
 .strategies-conteiner-item img {
-  width: 21.41vw;
-  height: 24.9vw;
+  /* width: 179px;
+  height: 179px; */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  /* width: 21.41vw;
+  height: 24.9vw; */
 }
 
 .strategies-conteiner-item-position {
-  position: absolute;
-  top: 13.49vw;
-  left: 1.98vw;
+  position: relative;
+  width: fit-content;
+  translate: 10px 230px;
+}
+.strategies-conteiner-item-content {
+  width: fit-content;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .strategies-conteiner-item-content h2 {
@@ -443,8 +474,12 @@ img.howWeWorkRectangle_itemTwo {
   font-family: "Montserrat";
   font-weight: 300;
   color: #fff;
-  font-size: 0.83vw;
-  padding: 1vw 0;
+  font-size: 16px;
+  width: 100%;
+  padding: 1vw 0 1.5vw 0;
+  display: flex;
+  max-width: 90%;
+  height: 70px;
 }
 
 .padding-top {
@@ -455,6 +490,8 @@ img.howWeWorkRectangle_itemTwo {
   width: 9.32vw;
   height: 2.6vw;
   margin-left: 0;
+  max-width: 179px;
+  max-height: 50px;
 }
 
 .item-width,
@@ -854,38 +891,45 @@ img.howWeWorkRectangle_itemTwo {
   }
 
   .strategies-conteiner {
-    flex-direction: column;
+    display: flex;
   }
 
   .strategies-conteiner-item img {
-    width: 93.6vw;
-    height: 90.67vw;
+    width: 127px;
+    height: 127px;
   }
 
   .strategies-conteiner-item {
-    width: 93.6vw;
-    height: 90.67vw;
-    margin-top: 10vw;
+    width: 340px;
+    height: 350px;
+    max-width: 360px;
+
+    /* margin-top: 10vw; */
   }
 
   .strategies-conteiner-item-position {
-    top: 49.07vw;
-    left: 7.47vw;
+    /* top: 49.07vw;
+    left: 7.47vw; */
+    translate: 10px 190px;
   }
-
+  .strategies-conteiner-item-content {
+    /* width: 372px; */
+  }
   .strategies-conteiner-item-content h2 {
     font-size: 4.8vw;
   }
 
   .strategies-conteiner-item-content p {
-    font-size: 2.6vw;
-    padding: 5.33vw 0;
+    font-size: 12px;
+    /* padding: 2.33vw 0; */
+    width: 100%;
+    height: 40px;
   }
 
   .strategies-button {
-    width: 34.13vw;
-    height: 9.33vw;
-    font-size: 3.2vw;
+    width: 127px;
+    height: 35px;
+    font-size: 12px;
   }
 
   .feedback-conteiner {

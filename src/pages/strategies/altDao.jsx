@@ -5,7 +5,7 @@ import Strategies from "../../componets/safe_components/strategies";
 import Feedback from "../../componets/safe_components/feedback";
 import Footer from "../../componets/safe_components/footer";
 import { DAOs } from "../../utils/blockchain";
-import { CovalentClient, GoldRushClient } from "@covalenthq/client-sdk";
+import { GoldRushClient } from "@covalenthq/client-sdk";
 import { useState } from "react";
 import { useEffect } from "react";
 import { parseUnits, formatUnits } from "viem";

@@ -1,4 +1,4 @@
-import axiomlogo from "../../assets/images/images_home/logo-footer.svg";
+import axiomlogo from "../../assets/images/images_home/axiom_logo.png";
 import React from "react";
 
 const Footer = () => {
