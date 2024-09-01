@@ -7,7 +7,8 @@ import dai from "../../assets/images/tokenLogos/dai.png";
 // import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 
 import circle from "../../assets/images/images_safe/circle.webp";
-import React, { useEffect } from "react";
+
+import React from "react";
 
 function getLogo(tokenName) {
 	if (tokenName == "aArbWBTC") {
@@ -30,7 +31,45 @@ function getLogo(tokenName) {
 	}
 }
 
-const Strategies = ({ tokens }) => {
+
+
+const PortfolioItem = ({ logo, title, text }) => {
+	return (
+		<div style={{
+			background: "rgb(112 112 112 / 8%)",
+			borderRadius: 26,
+			border: "1px solid rgb(255 255 255 / 2%)",
+			padding: "20px 20px 10px 20px",
+			maxWidth: 410,
+			maxHeight: 252, color: "white",
+			boxSizing: "border-box",
+			backdropFilter: "blur(10px)",
+
+		}}>
+			<span style={{
+				color: "white", display: "flex", gap: 20,
+				alignItems: "center", marginBottom: 20
+			}}>
+				<span style={{
+					borderRadius: "26px",
+					width: "54px",
+					height: 54,
+					background: "rgb(112 112 112 / 10%)",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+				}} >
+					<img src={logo} alt={title} />
+				</span>
+				<h3 >{title}</h3>
+			</span>
+			<p>{text}</p>
+		</div>
+	);
+
+}
+
+const Strategies = ({ portfolio }) => {
 	return (
 		<>
 			<section className="strategies_safe">
@@ -42,30 +81,24 @@ const Strategies = ({ tokens }) => {
 								<div className="howWeWork-conteiner-line_safe"></div>
 							</div>
 							<div
-								className="strategies-conteiner-items_safe"
-								style={{ display: "flex", flexWrap: "wrap" }}
+								style={{
+									display: "flex",
+									gap: 10,
+									flexWrap: "wrap",
+									width: "100%",
+									maxWidth: 1300,
+									justifyContent: "space-evenly"
+								}}
 							>
-								{tokens ? (
+								{portfolio ? (
 									<>
-										{tokens.map((t, index) => (
-											<div className="strategies-conteiner-item_safe">
-												<img src={getLogo(t.token)} alt="" />
-												<h2>
-													{t.token}
-
-													{t.amount && (
-														<>
-															-{" "}
-															<span style={{ fontWeight: "bold" }}>
-																{t.amount === "0.00" ? "<0.01" : t.amount}
-															</span>
-														</>
-													)}
-												</h2>
-												{/* <div style={{ color: "white", fontWeight: "bold" }}>
-													10
-												</div> */}
-											</div>
+										{portfolio.map((p, index) => (
+											<PortfolioItem
+												key={index}
+												logo={p.logo}
+												title={p.title}
+												text={p.text}
+											/>
 										))}
 									</>
 								) : (
@@ -73,7 +106,7 @@ const Strategies = ({ tokens }) => {
 								)}
 							</div>
 						</div>
-						<img className="circle_safe" src={circle} alt="" />
+						{/* <img className="circle_safe" src={circle} alt="" /> */}
 					</div>
 				</div>
 			</section>

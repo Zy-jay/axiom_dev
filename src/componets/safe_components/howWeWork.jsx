@@ -23,6 +23,50 @@ import wallet_icon from "../../assets/images/images_safe/wallet_icon.svg";
 import close from "../../assets/images/images_safe/close.svg";
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { shortenAddress } from "../../utils/shortenAddress";
+import Fox from "../../assets/images/images_home/MetaMask_Fox.png";
+import { SupportedChainId } from "../../constants/chains";
+import MintchainLogo from "../../assets/images/images_home/mintchain-logo.png";
+import ScrollLogo from "../../assets/images/images_home/scroll_logo.png";
+import WArpcastLogo from "../../assets/images/images_home/warpcast-logo.png";
+import MMLogo from "../../assets/images/images_home/metamask-logo.png";
+import GrassLogo from "../../assets/images/images_home/grass_logo_updated.png";
+import PolygonLogo from "../../assets/images/images_home/polygon-zkevm-logo.png";
+import BaseLogo from "../../assets/images/images_home/base_kinza_logo.png";
+import ZoraLogo from "../../assets/images/images_home/zora-logo.png";
+import ArbLogo from "../../assets/images/images_home/arbitrum-nova-logo.png";
+
+
+async function addTokenToMetaMask(tokenAddress, tokenSymbol, tokenDecimals, tokenImage) {
+	try {
+		// Проверяем, установлен ли MetaMask
+		if (typeof window.ethereum !== 'undefined') {
+			const wasAdded = await window.ethereum.request({
+				method: 'wallet_watchAsset',
+				params: {
+					type: 'ERC20',
+					options: {
+						address: tokenAddress, // Адрес контракта токена
+						symbol: tokenSymbol, // Символ токена (например, ETH)
+						decimals: tokenDecimals, // Количество десятичных знаков токена
+						image: tokenImage, // URL-адрес изображения токена
+					},
+				},
+			});
+
+			if (wasAdded) {
+				console.log('Токен успешно добавлен в MetaMask');
+			} else {
+				console.log('Пользователь отказался добавлять токен');
+			}
+		} else {
+			console.log('MetaMask не установлен');
+		}
+	} catch (error) {
+		console.error('Ошибка при добавлении токена:', error);
+	}
+}
 
 
 function MyComponentBtc({ btcdaotext }) {
@@ -100,29 +144,44 @@ const altporfoliodaotext = `
 	`;
 
 
-const WalletCopyButton = (address) => {
+
+
+const WalletCopyButton = (address, token) => {
 
 	const copyToClipboard = () => {
 		navigator.clipboard
 			.writeText(address)
 			.then(() => {
-				alert("Адрес скопирован в буфер обмена!"); // Уведомление для пользователя
+				toast.success("Адрес скопирован в буфер обмена!"); // Уведомление для пользователя
 			})
 			.catch((err) => {
-				alert("Не удалось скопировать адрес: " + err); // Уведомление об ошибке
+				toast.error("Не удалось скопировать адрес: " + err); // Уведомление об ошибке
 			});
 	};
 
 	return (
-		<button className="safe-conteiner-wallet-copy_safe">
-			<img
-				src={wallet_icon}
-				alt="Копировать адрес"
-				onClick={copyToClipboard}
-				style={{ cursor: "pointer" }} // Указатель курсора для кликабельного изображения
-			/>
-			<p>{address}</p>
-		</button>
+		<span style={{ display: "flex", gap: 20 }}>
+			<button className="safe-conteiner-wallet-copy_safe">
+				<img
+					src={wallet_icon}
+					alt="Копировать адрес"
+					onClick={copyToClipboard}
+					style={{ cursor: "pointer" }} // Указатель курсора для кликабельного изображения
+				/>
+				<p>{shortenAddress(address)}</p>
+			</button>
+			{token && <button className="safe-conteiner-wallet-copy_safe">
+				<img
+					width={37}
+					height={37}
+					src={Fox}
+
+					alt="Копировать адрес"
+					onClick={() => addTokenToMetaMask(address, token.symbol, token.decimals, token.image)}
+					style={{ cursor: "pointer", margin: "auto", padding: 9 }} // Указатель курсора для кликабельного изображения
+				/>
+			</button>}
+		</span>
 	);
 };
 
@@ -134,6 +193,10 @@ const DAO_PAGE_DATA = {
 		img_mobil: <img src={safe_mobil} alt="" />,
 		title: <h2> Консервативная стратегия</h2>,
 		currentDaoAddress: "0xdb95465de86c947f7de927eb604bad526696881b",
+		decimals: 18,
+		symbol: "AXSAFE",
+		portfolio: [],
+
 	},
 	"AIR DROP DAO": {
 		link: "/strategies/airdropdao/swap",
@@ -142,6 +205,9 @@ const DAO_PAGE_DATA = {
 		img_mobil: <img src={air_mobil} alt="" />,
 		title: <h2>Агрессивная стратегия</h2>,
 		currentDaoAddress: "0xf958e82b5a8e615cb3476b59f9589c45df67acca",
+		symbol: "AXAIRDROP",
+		decimals: 18,
+		portfolio: [],
 	},
 	"ULTRA DAO": {
 		link: "/strategies/ultrdao/swap",
@@ -150,6 +216,10 @@ const DAO_PAGE_DATA = {
 		img_mobil: <img src={ultra_mobil} alt="" />,
 		title: <h2>Агрессивная стратегия</h2>,
 		currentDaoAddress: "0x92cb7baef8eddb1d6a02fa236b356124ad0530a5", // 0xe8740f7786ae2c674e484a71741247ee22fb125a
+		symbol: "axULT",
+		decimals: 18,
+		portfolio: [],
+		chainId: SupportedChainId.MAINNET,
 	},
 	"BTC DAO": {
 		link: "/strategies/btcdao/swap",
@@ -158,6 +228,10 @@ const DAO_PAGE_DATA = {
 		img_mobil: <img src={btc_mobil} alt="" />,
 		title: <h2>Консервативная стратегия</h2>,
 		currentDaoAddress: "0xf878d10a8b95bdee2747bd1faf7a3f3e2b7f19be",
+		decimals: 18,
+		symbol: "axBTC",
+		portfolio: [],
+		chainId: SupportedChainId.ARBITRUM_ONE,
 	},
 	"ALTPORFOLIO DAO": {
 		link: "/strategies/altporfoliodao/swap",
@@ -165,10 +239,15 @@ const DAO_PAGE_DATA = {
 		img: <img src={alt} alt="" />,
 		img_mobil: <img src={alt_mobil} alt="" />,
 		title: <h2>Умеренная стратегия</h2>,
+		chainId: SupportedChainId.MAINNET,
+		symbol: "axALT",
+		decimals: 18,
+		portfolio: [],
 		currentDaoAddress: "0xeebe6f7fd87ed28748f5e4d3e339ba0f28e90782", // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
 	},
 
 }
+
 
 
 const HowWeWork = ({ price, isBtc, dao }) => {
@@ -177,7 +256,7 @@ const HowWeWork = ({ price, isBtc, dao }) => {
 
 	const pageData = DAO_PAGE_DATA[dao];
 
-	const { link, text, img, img_mobil, title, currentDaoAddress } = pageData;
+	const { link, text, img, img_mobil, title, currentDaoAddress, symbol, chainId, decimals } = pageData;
 
 
 
@@ -247,7 +326,7 @@ const HowWeWork = ({ price, isBtc, dao }) => {
 										<p>Ещё</p> */}
 									</div>
 									<div className="safe-conteiner-wallet_safe">
-										{WalletCopyButton(currentDaoAddress)}
+										{WalletCopyButton(currentDaoAddress, { decimals, symbol, chainId })}
 										<button className="safe-conteiner-wallet-img_safe">
 											{/* <img src={wallet} alt="" /> */}
 										</button>
