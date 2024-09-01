@@ -1,0 +1,510 @@
+[
+    {
+        "contract_decimals": 18,
+        "contract_name": "Arbitrum Mainnet Ether",
+        "contract_ticker_symbol": "ETH",
+        "contract_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "supports_erc": [],
+        "logo_url": "https://www.datocms-assets.com/86369/1669925028-arbitrum.png",
+        "contract_display_name": "Arbitrum Mainnet Ether",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": null,
+        "native_token": true,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "2168470565363701",
+        "balance_24h": "2809495282430800",
+        "quote_rate": 2587.7205,
+        "quote_rate_24h": 2637.468,
+        "quote": 5.611396,
+        "pretty_quote": "$5.61",
+        "quote_24h": 7.409954,
+        "pretty_quote_24h": "$7.41",
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "XDAO",
+        "contract_ticker_symbol": "XDAO",
+        "contract_address": "0x71eeba415a523f5c952cc2f06361d5443545ad28",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x71eeba415a523f5c952cc2f06361d5443545ad28.png",
+        "contract_display_name": "XDAO",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x71eeba415a523f5c952cc2f06361d5443545ad28.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:04:02.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "14000000000000000000",
+        "balance_24h": "15000000000000000000",
+        "quote_rate": 0.36732957,
+        "quote_rate_24h": 0.36738837,
+        "quote": 5.142614,
+        "pretty_quote": "$5.14",
+        "quote_24h": 5.5108256,
+        "pretty_quote_24h": "$5.51",
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 6,
+        "contract_name": "Tether USD",
+        "contract_ticker_symbol": "USDT",
+        "contract_address": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9.png",
+        "contract_display_name": "Tether USD",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:11:39.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "847369",
+        "balance_24h": "1947369",
+        "quote_rate": 0.9999197,
+        "quote_rate_24h": 0.9997489,
+        "quote": 0.84730095,
+        "pretty_quote": "$0.85",
+        "quote_24h": 1.94688,
+        "pretty_quote_24h": "$1.95",
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 8,
+        "contract_name": "Wrapped BTC",
+        "contract_ticker_symbol": "WBTC",
+        "contract_address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f.png",
+        "contract_display_name": "Wrapped BTC",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:46:44.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "1000",
+        "balance_24h": "0",
+        "quote_rate": 59232.875,
+        "quote_rate_24h": 59373.09,
+        "quote": 0.5923287,
+        "pretty_quote": "$0.59",
+        "quote_24h": 0,
+        "pretty_quote_24h": "$0.00",
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axAlt",
+        "contract_ticker_symbol": "AXALT",
+        "contract_address": "0x058ecb8723a77d22e331d1e0e01625b18bd33354",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x058ecb8723a77d22e331d1e0e01625b18bd33354.png",
+        "contract_display_name": "axAlt",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x058ecb8723a77d22e331d1e0e01625b18bd33354.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-19T23:23:58.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "2137121499273105876",
+        "balance_24h": "1950000239899050479",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axULT",
+        "contract_ticker_symbol": "axULT",
+        "contract_address": "0x0a240713c9db821c51f36f4621d6ac1f6e4d3745",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x0a240713c9db821c51f36f4621d6ac1f6e4d3745.png",
+        "contract_display_name": "axULT",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x0a240713c9db821c51f36f4621d6ac1f6e4d3745.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:11:39.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "475000119949525239",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axAD",
+        "contract_ticker_symbol": "axAD",
+        "contract_address": "0x24536722187680eb71c270c7cc45a44c34162381",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x24536722187680eb71c270c7cc45a44c34162381.png",
+        "contract_display_name": "axAD",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x24536722187680eb71c270c7cc45a44c34162381.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:09:57.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "190000047979810095",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axAirdrop-1",
+        "contract_ticker_symbol": "AXAIRDROP-1",
+        "contract_address": "0x2592fa61536d867abc18742761be5da28f5a0364",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x2592fa61536d867abc18742761be5da28f5a0364.png",
+        "contract_display_name": "axAirdrop-1",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x2592fa61536d867abc18742761be5da28f5a0364.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-13T16:37:15.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "1000000000000000000",
+        "balance_24h": "1000000000000000000",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "PeachDAO",
+        "contract_ticker_symbol": "PEACHDAO",
+        "contract_address": "0x3f1e297594a7563b03d7dd50fa962d022b7ac010",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x3f1e297594a7563b03d7dd50fa962d022b7ac010.png",
+        "contract_display_name": "PeachDAO",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x3f1e297594a7563b03d7dd50fa962d022b7ac010.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-13T12:41:48.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "1000000000000000000",
+        "balance_24h": "1000000000000000000",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "GrapeDAO",
+        "contract_ticker_symbol": "GRAPEDAO",
+        "contract_address": "0x579d5d0017e55e3150984c83b8f6880561824aa1",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x579d5d0017e55e3150984c83b8f6880561824aa1.png",
+        "contract_display_name": "GrapeDAO",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x579d5d0017e55e3150984c83b8f6880561824aa1.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-13T10:56:04.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "1000000000000000000",
+        "balance_24h": "1000000000000000000",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "PEACH",
+        "contract_ticker_symbol": "PEACH",
+        "contract_address": "0x62abbb37c96577c8f196e82017a661fdd4b16f34",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x62abbb37c96577c8f196e82017a661fdd4b16f34.png",
+        "contract_display_name": "PEACH",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x62abbb37c96577c8f196e82017a661fdd4b16f34.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-13T12:47:49.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "1000000000000000000",
+        "balance_24h": "1000000000000000000",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axSAFE",
+        "contract_ticker_symbol": "axSAFE",
+        "contract_address": "0x72f2fe2df156ab863200b011a0b008a8a306f926",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0x72f2fe2df156ab863200b011a0b008a8a306f926.png",
+        "contract_display_name": "axSAFE",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0x72f2fe2df156ab863200b011a0b008a8a306f926.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-19T23:35:13.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "190000047979810095",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axAltPortfolio",
+        "contract_ticker_symbol": "AXALTPORTFOLIO",
+        "contract_address": "0xbf60a62a31f72df0806eaaf73d698a3862c8aa44",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xbf60a62a31f72df0806eaaf73d698a3862c8aa44.png",
+        "contract_display_name": "axAltPortfolio",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xbf60a62a31f72df0806eaaf73d698a3862c8aa44.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-14T22:21:53.000Z",
+        "native_token": false,
+        "type": "dust",
+        "is_spam": false,
+        "balance": "0",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "AxiomBTC",
+        "contract_ticker_symbol": "axBTC",
+        "contract_address": "0xd1903ee89ef554ddc92cd2c3143f752bc85fdb3c",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xd1903ee89ef554ddc92cd2c3143f752bc85fdb3c.png",
+        "contract_display_name": "AxiomBTC",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xd1903ee89ef554ddc92cd2c3143f752bc85fdb3c.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-20T00:45:06.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "2850000008636",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "GrapeToken",
+        "contract_ticker_symbol": "GRAPETOKEN",
+        "contract_address": "0xd23da785a7d77772e149bb165bb24e26905fc81b",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xd23da785a7d77772e149bb165bb24e26905fc81b.png",
+        "contract_display_name": "GrapeToken",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xd23da785a7d77772e149bb165bb24e26905fc81b.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-13T13:28:18.000Z",
+        "native_token": false,
+        "type": "cryptocurrency",
+        "is_spam": false,
+        "balance": "3886000599040383385",
+        "balance_24h": "3886000599040383385",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axSafe",
+        "contract_ticker_symbol": "AXSAFE",
+        "contract_address": "0xdb95465de86c947f7de927eb604bad526696881b",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xdb95465de86c947f7de927eb604bad526696881b.png",
+        "contract_display_name": "axSafe",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xdb95465de86c947f7de927eb604bad526696881b.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-14T22:12:18.000Z",
+        "native_token": false,
+        "type": "dust",
+        "is_spam": false,
+        "balance": "0",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    },
+    {
+        "contract_decimals": 18,
+        "contract_name": "axUltra",
+        "contract_ticker_symbol": "AXULTRA",
+        "contract_address": "0xe8740f7786ae2c674e484a71741247ee22fb125a",
+        "supports_erc": [
+            "erc20"
+        ],
+        "logo_url": "https://logos.covalenthq.com/tokens/42161/0xe8740f7786ae2c674e484a71741247ee22fb125a.png",
+        "contract_display_name": "axUltra",
+        "logo_urls": {
+            "token_logo_url": "https://logos.covalenthq.com/tokens/42161/0xe8740f7786ae2c674e484a71741247ee22fb125a.png",
+            "protocol_logo_url": null,
+            "chain_logo_url": "https://www.datocms-assets.com/86369/1686072650-arbitrum-icon-white.svg"
+        },
+        "last_transferred_at": "2024-08-14T22:17:31.000Z",
+        "native_token": false,
+        "type": "dust",
+        "is_spam": false,
+        "balance": "0",
+        "balance_24h": "0",
+        "quote_rate": null,
+        "quote_rate_24h": null,
+        "quote": 0,
+        "pretty_quote": "$0.00",
+        "quote_24h": null,
+        "pretty_quote_24h": null,
+        "protocol_metadata": null,
+        "nft_data": null
+    }
+]
