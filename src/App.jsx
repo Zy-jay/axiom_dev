@@ -26,14 +26,14 @@ function App() {
 	const { address, isConnected, chain } = useAccount();
 	const { openConnectModal, connectModalOpen } = useConnectModal()
 	const { connect } = useConnect();
-	useEffect(() => {
-		if (!isConnected && !address && !connectModalOpen) {
-			connect()
-			openConnectModal()
-		}
-		console.debug("App", { address, isConnected, chain });
+	// useEffect(() => {
+	// 	if (!isConnected && !address && !connectModalOpen) {
+	// 		connect()
+	// 		openConnectModal()
+	// 	}
+	// 	console.debug("App", { address, isConnected, chain });
 
-	}, [isConnected])
+	// }, [isConnected])
 	return (
 		<Providers>
 			<Provider>
