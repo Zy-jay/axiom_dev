@@ -69,6 +69,11 @@ const PortfolioItem = ({ logo, title, text }) => {
 }
 
 const Strategies = ({ portfolio }) => {
+
+	console.log("portfolio is ")
+	console.log(portfolio)
+
+	
 	return (
 		<>
 			<section className="strategies_safe">

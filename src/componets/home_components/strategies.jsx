@@ -1,20 +1,21 @@
-import strategies_item_one from "../../assets/images/images_home/strategies_item_one.png";
+// import strategies_item_one from "../../assets/images/images_home/strategies_item_one.png";
 import strategies_item_one_mobile from "../../assets/images/images_home/strategies_item_one_mobile.webp";
 import strategies_item_two_mobile from "../../assets/images/images_home/strategies_item_two_mobile.webp";
 import strategies_item_three_mobile from "../../assets/images/images_home/strategies_item_three_mobile.webp";
 import strategies_item_fore_mobile from "../../assets/images/images_home/strategies_item_fore_mobile.webp";
 import strategies_item_five_mobile from "../../assets/images/images_home/strategies_item_five_mobile.webp";
-import strategies_item_two from "../../assets/images/images_home/strategies_item_two.png";
-import strategies_item_three from "../../assets/images/images_home/strategies_item_three.png";
-import strategies_item_fore from "../../assets/images/images_home/strategies_item_fore.png";
-import strategies_item_five from "../../assets/images/images_home/strategies_item_five.png";
+import btcLogo from "../../assets/tokenLogos/BTC.png";
+import altLogo from "../../assets/tokenLogos/ALT.png";
+import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
+import airLogo from "../../assets/tokenLogos/AIRDROP.png";
+import safeLogo from "../../assets/tokenLogos/SAFE.png";
 import React from "react";
 import { Link } from "react-router-dom";
 
 
 const daoStrategis = [
 	{
-		logo: strategies_item_one,
+		logo: btcLogo,
 		title: "BTC DAO",
 		description:
 			"Подходит для инвесторов с низким уровнем риска, которые стремятся приумножить свои накопленные Bitcoin в этом же активе без рисков его потери.",
@@ -22,21 +23,21 @@ const daoStrategis = [
 
 	},
 	{
-		logo: strategies_item_two,
+		logo: altLogo,
 		title: "ALTPORTFOLIO DAO",
 		description:
 			"Подходит для инвесторов с умеренным уровнем риска, готовых к возможным колебаниям ради значительного роста капитала.",
 		link: "/strategies/altporfoliodao",
 	},
 	{
-		logo: strategies_item_three,
+		logo: ultraLogo,
 		title: "ULTRA DAO",
 		description:
 			"Подходит для инвесторов с высоким уровнем риска, стремящихся к максимальной прибыли в краткосрочной перспективе.",
 		link: "/strategies/ultrdao",
 	},
 	{
-		logo: strategies_item_fore,
+		logo: airLogo,
 		title: "AIR DROP DAO",
 		description:
 			"Подходит для инвесторов с высоким уровнем риска, готовых к длительному ожиданию ради потенциально крупных доходов.",
@@ -45,7 +46,7 @@ const daoStrategis = [
 
 	},
 	{
-		logo: strategies_item_five,
+		logo: safeLogo,
 		title: "SAFE DAO",
 		description:
 			"Подходит для консервативных инвесторов, которые стремятся сохранить и постепенно приумножить свой капитал с минимальным риском.",

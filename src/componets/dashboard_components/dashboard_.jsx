@@ -15,10 +15,19 @@ import greenbitcoinlogo from "../../assets/images/images_swap/logo2.svg";
 import down_chevron from "../../assets/images/images_swap/down_chevron.svg";
 // import vector from "../../assets/images/images_swap/vector.svg";
 // import parameters_vector from "../../assets/images/images_swap/parameters_vector.svg";
-import safeImg from "../../assets/images/images_swap/parameters_one.webp";
-import altImg from "../../assets/images/images_swap/parameters_five.png";
-import airImg from "../../assets/images/images_swap/parameters_two.webp";
-import ultraImg from "../../assets/images/images_swap/parameters_three.webp";
+
+import btcLogo from "../../assets/tokenLogos/BTC.png";
+import altLogo from "../../assets/tokenLogos/ALT.png";
+import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
+import airLogo from "../../assets/tokenLogos/AIRDROP.png";
+import safeLogo from "../../assets/tokenLogos/SAFE.png";
+
+// old logos
+// import safeImg from "../../assets/images/images_swap/parameters_one.webp";
+// import altImg from "../../assets/images/images_swap/parameters_five.png";
+// import airImg from "../../assets/images/images_swap/parameters_two.webp";
+// import ultraImg from "../../assets/images/images_swap/parameters_three.webp";
+
 import btcImg from "../../assets/images/images_swap/parameters_fore.webp";
 import upward_shift from "../../assets/images/images_swap/upward_shift.svg";
 import left_green_circle from "../../assets/images/images_swap/left_green_circle.png";
@@ -564,23 +573,23 @@ const Dashboard = () => {
 					<div className="parameters-conteiner">
 						<div className="parameters-conteiner-content">
 							<div className="content_item">
-								<img src={btcImg} alt="" />
+								<img src={btcLogo} alt="" />
 								<h3>BTC DAO: {displayUserShare["axBTC"]}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={altImg} alt="" />
+								<img src={altLogo} alt="" />
 								<h3>ALTPORTFOLIO DAO: {displayUserShare["AXALT"]}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={ultraImg} alt="" />
+								<img src={ultraLogo} alt="" />
 								<h3>ULTRA DAO: {displayUserShare["axULT"]}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={airImg} alt="" />
+								<img src={airLogo} alt="" />
 								<h3>AIR DROP DAO: {displayUserShare["axAD"]}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={safeImg} alt="" />
+								<img src={safeLogo} alt="" />
 								<h3>SAFE DAO: {displayUserShare["axSAFE"]}$</h3>
 							</div>
 							<a href="">
@@ -589,25 +598,25 @@ const Dashboard = () => {
 						</div>
 						<div className="parameters-conteiner-content-mobie">
 							<div className="content_item">
-								<img src={btcImg} alt="" />
+								<img src={btcLogo} alt="" />
 								<h3>BTC DAO: {displayUserShare["axBTC"] ?? "-"}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={""} alt="" />
+								<img src={altLogo} alt="" />
 								<h3>ALTPORTFOLIO DAO: {displayUserShare["AXALT"] ?? "-"}$</h3>
 							</div>
 						</div>
 						<div className="parameters-conteiner-content-mobie">
 							<div className="content_item">
-								<img src={ultraImg} alt="" />
+								<img src={ultraLogo} alt="" />
 								<h3>ULTRA DAO: {displayUserShare["axULT"] ?? "-"}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={airImg} alt="" />
+								<img src={airLogo} alt="" />
 								<h3>AIR DROP DAO: {displayUserShare["axAD"] ?? "-"}$</h3>
 							</div>
 							<div className="content_item">
-								<img src={safeImg} alt="" />
+								<img src={safeLogo} alt="" />
 								<h3>SAFE DAO: {displayUserShare["axSAFE"] ?? "-"}$</h3>
 							</div>
 						</div>

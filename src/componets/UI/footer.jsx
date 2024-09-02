@@ -21,13 +21,7 @@ const Footer = () => {
                         <h2>Copyright © 2023 AXIOM WM Family office</h2>
                         <p>Все права защищены.</p>
                         <br />
-                        <div style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            flexWrap: "wrap",
-                            flexDirection: "",
-                            gap: 20, color: "rgba(255, 255, 255, 0.9)", fontSize: "0.833vw"
-                        }} >
+                        <div className="docsFooter"  >
                             {DOCS?.map((doc, index) => (<>
 
                                 <a onClick={() => handleClick(doc.path)} key={"doc-linck-" + index}
