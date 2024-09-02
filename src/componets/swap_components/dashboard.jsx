@@ -157,13 +157,6 @@ const Dashboard = ({ daoKey, dao }) => {
 	const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
 	const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
 
-
-	function getStrategyName(pathname) {
-		const parts = pathname.split('/');
-		return parts[2]; // Возвращает третий элемент массива, который соответствует "btcdao"
-	}
-
-
 	function getPayableTokenName() {
 		if (isBtcDao) {
 			return "wBTC"
@@ -303,6 +296,8 @@ const Dashboard = ({ daoKey, dao }) => {
 		status: approveStatus,
 		txStatus: approveTxStatus,
 		write: approveWrite,
+		isSuccess: approveIsSuccess,
+		isPending: approveIsPending,
 	} = useApproveWrite({
 		tokenAddress: isBtcDao
 			? addressWBTC
@@ -415,15 +410,15 @@ const Dashboard = ({ daoKey, dao }) => {
 		handleChangeAmount(value)
 	}, [isSwitched]);
 
-	useEffect(() => {
-		if (
-			approveStatus === "success" &&
-			approveData &&
-			approveTxStatus === "success"
-		) {
-			buyWrite();
-		}
-	}, [approveStatus, approveData, approveTxStatus]);
+	// useEffect(() => {
+	// 	if (
+	// 		approveStatus === "success" &&
+	// 		approveData &&
+	// 		approveTxStatus === "success"
+	// 	) {
+	// 		setIsModalOpen(true)
+	// 	}
+	// }, [approveStatus, approveData, approveTxStatus]);
 
 	useEffect(() => {
 		if (
@@ -449,6 +444,11 @@ const Dashboard = ({ daoKey, dao }) => {
 		buyTxStatus,
 	]);
 
+	useEffect(() => {
+		if (approveIsSuccess) {
+			setIsModalOpen(true)
+		}
+	}, [approveIsSuccess])
 
 	const isChainSupported = chain && chain.id === chainId;
 
