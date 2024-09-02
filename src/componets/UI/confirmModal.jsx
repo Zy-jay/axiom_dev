@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import privacyPolicyPDF from '../../assets/docs/Privacy_Policy.pdf'; // 
+import OfferPDF from '../../assets/docs/Offer.pdf'; 
+import RiskWarningPDF from '../../assets/docs/Risk_Warning.pdf'; // 
+import TermsOfUsePDF from '../../assets/docs/Terms_of_Use.pdf'; // 
+
 
 function ConfirmModal({ isOpen, onClose, onConfirm }) {
 
@@ -22,7 +27,12 @@ function ConfirmModal({ isOpen, onClose, onConfirm }) {
         <div style={modalStyles.overlay}>
             <div style={modalStyles.modal}>
                 <h2>Подтверждение действия</h2>
-                <p>Вы должны согласиться с условиями перед тем, как продолжить.</p>
+                <p>Я соглашаюсь с <br />  <a href={TermsOfUsePDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} > <span style={{color:"black", fontWeight:"bold"}}>Условиями использования</span> </a>
+                 <br></br> <a href={privacyPolicyPDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} > <span style={{color:"black", fontWeight:"bold"}}>Политикой конфиденциальности</span></a>
+                  <br></br> <a href={RiskWarningPDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} ><span style={{color:"black", fontWeight:"bold"}}>Предупреждением о рисках </span></a>
+                  <br></br> <a href={OfferPDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} ><span style={{color:"black", fontWeight:"bold"}}>Офертой</span></a>
+                  
+                  </p>
                 <div style={modalStyles.checkboxContainer}>
                     <input
                         type="checkbox"
@@ -30,7 +40,7 @@ function ConfirmModal({ isOpen, onClose, onConfirm }) {
                         checked={isChecked}
                         onChange={handleCheckboxChange}
                     />
-                    <label htmlFor="terms">Соглашаюсь с условиями</label>
+                    <label htmlFor="terms">&nbsp;Соглашаюсь с условиями</label>
                 </div>
                 <button
                     onClick={handleConfirm}

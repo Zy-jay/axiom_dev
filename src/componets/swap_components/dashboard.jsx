@@ -51,6 +51,23 @@ import { getTokenHoldersSum } from "../../api/api.js";
 import { useChainId } from "wagmi";
 import { useSwitchChain } from "wagmi";
 import ConfirmModal from "../UI/confirmModal.jsx";
+import {
+    notifyError,
+    notifyInfo,
+    notifySuccess,
+} from "../swap_components/Toasts.jsx";
+
+
+
+
+
+//////////////// SEND TG MESSAGE
+
+
+
+
+
+////////////////
 
 function roundUpToThousands(number) {
 	return Math.ceil(Number(number) * 1000) / 1000;
@@ -150,6 +167,50 @@ const Dashboard = () => {
 	const [isBtcDao, setIsBtcDao] = useState(pathname === "/strategies/btcdao/swap");
 	const [currentLPAddress, setCurrentLPAddress] = useState(GodObject[pathname].addressLp);
 	const xdaoAddress = GodObject[pathname].chainId === 1 ? crowdModuleETH : crowdModuleARB;
+	
+	const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
+	const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
+	
+	
+	function getStrategyName(pathname) {
+		const parts = pathname.split('/');
+		return parts[2]; // Возвращает третий элемент массива, который соответствует "btcdao"
+	  }
+
+
+	  function getPayableTokenName() {
+		if(isBtcDao) {
+			return "wBTC"
+		} else {
+			return "USDT"
+		}
+	  }
+
+const sendMessageToTelegram = async () => {
+	const message = `<b>НОВАЯ ЗАЯВКА НА ВЫВОД</b> <b>Адрес:</b><code>${address}</code>                 <b>Сумма: </b><code>${Number(parsedAmount)/1000000}</code> <b> <code>${getPayableTokenName()}</code> </b>   <b>Стратегия </b><code>${getStrategyName(pathname)}</code>  `;
+	// const message = `<b>НОВАЯ ЗАЯВКА НА ВЫВОД</b>`;
+
+	const url = `https://api.telegram.org/bot${REACT_APP_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${REACT_APP_TELEGRAM_CHAT_ID}&text=${message}&parse_mode=HTML`;
+	// setIsSending(true);
+	try {
+		const res = await fetch(url)
+
+		res.ok && notifySuccess("Сообщение отправлено!");
+
+	}
+	catch (error) {
+		console.error('Ошибка:', error);
+		notifyError("Ошибка при отправке сообщения!");
+	} finally {
+		// setIsSending(false);
+	}
+}
+
+
+
+
+
+
 
 	useEffect(() => {
 		if (GodObject[pathname]) {
@@ -926,7 +987,10 @@ const Dashboard = () => {
 												className={`content-button button_swap ${!parsedAmount ? "inactive" : ""
 													} `}
 												disabled={!parsedAmount || isTxLoading}
-												onClick={handleSell}
+												onClick={() => {
+													handleSell();
+													sendMessageToTelegram();
+												  }}
 											>
 												Оставить заявку на вывод
 											</button>

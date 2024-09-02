@@ -13,6 +13,7 @@ import {
 } from "../componets/swap_components/Toasts.jsx";
 import { contracts } from "../utils/blockchain.js";
 import { mainnet } from "viem/chains";
+import { structuralSharing } from "wagmi/query";
 
 const { XDAO, erc20Abi } = contracts;
 
@@ -22,7 +23,10 @@ export const useContractWrite = ({ address, abi, functionName, args }) => {
     abi,
     functionName,
     args,
-    chain: mainnet,
+    // chain: mainnet,
+    
+    __mode: 'prepared',
+
   };
   const chainId = useChainId();
 
@@ -30,11 +34,14 @@ export const useContractWrite = ({ address, abi, functionName, args }) => {
     useWriteContract(config);
 
   const { status: txStatus } = useWaitForTransactionReceipt({
+    // confirmations: 0n, 
     hash: data,
   });
 
+
+
   const write = async () => {
-    console.debug("writeContract", config, chainId);
+    // console.log("writeContract", config, chainId);
     writeContract(config);
   };
 
@@ -101,5 +108,7 @@ export const useApproveWrite = ({ tokenAddress, spender, amount }) =>
     abi: erc20Abi,
     functionName: "approve",
     args: [spender, amount],
-    chainId: 1,
+    // chainId: 1,
+    // structuralSharing: false
+
   });

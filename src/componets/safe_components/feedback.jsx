@@ -4,6 +4,8 @@ import {
     notifyInfo,
     notifySuccess,
 } from "../swap_components/Toasts.jsx";
+import privacyPolicyPDF from '../../assets/docs/Privacy_Policy.pdf'; 
+
 const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
 const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
 
@@ -65,7 +67,7 @@ const Feedback = () => {
                             <input style={{ borderColor: name && !validateName(name) ? "red" : "gray" }} value={name} onChange={(e) => setName(e.target.value?.slice(0, 1)?.toUpperCase() + e.target.value?.slice(1, e.target.value?.length) ?? "")} type="text" placeholder="Введите ваше имя" />
                             <h3>Ваш телефон</h3>
                             <input value={phone} style={{ borderColor: phone && !validatePhone(phone) ? "red" : "gray" }} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="Введите ваш номер телефона" />
-                            <p>Нажимая на кнопку, соглашаюсь <br /> с <span>политикой обработки персональных данных</span></p>
+                            <p>Нажимая на кнопку, соглашаюсь <br /> с  <a href={privacyPolicyPDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} ><span>политикой обработки персональных данных</span></a></p>
                             <div className="feedback-button-conteiner">
                                 <button disabled={isSending || !validateName(name) || !validatePhone(phone)} onClick={sendMessageToTelegram} className="feedback-button button">Отправить</button>
                             </div>

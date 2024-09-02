@@ -11,7 +11,7 @@ function App() {
 			<div className="main_swap">
 				<Header />
 				<Dashboard />
-				<TransactionHistory />
+				{/* <TransactionHistory /> */}
 				<Footer />
 			</div>
 		</>
