@@ -1,18 +1,16 @@
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+
 import "../css/swap.css";
 import Header from "../componets/swap_components/header";
 import Dashboard from "../componets/swap_components/dashboard";
-import TransactionHistory from "../componets/swap_components/transactionHistory";
-import Footer from "../componets/swap_components/footer";
-import { Providers } from "../Providers";
+import Footer from "../componets/UI/footer";
 
-function App() {
+function SwapPage({ dao, daoKey }) {
 	return (
 		<>
 			<div className="main_swap">
 				<Header />
-				<Dashboard />
+				<Dashboard dao={dao} daoKey={daoKey} />
 				{/* <TransactionHistory /> */}
 				<Footer />
 			</div>
@@ -20,4 +18,4 @@ function App() {
 	);
 }
 
-export default App;
+export default SwapPage;

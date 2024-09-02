@@ -26,16 +26,13 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { shortenAddress } from "../../utils/shortenAddress";
 import Fox from "../../assets/images/images_home/MetaMask_Fox.png";
+import { useDaoPrice } from "../../hooks/useDaoPrice";
+
 import { SupportedChainId } from "../../constants/chains";
-import MintchainLogo from "../../assets/images/images_home/mintchain-logo.png";
-import ScrollLogo from "../../assets/images/images_home/scroll_logo.png";
-import WArpcastLogo from "../../assets/images/images_home/warpcast-logo.png";
-import MMLogo from "../../assets/images/images_home/metamask-logo.png";
-import GrassLogo from "../../assets/images/images_home/grass_logo_updated.png";
-import PolygonLogo from "../../assets/images/images_home/polygon-zkevm-logo.png";
-import BaseLogo from "../../assets/images/images_home/base_kinza_logo.png";
-import ZoraLogo from "../../assets/images/images_home/zora-logo.png";
-import ArbLogo from "../../assets/images/images_home/arbitrum-nova-logo.png";
+
+import { DAOs } from "../../utils/blockchain";
+import { Spinner } from "../UI/Spiner.jsx";
+
 
 
 async function addTokenToMetaMask(tokenAddress, tokenSymbol, tokenDecimals, tokenImage) {
@@ -192,10 +189,12 @@ const DAO_PAGE_DATA = {
 		img: <img src={safe_dao} alt="" />,
 		img_mobil: <img src={safe_mobil} alt="" />,
 		title: <h2> Консервативная стратегия</h2>,
-		currentDaoAddress: "0xdb95465de86c947f7de927eb604bad526696881b",
+		currentDaoAddress: DAOs.axSafe,
+		lpAddress: DAOs.axSafeLP,
 		decimals: 18,
 		symbol: "AXSAFE",
 		portfolio: [],
+		chainId: SupportedChainId.ARBITRUM_ONE,
 
 	},
 	"AIR DROP DAO": {
@@ -204,9 +203,10 @@ const DAO_PAGE_DATA = {
 		img: <img src={air} alt="" />,
 		img_mobil: <img src={air_mobil} alt="" />,
 		title: <h2>Агрессивная стратегия</h2>,
-		currentDaoAddress: "0xf958e82b5a8e615cb3476b59f9589c45df67acca",
+		currentDaoAddress: DAOs.axAirdrop,
 		symbol: "AXAIRDROP",
 		decimals: 18,
+		lpAddress: DAOs.axAirdropLP,
 		portfolio: [],
 	},
 	"ULTRA DAO": {
@@ -215,8 +215,9 @@ const DAO_PAGE_DATA = {
 		img: <img src={ultra} alt="" />,
 		img_mobil: <img src={ultra_mobil} alt="" />,
 		title: <h2>Агрессивная стратегия</h2>,
-		currentDaoAddress: "0x92cb7baef8eddb1d6a02fa236b356124ad0530a5", // 0xe8740f7786ae2c674e484a71741247ee22fb125a
+		currentDaoAddress: DAOs.axUltra, // 0xe8740f7786ae2c674e484a71741247ee22fb125a
 		symbol: "axULT",
+		lpAddress: DAOs.axUltraLP,
 		decimals: 18,
 		portfolio: [],
 		chainId: SupportedChainId.MAINNET,
@@ -227,10 +228,11 @@ const DAO_PAGE_DATA = {
 		img: <img src={btc} alt="" />,
 		img_mobil: <img src={btc_mobil} alt="" />,
 		title: <h2>Консервативная стратегия</h2>,
-		currentDaoAddress: "0xf878d10a8b95bdee2747bd1faf7a3f3e2b7f19be",
+		currentDaoAddress: DAOs.axBTC,
 		decimals: 18,
 		symbol: "axBTC",
 		portfolio: [],
+		lpAddress: DAOs.axBTCLP,
 		chainId: SupportedChainId.ARBITRUM_ONE,
 	},
 	"ALTPORFOLIO DAO": {
@@ -243,35 +245,29 @@ const DAO_PAGE_DATA = {
 		symbol: "axALT",
 		decimals: 18,
 		portfolio: [],
-		currentDaoAddress: "0xeebe6f7fd87ed28748f5e4d3e339ba0f28e90782", // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
+		lpAddress: DAOs.axAltPortfolioLP,
+		currentDaoAddress: DAOs.axAltPortfolio, // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
 	},
 
 }
 
 
 
-const HowWeWork = ({ price, isBtc, dao }) => {
-	console.log(price);
+const HowWeWork = ({ isBtc, dao, daoKey }) => {
 
 
 	const pageData = DAO_PAGE_DATA[dao];
 
-	const { link, text, img, img_mobil, title, currentDaoAddress, symbol, chainId, decimals } = pageData;
+	const { link, text, img, img_mobil, lpAddress, title, currentDaoAddress, symbol, chainId, decimals } = pageData;
 
+	const { daoPrice, isDaoPriceLoading } = useDaoPrice(currentDaoAddress, lpAddress, chainId);
 
 
 	let finPrice;
 
-	if (dao == "ALTPORFOLIO DAO") {
-		finPrice = price;
-	} else {
-		if (typeof price === "number" && price !== 0) {
-			finPrice = price.toFixed(3);
-		} else {
-			finPrice = "0.000"; // Или любое другое значение по умолчанию
-		}
-	}
 
+	finPrice = (daoPrice)?.toFixed(3);
+	// finPrice = finPrice ?? "0.000"; // Или любое другое значение по умолчанию
 	return (
 		<>
 			<section className="howWeWorksafe">
@@ -337,13 +333,13 @@ const HowWeWork = ({ price, isBtc, dao }) => {
 									<h3>ТЕКУЩАЯ ЦЕНА</h3>
 									<div className="safe-conteiner-button-many_safe">
 										<div className="safe-conteiner-button-many_saf_center">
-											{isBtc ? <h4>BTC&nbsp;</h4> : <h4>$</h4>}
-											<h2>{price}</h2>
+											{isBtc ? <h4>BTC&nbsp;</h4> : <h4>{!daoPrice ? "" : "$"}</h4>}
+											<h2>{!daoPrice ? <Spinner /> : finPrice}</h2>
 										</div>
 									</div>
 									<form action={link}>
 										<button className="invest-button">
-											<Link to={link}>Инвестировать</Link>
+											<Link to={`/strategies/${daoKey}/swap`}>Инвестировать</Link>
 										</button>
 									</form>
 								</div>
@@ -387,12 +383,12 @@ const HowWeWork = ({ price, isBtc, dao }) => {
 									<h3>ТЕКУЩАЯ ЦЕНА</h3>
 									<div className="safe-conteiner-button-many_safe">
 										<div className="safe-conteiner-button-many_saf_center">
-											{isBtc ? <h4>BTC</h4> : <h4>$</h4>}
-											<h2>{finPrice}</h2>
+											{isBtc ? <h4>BTC</h4> : <h4>{!daoPrice ? "" : "$"}</h4>}
+											<h2>{!daoPrice ? <Spinner /> : finPrice}</h2>
 										</div>
 									</div>
 									<button className="invest-button">
-										<Link to={link}>Инвестировать</Link>
+										<Link to={`/strategies/${daoKey}/swap`}>Инвестировать</Link>
 									</button>
 								</div>
 							</div>

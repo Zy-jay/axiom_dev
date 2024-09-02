@@ -40,3 +40,80 @@ export const SupportedChainId = {
   POLYMARKET: 137,
   BLAST: 81457,
 };
+export const ALL_RPC_URLS = {
+  [SupportedChainId.BSCTN]: ["https://bsc-testnet.public.blastapi.io"],
+  [SupportedChainId.BSC]: [
+    "https://bsc-pokt.nodies.app",
+    "https://bsc.meowrpc.com",
+    "https://binance.llamarpc.com",
+  ],
+  [SupportedChainId.MAINNET]: [
+    "https://eth.llamarpc.com",
+    "https://ethereum-rpc.publicnode.com",
+  ],
+  [SupportedChainId.OPTIMISM]: [
+    "https://optimism.llamarpc.com",
+    "https://optimism-rpc.publicnode.com",
+  ],
+  [SupportedChainId.POLYGON]: [
+    "https://polygon.llamarpc.com",
+    "https://polygon-rpc.com",
+  ],
+  [SupportedChainId.LINEA]: [
+    "https://linea.blockpi.network/v1/rpc/public",
+    "https://rpc.linea.build",
+  ],
+  [SupportedChainId.ARBITRUM_ONE]: [
+    "https://arbitrum-one.publicnode.com",
+    "https://arbitrum.llamarpc.com",
+  ],
+  [SupportedChainId.ZKEVM]: ["https://zkevm-rpc.com"],
+  [SupportedChainId.ZKSYNC]: ["https://mainnet.era.zksync.io"],
+  [SupportedChainId.BASE]: [
+    "https://base.llamarpc.com",
+    "https://base-rpc.publicnode.com",
+  ],
+  [SupportedChainId.ARBITRUM_NOVA]: [
+    // 'https://arbitrum-nova.drpc.org',
+    "https://arbitrum-nova.publicnode.com",
+    "https://nova.arbitrum.io/rpc",
+  ],
+  [SupportedChainId.SCROLL]: [
+    "https://rpc.scroll.io",
+    // 'https://scroll.drpc.org',
+  ],
+  [SupportedChainId.ZORA]: ["https://rpc.zora.energy"],
+  [SupportedChainId.FANTOM]: [
+    "https://fantom-pokt.nodies.app",
+    "https://fantom-rpc.publicnode.com",
+    // 'https://fantom.drpc.org',
+  ],
+  [SupportedChainId.CELO]: [
+    "https://forno.celo.org",
+    "https://rpc.ankr.com/celo",
+  ],
+  [SupportedChainId.AVALANCHE]: [
+    "https://1rpc.io/avax/c",
+    "https://rpc.ankr.com/avalanche",
+  ],
+  [SupportedChainId.MOONBEAM]: ["https://moonbeam-rpc.publicnode.com"],
+  [SupportedChainId.MANTA]: [
+    "https://manta-pacific.drpc.org",
+    "https://rpc.ankr.com/avalanche",
+  ],
+  [SupportedChainId.MODE]: ["https://mainnet.mode.network"],
+  [SupportedChainId.GNOSIS]: [
+    "https://gnosis-rpc.publicnode.com",
+    "https://gnosis-pokt.nodies.app",
+  ],
+  [SupportedChainId.ANCIENT8]: ["https://rpc.ancient8.gg"],
+  [SupportedChainId.ZETA]: [
+    "https://zetachain-evm.blockpi.network/v1/rpc/public",
+    "https://zetachain-mainnet-archive.allthatnode.com:8545",
+  ],
+  [SupportedChainId.TAIKO]: [
+    "https://rpc.mainnet.taiko.xyz",
+    "https://rpc.taiko.tools",
+    "https://rpc.ankr.com/taiko",
+  ],
+};

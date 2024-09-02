@@ -6,7 +6,6 @@ import dai from "../../assets/images/tokenLogos/dai.png";
 
 // import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 
-import circle from "../../assets/images/images_safe/circle.webp";
 
 import React from "react";
 
@@ -73,9 +72,9 @@ const Strategies = ({ portfolio }) => {
 	return (
 		<>
 			<section className="strategies_safe">
-				<div className="wrapper">
+				<div className="wrapper-strategis">
 					<div className="strategies-section_safe">
-						<div className="strategies-conteiner_safe">
+						<div className="strategies-conteiner_safe" >
 							<div className="strategies-title_safe">
 								<h2>Состав портфеля</h2>
 								<div className="howWeWork-conteiner-line_safe"></div>
@@ -87,7 +86,8 @@ const Strategies = ({ portfolio }) => {
 									flexWrap: "wrap",
 									width: "100%",
 									maxWidth: 1300,
-									justifyContent: "space-evenly"
+									justifyContent: "space-evenly",
+									// margin: "auto",
 								}}
 							>
 								{portfolio ? (

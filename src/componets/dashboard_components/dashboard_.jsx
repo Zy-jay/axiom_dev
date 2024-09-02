@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useAccount, useReadContracts } from "wagmi";
+import { useAccount, useReadContracts, useConnect } from "wagmi";
 // import { useContractRead } from '@wagmi/core'
 // import { GoldRushClient } from "@covalenthq/client-sdk";
 // import { parseUnits, formatUnits } from "viem";
@@ -58,12 +58,23 @@ import altportfolio from "../../assets/images/images_dashboard/altportfolio.webp
 import air from "../../assets/images/images_dashboard/air.webp";
 import safe from "../../assets/images/images_dashboard/safedaologo.png";
 import ultra from "../../assets/images/images_dashboard/ultra.webp";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 // import bigInt from "big-integer";
 
 const Dashboard = () => {
 	// const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 
 	const { address } = useAccount();
+	const { openConnectModal, connectModalOpen } = useConnectModal()
+	const { connect } = useConnect();
+	// useEffect(() => {
+	// 	if (!isConnected && !address && !connectModalOpen) {
+	// 		connect()
+	// 		openConnectModa
+	// 	}
+	// 	console.debug("App", { address, isConnected, chain });
+
+	// }, [isConnected])
 
 	const isTxLoading = false; // Пример значения, заменить по необходимости
 	const handleChangeReceive = (strategyName) => {
@@ -490,7 +501,7 @@ const Dashboard = () => {
 								<h2>Инвестиционный портфель</h2>
 								<img src={circle_swap} alt="" />
 							</div>
-							<div className="conteiner-content-deal">
+							{/* <div className="conteiner-content-deal">
 								<h2>Быстрая сделка</h2>
 								<div className="content-deal">
 									<div className="content-deal-input">
@@ -501,7 +512,6 @@ const Dashboard = () => {
 													type="text"
 													readOnly={isTxLoading}
 												/>
-												{/* <p>7 533,10 USD</p> */}
 											</div>
 											<div className="deal-select" onClick={toggleDropdown}>
 												<div className="deal-select-token">
@@ -548,7 +558,7 @@ const Dashboard = () => {
 										</button>
 									</div>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 					<div className="parameters-conteiner">

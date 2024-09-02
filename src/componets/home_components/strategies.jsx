@@ -79,8 +79,8 @@ const Strategies = () => {
 	return (
 		<>
 			<section className="strategies">
-				<div className="wrapper">
-					<div id="products" className="strategies-title desktop">
+				<div className="wpper-strategis">
+					<div id="products" className="strategies-title desktop center">
 						<h2>
 							Какие стратегии <br /> мы используем
 						</h2>

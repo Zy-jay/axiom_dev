@@ -15,6 +15,7 @@ const quryFetch = (daoType) => {
             daoType
           );
         const items = resp?.data?.items;
+
         if (!items) return;
         const sum = items.map((i) => i.quote).reduce((x, y) => x + y, 0);
 

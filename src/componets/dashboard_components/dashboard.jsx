@@ -379,7 +379,6 @@ const Dashboard = () => {
 															min={0}
 															onChange={handleChangeReceive}
 														/>
-														{/* <p>7 533,10 USD</p> */}
 													</div>
 													<div className="deal-select">
 														<div className="deal-select-token">
@@ -435,7 +434,6 @@ const Dashboard = () => {
 															min={0}
 															onChange={handleChangeAmount}
 														/>
-														{/* <p>700,0 USD</p> */}
 													</div>
 													<div className="deal-select">
 														<div className="deal-select-token">
@@ -481,7 +479,6 @@ const Dashboard = () => {
 															min={0}
 															onChange={handleChangeAmount}
 														/>
-														{/* <p>700,0 USD</p> */}
 													</div>
 													<div className="deal-select">
 														<div className="deal-select-token">
@@ -537,7 +534,6 @@ const Dashboard = () => {
 															min={0}
 															onChange={handleChangeReceive}
 														/>
-														{/* <p>7 533,10 USD</p> */}
 													</div>
 													<div className="deal-select">
 														<div className="deal-select-token">
