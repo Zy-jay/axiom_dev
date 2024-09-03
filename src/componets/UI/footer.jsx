@@ -18,7 +18,7 @@ const Footer = () => {
                             <img src={axiomlogo} alt="Главная страница" />
                         </a>                        </div>
                     <div className="footer-container-contant_swap">
-                        <h2>Copyright © 2023 AXIOM WM Family office</h2>
+                        <h2>Copyright © 2024 AXIOM Crypto Platform </h2>
                         <p>Все права защищены.</p>
                         <br />
                         <div style={{
