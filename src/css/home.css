@@ -633,6 +633,22 @@ img.howWeWorkRectangle_itemTwo {
   z-index: 2;
 }
 
+.docsFooter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.833vw; /* Default font size */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+  .docsFooter {
+      font-size: 2.833vw; /* Font size for mobile */
+  }
+}
+
 .footer-container-icon img {
   display: flex;
   margin-left: auto;

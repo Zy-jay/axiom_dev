@@ -1,13 +1,19 @@
 import strategies_item_one from "../../assets/images/images_home/strategies_item_one.png";
+import strategies_item_two from "../../assets/images/images_home/strategies_item_two.png";
+import strategies_item_three from "../../assets/images/images_home/strategies_item_three.png";
+import strategies_item_fore from "../../assets/images/images_home/strategies_item_fore.png";
+import strategies_item_five from "../../assets/images/images_home/strategies_item_five.png";
+
 import strategies_item_one_mobile from "../../assets/images/images_home/strategies_item_one_mobile.webp";
 import strategies_item_two_mobile from "../../assets/images/images_home/strategies_item_two_mobile.webp";
 import strategies_item_three_mobile from "../../assets/images/images_home/strategies_item_three_mobile.webp";
 import strategies_item_fore_mobile from "../../assets/images/images_home/strategies_item_fore_mobile.webp";
 import strategies_item_five_mobile from "../../assets/images/images_home/strategies_item_five_mobile.webp";
-import strategies_item_two from "../../assets/images/images_home/strategies_item_two.png";
-import strategies_item_three from "../../assets/images/images_home/strategies_item_three.png";
-import strategies_item_fore from "../../assets/images/images_home/strategies_item_fore.png";
-import strategies_item_five from "../../assets/images/images_home/strategies_item_five.png";
+import btcLogo from "../../assets/tokenLogos/BTC.png";
+import altLogo from "../../assets/tokenLogos/ALT.png";
+import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
+import airLogo from "../../assets/tokenLogos/AIRDROP.png";
+import safeLogo from "../../assets/tokenLogos/SAFE.png";
 import React from "react";
 import { Link } from "react-router-dom";
 

@@ -48,8 +48,8 @@ export const ALL_RPC_URLS = {
     "https://binance.llamarpc.com",
   ],
   [SupportedChainId.MAINNET]: [
-    "https://eth.llamarpc.com",
-    "https://ethereum-rpc.publicnode.com",
+    "https://eth-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
+    "https://eth-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
   ],
   [SupportedChainId.OPTIMISM]: [
     "https://optimism.llamarpc.com",
@@ -64,8 +64,8 @@ export const ALL_RPC_URLS = {
     "https://rpc.linea.build",
   ],
   [SupportedChainId.ARBITRUM_ONE]: [
-    "https://arbitrum-one.publicnode.com",
-    "https://arbitrum.llamarpc.com",
+    "https://arb-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
+    "https://arb-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
   ],
   [SupportedChainId.ZKEVM]: ["https://zkevm-rpc.com"],
   [SupportedChainId.ZKSYNC]: ["https://mainnet.era.zksync.io"],

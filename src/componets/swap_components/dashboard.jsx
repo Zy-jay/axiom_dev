@@ -21,6 +21,7 @@ import vector_smart_object from "../../assets/images/images_swap/vector_smart_ob
 import React from "react";
 import usdt from "../../assets/images/images_safe/usdt.svg";
 
+
 import { CustomConnectButton } from "./CustomConnect";
 import {
 	useSaleInfo,
@@ -36,6 +37,14 @@ import {
 } from "../../utils/blockchain.js";
 import { useApproveWrite, useBuyWrite } from "../../hooks/useContractWrite";
 import { toOptionalFixed } from "../../utils/converter";
+
+import btcLogo from "../../assets/tokenLogos/BTC.png";
+import altLogo from "../../assets/tokenLogos/ALT.png";
+import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
+import airLogo from "../../assets/tokenLogos/AIRDROP.png";
+import safeLogo from "../../assets/tokenLogos/SAFE.png";
+
+
 
 import airDaoLogo from "../../assets/images/images_dashboard/air.webp";
 import ultraDaoLogo from "../../assets/images/images_dashboard/ultra.webp";
@@ -64,8 +73,8 @@ const GodObject = {
 		token2Name: "axULT",
 		chainId: 1,
 		token1Logo: usdt,
-		token2Logo: ultraDaoLogo,
-		logoBottom: ultraDaoLogo,
+		token2Logo: ultraLogo,
+		logoBottom: ultraLogo,
 		addressDao: "0x92cb7baef8eddb1d6a02fa236b356124ad0530a5", // "0xe8740f7786ae2c674e484a71741247ee22fb125a",
 		addressLp: "0xcB87b5D12CE6239F90992196CedbFCbF8e78ea13", // "0x0a240713C9dB821C51f36F4621d6ac1F6e4D3745",
 		addressUSDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
@@ -76,8 +85,8 @@ const GodObject = {
 		token2Name: "axSAFE",
 		token1Logo: usdt,
 		chainId: 42161,
-		token2Logo: safeDaoLogo,
-		logoBottom: safeDaoLogo,
+		token2Logo: safeLogo,
+		logoBottom: safeLogo,
 		addressDao: "0xdb95465de86c947f7de927eb604bad526696881b",
 		addressLp: "0x72F2fE2dF156ab863200B011A0b008A8a306F926",
 		addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
@@ -87,8 +96,8 @@ const GodObject = {
 		token1Name: "USDT",
 		token2Name: "axAD",
 		token1Logo: usdt,
-		token2Logo: airDaoLogo,
-		logoBottom: airDaoLogo,
+		token2Logo: airLogo,
+		logoBottom: airLogo,
 		chainId: 42161,
 		addressDao: "0xf958e82b5a8e615cb3476b59f9589c45df67acca",
 		addressLp: "0x24536722187680Eb71C270c7cC45A44C34162381",
@@ -99,8 +108,8 @@ const GodObject = {
 		token1Name: "wBTC",
 		token2Name: "axBTC",
 		token1Logo: bitcoinLogo,
-		token2Logo: greenbitcoinlogo,
-		logoBottom: BTCDaoLogo,
+		token2Logo: btcLogo,
+		logoBottom: btcLogo,
 		chainId: 42161,
 		addressDao: DAOs.axBTC,
 		addressLp: DAOs.axBTCLP,
@@ -112,8 +121,8 @@ const GodObject = {
 		token1Name: "USDT",
 		token2Name: "axALT",
 		token1Logo: usdt,
-		token2Logo: altDaoLogo,
-		logoBottom: altDaoLogo,
+		token2Logo: altLogo,
+		logoBottom: altLogo,
 		chainId: 1,
 		addressDao: "0xeebe6f7fd87ed28748f5e4d3e339ba0f28e90782",
 		addressLp: "0x8C3fce8E9bB082eFe5fB8922A45D0619Cae02435",
@@ -759,7 +768,7 @@ const Dashboard = ({ daoKey, dao }) => {
 						<div className="parameters-conteiner-content">
 							<div className="content_item btc">
 								<img src={logoBottom} alt="" />
-								<h3>Current share price: {toOptionalFixed(daoPrice, isBtcDao ? 8 : 3)}</h3>
+								<h3>Current share price: { (toOptionalFixed(daoPrice, isBtcDao ? 3 : 3)) }</h3>
 							</div>
 
 							<a href="">
@@ -770,7 +779,7 @@ const Dashboard = ({ daoKey, dao }) => {
 							<div className="conteiner-content-item">
 								<div className="content_item btc">
 									<img src={logoBottom} alt="" />
-									<h3>Current share price: {toOptionalFixed(daoPrice, isBtcDao ? 8 : 3)}</h3>
+									<h3>Current share price: {toOptionalFixed(daoPrice, isBtcDao ? 3 : 3)}</h3>
 								</div>
 							</div>
 						</div>

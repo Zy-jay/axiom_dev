@@ -6,10 +6,12 @@ import telegram from "../../assets/images/images_safe/telegram.svg";
 import instagram from "../../assets/images/images_safe/instagram.svg";
 import facebook from "../../assets/images/images_safe/facebook.svg";
 import up from "../../assets/images/images_safe/up.svg";
+
 import safe_dao from "../../assets/images/images_safe/safe_dao.webp";
 import air from "../../assets/images/images_home/air.png";
 import alt from "../../assets/images/images_home/alt.png";
 import btc from "../../assets/images/images_home/btc.png";
+
 import safe_mobil from "../../assets/images/images_safe/safe_mobil.png";
 import air_mobil from "../../assets/images/images_safe/air_mobil.png";
 import alt_mobil from "../../assets/images/images_safe/alt_mobil.png";
@@ -32,6 +34,16 @@ import { SupportedChainId } from "../../constants/chains";
 
 import { DAOs } from "../../utils/blockchain";
 import { Spinner } from "../UI/Spiner.jsx";
+
+
+import btcLogo from "../../assets/tokenLogos/BTC.png";
+import altLogo from "../../assets/tokenLogos/ALT.png";
+import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
+import airLogo from "../../assets/tokenLogos/AIRDROP.png";
+import safeLogo from "../../assets/tokenLogos/SAFE.png";
+
+
+
 
 
 
@@ -255,8 +267,28 @@ const DAO_PAGE_DATA = {
 
 const HowWeWork = ({ isBtc, dao, daoKey }) => {
 
+	function getTextFromLink(link) {
+		const regex = /\/strategies\/(\w+)\/swap/;
+		const match = link.match(regex);
+		if (match && match.length > 1) {
+		  return match[1];
+		}
+		return null;
+	  }
+
+
 
 	const pageData = DAO_PAGE_DATA[dao];
+
+	console.log(pageData)
+
+	if(getTextFromLink(pageData.link) == "btcdao" ) {
+		isBtc = true;
+	} else {
+		isBtc = false;
+	}
+
+	console.log("isbtc? " + isBtc )
 
 	const { link, text, img, img_mobil, lpAddress, title, currentDaoAddress, symbol, chainId, decimals } = pageData;
 

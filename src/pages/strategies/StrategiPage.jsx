@@ -4,6 +4,8 @@ import HowWeWork from "../../componets/safe_components/howWeWork";
 import Strategies from "../../componets/safe_components/strategies";
 import Feedback from "../../componets/safe_components/feedback";
 import Footer from "../../componets/UI/footer";
+import React, { useEffect } from 'react';
+
 import MintchainLogo from "../../assets/images/images_home/mintchain-logo.png";
 import ScrollLogo from "../../assets/images/images_home/scroll_logo.png";
 import WArpcastLogo from "../../assets/images/images_home/warpcast-logo.png";
@@ -62,7 +64,13 @@ const AIRDROP_DAO_PORTFOLIO_ITEMS = [
     }
 ]
 
+
 export const StrategiPage = ({ dao, daoKey }) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     return (
         <div className="main" key={daoKey + "swap"}>
