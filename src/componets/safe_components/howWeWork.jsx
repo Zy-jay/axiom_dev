@@ -7,17 +7,17 @@ import instagram from "../../assets/images/images_safe/instagram.svg";
 import facebook from "../../assets/images/images_safe/facebook.svg";
 import up from "../../assets/images/images_safe/up.svg";
 
-import safe_dao from "../../assets/images/images_home/safe1.png";
-import air from "../../assets/images/images_home/air1.png";
-import alt from "../../assets/images/images_home/alt1.png";
-import btc from "../../assets/images/images_home/btc1.png";
+import safe_dao from "../../assets/images/images_safe/safe_dao.webp";
+import air from "../../assets/images/images_home/air.png";
+import alt from "../../assets/images/images_home/alt.png";
+import btc from "../../assets/images/images_home/btc.png";
 
 import safe_mobil from "../../assets/images/images_safe/safe_mobil.png";
 import air_mobil from "../../assets/images/images_safe/air_mobil.png";
 import alt_mobil from "../../assets/images/images_safe/alt_mobil.png";
 import btc_mobil from "../../assets/images/images_safe/btc_mobil.png";
 import ultra_mobil from "../../assets/images/images_safe/ultra_mobil.png";
-import ultra from "../../assets/images/images_home/ultra1.png";
+import ultra from "../../assets/images/images_home/ultra.png";
 import safe_dao_mobile from "../../assets/images/images_safe/safe_dao_mobile.webp";
 import drop_down from "../../assets/images/images_safe/drop-down.svg";
 import wallet from "../../assets/images/images_safe/wallet.svg";
