@@ -1,10 +1,11 @@
+import ellipse_feedback from "../../assets/images/images_home/ellipse_feedback.svg";
 import React from 'react';
 import {
     notifyError,
     notifyInfo,
     notifySuccess,
-} from "../swap_components/Toasts.jsx";
-import privacyPolicyPDF from '../../assets/docs/Privacy_Policy.pdf'; 
+} from "./Toasts.jsx";
+import privacyPolicyPDF from '../../assets/docs/Privacy_Policy.pdf'; // 
 
 const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
 const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
@@ -19,19 +20,15 @@ const Feedback = () => {
         const re = /^\+?[0-9]{1,3}?\s?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/;
         return re.test(phone);
     }
-
     const validateName = (name) => {
         const re = /^[a-zA-Zа-яА-Я]+$/;
         return re.test(name?.trim().replaceAll(" ", ''));
     }
+    React.useEffect(() => {
 
-    // React.useEffect(() => {
-
-    // }, [phone, name])
-
+    }, [phone, name])
     const sendMessageToTelegram = async () => {
         const message = `<b>Имя:</b><code>${name}</code>                              <b>Телефон:</b><code>${phone}</code>`;
-
         const url = `https://api.telegram.org/bot${REACT_APP_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${REACT_APP_TELEGRAM_CHAT_ID}&text=${message}&parse_mode=HTML`;
         setIsSending(true);
         try {
@@ -52,6 +49,7 @@ const Feedback = () => {
     return (
         <>
             <section className="feedback">
+                <img className="ellipse_feedback" src={ellipse_feedback} alt="" />
                 <div className="wrapper">
                     <div className="feedback-conteiner">
                         <div className="feedback-conteiner-title">
@@ -67,8 +65,7 @@ const Feedback = () => {
                             <input style={{ borderColor: name && !validateName(name) ? "red" : "gray" }} value={name} onChange={(e) => setName(e.target.value?.slice(0, 1)?.toUpperCase() + e.target.value?.slice(1, e.target.value?.length) ?? "")} type="text" placeholder="Введите ваше имя" />
                             <h3>Ваш телефон</h3>
                             <input value={phone} style={{ borderColor: phone && !validatePhone(phone) ? "red" : "gray" }} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="Введите ваш номер телефона" />
-                            <p>Нажимая на кнопку, соглашаюсь <br /> с  <a href={privacyPolicyPDF} target="_blank" rel="noopener noreferrer" style={{cursor:"pointer"}} ><span>политикой обработки персональных данных</span></a></p>
-                            <div className="feedback-button-conteiner">
+                            <p>Нажимая на кнопку, соглашаюсь <br /> с  <a href={privacyPolicyPDF} target="_blank" rel="noopener noreferrer" style={{ cursor: "pointer" }} ><span>политикой обработки персональных данных</span></a></p>                            <div className="feedback-button-conteiner">
                                 <button disabled={isSending || !validateName(name) || !validatePhone(phone)} onClick={sendMessageToTelegram} className="feedback-button button">Отправить</button>
                             </div>
                         </div>

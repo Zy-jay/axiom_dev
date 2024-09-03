@@ -1,6 +1,6 @@
 import { sleep } from "./sleep";
 
-export async function tryMultipleTimes(request, times, delay) {
+export async function tryMultipleTimes(request, times = 3, delay = 1000) {
   const errors = [];
 
   for (let i = 0; i <= times; i++) {

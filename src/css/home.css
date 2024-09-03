@@ -491,6 +491,7 @@ img.howWeWorkRectangle_itemTwo {
 
 .strategies-button {
   width: 9.32vw;
+  min-width: 170px;
   height: 2.6vw;
   margin-left: 0;
   max-width: 179px;
@@ -512,7 +513,7 @@ img.howWeWorkRectangle_itemTwo {
   position: absolute;
   right: 0;
   width: 38vw;
-  top: 123vw;
+  top: 90vw;
   z-index: -1;
 }
 
@@ -643,9 +644,10 @@ img.howWeWorkRectangle_itemTwo {
 }
 
 /* Media query for mobile devices */
-@media (max-width: 768px) { /* Adjust the max-width as needed */
+@media (max-width: 768px) {
+  /* Adjust the max-width as needed */
   .docsFooter {
-      font-size: 2.833vw; /* Font size for mobile */
+    font-size: 2.833vw; /* Font size for mobile */
   }
 }
 
@@ -946,7 +948,7 @@ img.howWeWorkRectangle_itemTwo {
   }
 
   .strategies-button {
-    width: 127px;
+    width: 177px;
     height: 35px;
     font-size: 12px;
   }

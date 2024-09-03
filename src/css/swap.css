@@ -187,13 +187,14 @@ html {
 .dashboard-conteiner-content {
   display: flex;
   justify-content: space-between;
+  gap: 2vw;
 }
 
 .conteiner-content-briefcase {
   width: 40vw;
   height: 24.427vw;
   background-color: rgba(112, 112, 112, 0.1);
-  border-radius: 0.518vw;
+  border-radius: 10px;
   position: relative;
   border: 0.15vw solid rgba(255, 255, 255, 0.1);
 }
@@ -252,7 +253,7 @@ img.ellipse_fore {
   width: 24.8vw;
   height: 24.427vw;
   background-color: rgba(132, 132, 132, 0.1);
-  border-radius: 1.354vw;
+  border-radius: 10px;
   border: 0.15vw solid rgba(112, 112, 112, 0.1);
 }
 

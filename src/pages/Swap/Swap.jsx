@@ -22,21 +22,21 @@ import React from "react";
 import usdt from "../../assets/images/images_safe/usdt.svg";
 
 
-import { CustomConnectButton } from "./CustomConnect";
+import { CustomConnectButton } from "../../componets/UI/CustomConnect.jsx";
 import {
 	useSaleInfo,
 	useBalanceOf,
 	useDecimals,
 	useAllowance,
 
-} from "../../hooks/useContactRead";
+} from "../../hooks/useContactRead.js";
 import {
 	contracts,
 	CURRENT_DAO_INDEX,
 	DAOs,
 } from "../../utils/blockchain.js";
-import { useApproveWrite, useBuyWrite } from "../../hooks/useContractWrite";
-import { toOptionalFixed } from "../../utils/converter";
+import { useApproveWrite, useBuyWrite } from "../../hooks/useContractWrite.js";
+import { toOptionalFixed } from "../../utils/converter.js";
 
 import btcLogo from "../../assets/tokenLogos/BTC.png";
 import altLogo from "../../assets/tokenLogos/ALT.png";
@@ -51,13 +51,14 @@ import ultraDaoLogo from "../../assets/images/images_dashboard/ultra.webp";
 import safeDaoLogo from "../../assets/images/images_dashboard/safedaologo.png";
 import altDaoLogo from "../../assets/images/images_dashboard/altportfolio.webp";
 import { useSwitchChain } from "wagmi";
-import ConfirmModal from "../UI/confirmModal.jsx";
+import ConfirmModal from "../../componets/UI/confirmModal.jsx";
 import {
 	notifyError,
 	notifySuccess,
-} from "../swap_components/Toasts.jsx";
+} from "../../componets/UI/Toasts.jsx";
 import { useDaoPrice } from "../../hooks/useDaoPrice.js";
 import { STRATEGI_KEYS } from "../../constants/strategis.js";
+import { useTokenBalance } from "../../hooks/useTokenBalances.js";
 
 
 
@@ -113,7 +114,7 @@ const GodObject = {
 		chainId: 42161,
 		addressDao: DAOs.axBTC,
 		addressLp: DAOs.axBTCLP,
-		addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+		// addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
 		addressWBTC: "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
 	},
 	[STRATEGI_KEYS.altporfoliodao]: {
@@ -144,23 +145,26 @@ const crowdModuleARB = '0x0cf784bba0FFA0a7006f3Ee7e4357E643a07F6e7';
 // 	return chain;
 // }
 
-const Dashboard = ({ daoKey, dao }) => {
+const Swap = ({ daoKey, dao }) => {
 
 	const { chains, switchChain } = useSwitchChain();
 	const { address, isConnected, chain, } = useAccount();
-	console.log(GodObject[dao])
+	const isBtcDao = dao === STRATEGI_KEYS.btcdao
+
 	const { chainId,
 		token2Logo,
 		name,
 		addressLp,
 		addressDao,
 		addressUSDT,
-		addressWBTC, token1Name, token2Name,
-		token1Logo, logoBottom } = GodObject[dao]
+		addressWBTC,
+		token1Name,
+		token2Name,
+		token1Logo,
+		logoBottom } = GodObject[dao]
 
-	// let [sumDao, setSumDao] = useState(0);
-	// const [sumUsersLpTokens, setSumUsersLpTokens] = useState(0);
-	const isBtcDao = dao === STRATEGI_KEYS.btcdao
+	// USDT or WBTC  address
+	const tokenAddress = isBtcDao ? addressWBTC : addressUSDT;
 	const xdaoAddress = chainId === 1 ? crowdModuleETH : crowdModuleARB;
 
 	const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
@@ -196,13 +200,13 @@ const Dashboard = ({ daoKey, dao }) => {
 
 
 	const { daoPrice, } = useDaoPrice(addressDao, addressLp, chainId)
-	const [amount, setAmount] = useState(0);
-	const [receive, setReceive] = useState(0);
+	const [toValue, setToValue] = useState(0);
+	const [fromValue, setFromValue] = useState(0);
 	const [isTxLoading, setIsTxLoading] = useState(false);
 	const [refetch, setRefetch] = useState(false);
 	const [isSwitched, setIsSwitched] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { XDAOToken, WBTCToken } =
+	const { XDAOToken } =
 		contracts;
 
 	const requiredXDAOTokens = 5000000000000000000;
@@ -215,16 +219,9 @@ const Dashboard = ({ daoKey, dao }) => {
 	});
 
 	const fee = 0.95
-
-	const WBTCBalance = useBalanceOf({
-		tokenAddress: WBTCToken.address,
-		owner: !refetch && address,
-	});
-
-	const USDTBalance = useBalanceOf({
-		tokenAddress: addressUSDT,
-		owner: !refetch && address,
-	});
+	const rate = isSwitched ? daoPrice : fee
+	// USDT or WBTC balance
+	const { balance: tokenBalance } = useTokenBalance(tokenAddress, address, chainId);
 
 
 	useEffect(() => {
@@ -236,7 +233,9 @@ const Dashboard = ({ daoKey, dao }) => {
 
 
 
-	const LPBalanceUser = useBalanceOf({
+	const { balance: LPBalanceUser } = useTokenBalance(addressLp, address, chainId)
+
+	useBalanceOf({
 		tokenAddress: addressLp,
 		owner: !refetch && address,
 	});
@@ -264,40 +263,36 @@ const Dashboard = ({ daoKey, dao }) => {
 		return XDAOTokenBalance >= requiredXDAOTokens;
 	}, [XDAOTokenBalance, requiredXDAOTokens]);
 
-	const formattedWBTCBalance = useMemo(() => {
-		return WBTCBalance !== undefined && WBTCDecimals
-			? formatUnits(WBTCBalance, WBTCDecimals)
-			: undefined;
-	}, [WBTCBalance, WBTCDecimals]);
+	// const formattedTokenPrice = useMemo(() => {
+	// 	return WBTCBalance !== undefined && WBTCDecimals
+	// 		? formatUnits(WBTCBalance, WBTCDecimals)
+	// 		: undefined;
+	// }, []);
 
-	const formattedUSDTBalance = useMemo(() => {
-		return USDTBalance !== undefined && USDTDecimals
-			? formatUnits(USDTBalance, USDTDecimals)
-			: undefined;
-	}, [USDTBalance, USDTDecimals]);
+	const formattedTokenBalance = useMemo(() => {
+		return tokenBalance !== undefined ? formatUnits(tokenBalance, isBtcDao ? WBTCDecimals : USDTDecimals) : undefined;
+	}, [isBtcDao, tokenBalance]);
 
 	const formattedLPBalanceUser = useMemo(() => {
-		console.debug("LPBalanceUser", LPBalanceUser, LPDecimals);
 		return LPBalanceUser !== undefined && LPDecimals
 			? formatUnits(LPBalanceUser ?? 0n, LPDecimals)
 			: undefined;
 	}, [LPBalanceUser, LPDecimals]);
 
 	const parsedAmount = useMemo(() => {
-		if (!USDTDecimals) return undefined;
-		if (isNaN(amount) || amount <= 0) return undefined;
-
-		const minAmount = 1 / Math.pow(10, USDTDecimals);
-		if (amount < minAmount) {
+		const decimals = isBtcDao ? WBTCDecimals : USDTDecimals;
+		if (isNaN(toValue) || toValue <= 0) return undefined;
+		const minAmount = 1 / Math.pow(10, decimals);
+		if (toValue < minAmount) {
 			return undefined;
 		}
 
 		try {
-			return parseUnits(String(amount), USDTDecimals);
+			return parseUnits(String(toValue), decimals);
 		} catch (error) {
 			return undefined;
 		}
-	}, [amount, USDTDecimals]);
+	}, [toValue, isBtcDao]);
 
 
 	const {
@@ -312,7 +307,7 @@ const Dashboard = ({ daoKey, dao }) => {
 			? addressWBTC
 			: addressUSDT,
 		spender: xdaoAddress,
-		amount: parsedAmount,
+		toValue: parsedAmount,
 	});
 
 	const {
@@ -323,7 +318,7 @@ const Dashboard = ({ daoKey, dao }) => {
 	} = useBuyWrite({
 		crowdModule: xdaoAddress,
 		tokenAddress: addressDao,
-		amount: parsedAmount,
+		toValue: parsedAmount,
 	});
 
 	const approveText = useMemo(() => {
@@ -359,75 +354,37 @@ const Dashboard = ({ daoKey, dao }) => {
 
 
 
-	const handleChangeAmount = (_amount) => {
-		console.debug(_amount, saleInfo);
-
-		if (_amount <= 0) {
-			setAmount(0);
-			setReceive(0);
-			return;
+	const handleChangeFromValue = (value) => {
+		if (!value) {
+			setToValue(0)
+			return
 		}
-		setAmount(_amount);
-
-		if (_amount === "") {
-			setReceive(0);
-		}
-		if (daoPrice && _amount) {
-			const _receive = isSwitched
-				? (_amount / daoPrice) * fee
-				: _amount / daoPrice;
-			setReceive(toOptionalFixed(_receive, isBtcDao ? 8 : 3));
-
-		};
-
+		rate && (!isSwitched ? setToValue(value * fee) : setToValue(value * daoPrice))
 
 	}
 
-	const handleChangeReceive = (_receive) => {
-		if (_receive < 0) {
-			setReceive(0);
-			setAmount(0);
-			return;
+	const handleChangeToValue = (value) => {
+		if (!value) {
+			setFromValue(0)
+			return
 		}
-
-		setReceive(_receive);
-
-		if (_receive === "") {
-			setAmount(0);
-			setReceive(0);
-			return;
-
-		}
-		if (daoPrice && _receive) {
-			const _amount = isSwitched
-				? (_receive * daoPrice) * fee
-				: _receive * daoPrice;
-			setAmount(toOptionalFixed(_amount, 8));
-		}
+		rate && (!isSwitched ? setFromValue(value / fee) : setFromValue(value / daoPrice))
 
 	};
 
 	const handleMax = () => {
-		const value = isSwitched ? formattedLPBalanceUser : (isBtcDao ? formattedWBTCBalance : formattedUSDTBalance);
-		handleChangeAmount(value)
+		const value = isSwitched ? formattedLPBalanceUser : formattedTokenBalance;
+		setFromValue(value);
+		handleChangeFromValue(value)
+		// handleChangeAmount(Number(value))
 	}
 
-
 	useEffect(() => {
-		const value = amount;
-		setAmount(receive)
-		handleChangeAmount(value)
+		const value = fromValue;
+		setToValue(value);
+		handleChangeFromValue(value)
 	}, [isSwitched]);
 
-	// useEffect(() => {
-	// 	if (
-	// 		approveStatus === "success" &&
-	// 		approveData &&
-	// 		approveTxStatus === "success"
-	// 	) {
-	// 		setIsModalOpen(true)
-	// 	}
-	// }, [approveStatus, approveData, approveTxStatus]);
 
 	useEffect(() => {
 		if (
@@ -479,230 +436,121 @@ const Dashboard = ({ daoKey, dao }) => {
 								<h2>Быстрая сделка</h2>
 								<div className="content-deal">
 									<div className="content-deal-input">
-										{isSwitched ? (
-											<>
-												<div className="deal-input">
-													<div className="deal-input-content">
-														<input
-															value={receive}
-															type="number"
-															readOnly={isTxLoading}
-															min={0}
-															onChange={(e) => handleChangeReceive(Number(e.target.value))}
-														/>
-													</div>
-													<div className="deal-select">
-														<div className="deal-select-token">
-															<img
-																src={token2Logo}
-																alt=""
-																height={23}
-																width={23}
-															/>
-															<p>{token2Name}</p>
-														</div>
-														<img
-															className="down-chevron"
-															src={down_chevron}
-															alt=""
-														/>
-													</div>
+
+										<>
+											<div className="deal-input">
+												<div className="deal-input-content">
+													<input
+														value={fromValue}
+														type="number"
+														readOnly={isTxLoading}
+														min={0}
+														onChange={(e) => {
+															setFromValue(e.target.value ? Number(e.target.value) : "");
+															if (e.target.value) {
+																handleChangeFromValue(Number(e.target.value))
+															} else {
+																setToValue("")
+															}
+														}}
+													/>
 												</div>
-												{isConnected &&
-													isChainSupported ? (
-													<h3>
-														На кошельке:{" "}
-														{formattedLPBalanceUser !== undefined ? (
-															<>
-																{toOptionalFixed(formattedLPBalanceUser, 8)}
-																<span> {token2Name} </span>
-																<button
-																	onClick={handleMax}
-																	className="max-button button_swap"
-																>
-																	Max
-																</button>
-															</>
-														) : (
-															"-"
-														)}
-													</h3>
-												) : (
-													<div style={{ height: "1vw" }} />
-												)}
-
-												<img
-													className="vector_swap"
-													src={vector}
-													alt=""
-													onClick={handleSwitch}
-												/>
-												<div className="deal-input">
-													<div className="deal-input-content">
-														<input
-															value={amount}
-															type="number"
-															readOnly={isTxLoading}
-															min={0}
-															onChange={(e) => handleChangeAmount(Number(e.target.value))}
-														/>
-													</div>
-													<div className="deal-select">
-														<div className="deal-select-token">
-															<img
-																src={token1Logo}
-																alt=""
-																height={63}
-																width={63}
-															/>
-															<p> {token1Name}</p>
-														</div>
+												<div className="deal-select">
+													<div className="deal-select-token">
 														<img
-															className="down-chevron"
-															src={down_chevron}
+															src={!isSwitched ? token1Logo : token2Logo}
 															alt=""
+															height={63}
+															width={63}
 														/>
+														<p>{!isSwitched ? token1Name : token2Name}</p>
 													</div>
+													<img
+														className="down-chevron"
+														src={down_chevron}
+														alt=""
+													/>
 												</div>
-												{isConnected &&
-													isChainSupported ? (
-													<h3>
-														На кошельке:{" "}
+											</div>
 
-														{!isBtcDao ? (
-															<>
-																{toOptionalFixed(formattedUSDTBalance, 2)}
-																<span> {token1Name}</span>
-															</>
-														) : (
-															<>
-																{toOptionalFixed(formattedWBTCBalance, 6)}
+											{isConnected &&
 
-																<span> {token1Name}</span>
-															</>
-														)}
-													</h3>
-												) : (
-													<div style={{ height: "1vw" }} />
-												)}
-											</>
-										) : (
-											<>
-												<div className="deal-input">
-													<div className="deal-input-content">
-														<input
-															value={amount}
-															type="number"
-															readOnly={isTxLoading}
-															min={0}
-															onChange={(e) => handleChangeAmount(Number(e.target.value))}
-														/>
-													</div>
-													<div className="deal-select">
-														<div className="deal-select-token">
-															<img
-																src={token1Logo}
-																alt=""
-																height={63}
-																width={63}
-															/>
-															<p>{token1Name}</p>
-														</div>
+												formattedTokenBalance !== undefined && !isNaN(formattedTokenBalance) ? (
+												<h3>
+													На кошельке:{" "}
+													<>
+														{toOptionalFixed(!isSwitched ? formattedTokenBalance : formattedLPBalanceUser, isBtcDao ? 6 : 3)}
+														<span> {!isSwitched ? token1Name : token2Name}</span>
+														<button
+															onClick={handleMax}
+															className="max-button button_swap"
+														>
+															Max
+														</button>
+													</>
+
+												</h3>
+											) : (
+												<div style={{ height: "1vw" }} />
+											)}
+
+											<img
+												className="vector_swap"
+												src={vector}
+												alt=""
+												onClick={() => setIsSwitched((prev) => !prev)}
+											/>
+											<div className="deal-input">
+												<div className="deal-input-content">
+													<input
+														value={toValue}
+														type="number"
+														readOnly={isTxLoading}
+														min={0}
+														onChange={(e) => {
+															setToValue(e.target.value ? Number(e.target.value) : "")
+															if (e.target.value) {
+																handleChangeToValue(Number(e.target.value))
+															}
+														}}
+													/>
+												</div>
+												<div className="deal-select">
+													<div className="deal-select-token">
 														<img
-															className="down-chevron"
-															src={down_chevron}
+															src={!isSwitched ? token2Logo : token1Logo}
 															alt=""
+															height={23}
+															width={63}
 														/>
+														<p>{!isSwitched ? token2Name : token1Name}</p>
 													</div>
+													<img
+														className="down-chevron"
+														src={down_chevron}
+														alt=""
+													/>
 												</div>
+											</div>
 
-												{isConnected &&
-													isChainSupported ? (
-													<h3>
-														На кошельке:{" "}
-														{!isBtcDao ? (
-															<>
-																{toOptionalFixed(formattedUSDTBalance, 2)}
-																<span> {token1Name} </span>
-																<button
-																	onClick={handleMax}
-																	className="max-button button_swap"
-																>
-																	Max
-																</button>
-															</>
-														) : (
-															<>
-																{toOptionalFixed(formattedWBTCBalance, 6)}
-																<span> {token1Name} </span>
-																<button
-																	onClick={handleMax}
-																	className="max-button button_swap"
-																>
-																	Max
-																</button>
-															</>
-														)}
-													</h3>
-												) : (
-													<div style={{ height: "1vw" }} />
-												)}
-												<img
-													className="vector_swap"
-													src={vector}
-													alt=""
-													onClick={() => setIsSwitched((prev) => !prev)}
-												/>
-												<div className="deal-input">
-													<div className="deal-input-content">
-														<input
-															value={receive}
-															type="number"
-															readOnly={isTxLoading}
-															min={0}
-															onChange={(e) => handleChangeReceive(Number(e.target.value))}
-														/>
-													</div>
-													<div className="deal-select">
-														<div className="deal-select-token">
-															<img
-																src={token2Logo}
-																alt=""
-																height={23}
-																width={63}
-															/>
-															<p>{token2Name}</p>
-														</div>
-														<img
-															className="down-chevron"
-															src={down_chevron}
-															alt=""
-														/>
-													</div>
-												</div>
+											{isConnected &&
+												<h3>
+													На кошельке:{" "}
+													{formattedLPBalanceUser !== undefined && !isNaN(formattedLPBalanceUser) ? (
+														<>
+															{toOptionalFixed(!isSwitched ? formattedLPBalanceUser : formattedTokenBalance, 6)}
+															<span>
+																<span> </span>
 
-												{isConnected &&
-													isChainSupported ? (
-													<h3>
-														На кошельке:{" "}
-														{formattedLPBalanceUser !== undefined ? (
-															<>
-																{toOptionalFixed(formattedLPBalanceUser, 8)}
-																<span>
-																	<span> </span>
-
-																	{token2Name}
-																</span>
-															</>
-														) : (
-															"-"
-														)}
-													</h3>
-												) : (
-													<div style={{ height: "1vw" }} />
-												)}
-											</>
-										)}
+																{!isSwitched ? token2Name : token1Name}
+															</span>
+														</>
+													) : (
+														"-"
+													)}
+												</h3>
+											}
+										</>
 									</div>
 								</div>
 								<div className="conteiner-content-button">
@@ -724,7 +572,7 @@ const Dashboard = ({ daoKey, dao }) => {
 											>
 												Оставить заявку на вывод
 											</button>
-										) : parsedAmount > USDTBalance ? (
+										) : parsedAmount > tokenBalance ? (
 											<button className="content-button inactive button_swap">
 												Недостаточно {token1Name}
 											</button>
@@ -768,7 +616,7 @@ const Dashboard = ({ daoKey, dao }) => {
 						<div className="parameters-conteiner-content">
 							<div className="content_item btc">
 								<img src={logoBottom} alt="" />
-								<h3>Current share price: { (toOptionalFixed(daoPrice, isBtcDao ? 3 : 3)) }</h3>
+								<h3>Current share price: {(toOptionalFixed(daoPrice, isBtcDao ? 3 : 3))}</h3>
 							</div>
 
 							<a href="">
@@ -798,5 +646,5 @@ const Dashboard = ({ daoKey, dao }) => {
 	);
 };
 
-export default Dashboard;
+export default Swap;
 

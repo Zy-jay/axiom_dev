@@ -18,6 +18,23 @@ code {
 a:hover {
   color: #d64f02;
 }
+.portfolio-token {
+  color: #fff;
+}
+
+.strategies-button button {
+  width: 9.32vw;
+  min-width: 170px;
+  height: 2.6vw;
+  margin-left: 0;
+  max-width: 179px;
+  max-height: 50px;
+}
+.strategies-button:hover {
+  color: #02d633;
+  opacity: 0.8;
+}
+
 .spinner {
   width: 40px;
   height: 40px;

@@ -26,14 +26,13 @@ import close from "../../assets/images/images_safe/close.svg";
 import React from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { shortenAddress } from "../../utils/shortenAddress";
+import { shortenAddress } from "../../utils/shortenAddress.js";
 import Fox from "../../assets/images/images_home/MetaMask_Fox.png";
-import { useDaoPrice } from "../../hooks/useDaoPrice";
 
-import { SupportedChainId } from "../../constants/chains";
+import { SupportedChainId } from "../../constants/chains.js";
 
-import { DAOs } from "../../utils/blockchain";
-import { Spinner } from "../UI/Spiner.jsx";
+import { DAOs } from "../../utils/blockchain.js";
+import { Spinner } from "../../componets/UI/Spiner.jsx";
 
 
 import btcLogo from "../../assets/tokenLogos/BTC.png";
@@ -265,41 +264,17 @@ const DAO_PAGE_DATA = {
 
 
 
-const HowWeWork = ({ isBtc, dao, daoKey }) => {
-
-	function getTextFromLink(link) {
-		const regex = /\/strategies\/(\w+)\/swap/;
-		const match = link.match(regex);
-		if (match && match.length > 1) {
-		  return match[1];
-		}
-		return null;
-	  }
-
-
-
+const HowWeWork = ({ isBtc, dao, daoKey, daoPrice }) => {
 	const pageData = DAO_PAGE_DATA[dao];
-
-	console.log(pageData)
-
-	if(getTextFromLink(pageData.link) == "btcdao" ) {
-		isBtc = true;
-	} else {
-		isBtc = false;
-	}
-
-	console.log("isbtc? " + isBtc )
-
 	const { link, text, img, img_mobil, lpAddress, title, currentDaoAddress, symbol, chainId, decimals } = pageData;
 
-	const { daoPrice, isDaoPriceLoading } = useDaoPrice(currentDaoAddress, lpAddress, chainId);
+	// const { daoPrice, isDaoPriceLoading } = useDaoPrice(currentDaoAddress, lpAddress, chainId);
 
 
 	let finPrice;
 
 
 	finPrice = (daoPrice)?.toFixed(3);
-	// finPrice = finPrice ?? "0.000"; // Или любое другое значение по умолчанию
 	return (
 		<>
 			<section className="howWeWorksafe">

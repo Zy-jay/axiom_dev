@@ -10,7 +10,7 @@ import {
   notifyError,
   notifyInfo,
   notifySuccess,
-} from "../componets/swap_components/Toasts.jsx";
+} from "../componets/UI/Toasts.jsx";
 import { contracts } from "../utils/blockchain.js";
 
 const { XDAO, erc20Abi } = contracts;

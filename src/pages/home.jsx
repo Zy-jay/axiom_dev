@@ -1,23 +1,20 @@
 import "../css/home.css";
-import Header from "../componets/home_components/header.jsx";
-import HowWeWork from "../componets/home_components/howWeWork.jsx";
-import Strategies from "../componets/home_components/strategies.jsx";
-import Feedback from "../componets/home_components/feedback.jsx";
+import Header from "../componets/UI/header.jsx";
+import Baner from "../componets/UI/Baner.jsx";
+import Strategies from "./Strategies/Strategies.jsx";
+import Feedback from "../componets/UI/feedback.jsx";
 import Footer from "../componets/UI/footer.jsx";
-import { Providers } from "../Providers.js";
 
-function App() {
+function Home() {
 	return (
 		<div className="main">
-			<Providers>
-				<Header />
-				<HowWeWork />
-				<Strategies />
-				<Feedback />
-				<Footer />
-			</Providers>
+			<Header />
+			<Baner />
+			<Strategies />
+			<Feedback />
+			<Footer />
 		</div>
 	);
 }
 
-export default App;
+export default Home;

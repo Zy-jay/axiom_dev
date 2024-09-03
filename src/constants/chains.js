@@ -49,11 +49,15 @@ export const ALL_RPC_URLS = {
   ],
   [SupportedChainId.MAINNET]: [
     "https://eth-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
-    "https://eth-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
+    "https://rpc.ankr.com/eth",
+    "https://eth.meowrpc.com",
+    "https://eth.merkle.io",
+    "https://api.stateless.solutions/ethereum/v1/demo",
   ],
   [SupportedChainId.OPTIMISM]: [
     "https://optimism.llamarpc.com",
     "https://optimism-rpc.publicnode.com",
+    "https://ethereum-rpc.publicnode.com",
   ],
   [SupportedChainId.POLYGON]: [
     "https://polygon.llamarpc.com",
@@ -64,8 +68,14 @@ export const ALL_RPC_URLS = {
     "https://rpc.linea.build",
   ],
   [SupportedChainId.ARBITRUM_ONE]: [
-    "https://arb-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
-    "https://arb-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
+    "https://endpoints.omniatech.io/v1/arbitrum/one/public",
+    "https://arb-pokt.nodies.app",
+    "https://arbitrum.blockpi.network/v1/rpc/public",
+    "https://arbitrum-one.public.blastapi.io",
+    "https://endpoints.omniatech.io/v1/arbitrum/one/public",
+    "https://arbitrum-one-rpc.publicnode.com",
+    "https://arbitrum.meowrpc.com",
+    "https://api.stateless.solutions/arbitrum-one/v1/demo",
   ],
   [SupportedChainId.ZKEVM]: ["https://zkevm-rpc.com"],
   [SupportedChainId.ZKSYNC]: ["https://mainnet.era.zksync.io"],

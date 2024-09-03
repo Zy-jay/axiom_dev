@@ -5,14 +5,19 @@ import { tryMultipleTimes } from "../utils/tryMultipleTimes";
 
 const quryFetch = (address, owner, chainId) => {
   return [
-    `balance-${address}-${owner}-${chainId}`,
+    `token-balance-${address}-${owner}-${chainId}`,
     async () => {
       try {
+        console.log("balance", address, owner, chainId);
+
         const provider = getEthersProvider(chainId);
-        const balance = await tryMultipleTimes(() =>
-          getTokenBalance(address, owner, chainId)
+        const balance = await tryMultipleTimes(
+          () => getTokenBalance(address, owner, chainId),
+          3,
+          1000
         );
         provider.destroy();
+        console.log("balance", balance);
         return balance;
       } catch (err) {
         console.log(err);
@@ -22,20 +27,14 @@ const quryFetch = (address, owner, chainId) => {
   ];
 };
 
-export function useTokenBalance(daoAddress, axAltPortfolioLpAddress, chainId) {
-  const [queryKey, quryFetcher] = quryFetch(
-    daoAddress,
-    axAltPortfolioLpAddress,
-    chainId
-  );
-  const { data, isLoading, error } = useQuery(queryKey, quryFetcher, {
-    refetchInterval: 30000,
-  });
+export function useTokenBalance(address, owner, chainId) {
+  const [queryKey, quryFetcher] = quryFetch(address, owner, chainId);
+  const { data, isLoading, error } = useQuery(queryKey, quryFetcher, {});
 
   return {
-    daoPrice: data,
-    isDaoPriceLoading: isLoading,
-    daoPriceErr: error,
+    balance: data,
+    isBalanceLoading: isLoading,
+    balanceErr: error,
   };
 }
 

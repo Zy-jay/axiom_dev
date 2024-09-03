@@ -13,7 +13,7 @@ import axiom_animate from "../../assets/images/images_home/axiom_animate.gif";
 import up from "../../assets/images/images_home/up.svg";
 import React from "react";
 
-const HowWeWork = () => {
+const Baner = () => {
 	return (
 		<>
 			<section className="howWeWork">
@@ -172,4 +172,4 @@ const HowWeWork = () => {
 	);
 };
 
-export default HowWeWork;
+export default Baner;
