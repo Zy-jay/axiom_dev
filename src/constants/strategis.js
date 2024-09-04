@@ -13,11 +13,22 @@ import alt_mobil from "../assets/images/images_safe/alt_mobil.png";
 import btc_mobil from "../assets/images/images_safe/btc_mobil.png";
 import ultra_mobil from "../assets/images/images_safe/ultra_mobil.png";
 import ArbLogo from "../assets/images/images_home/arbitrum-nova-logo.png";
-import BtcDaoLogo from "../assets/images/images_home/strategies_item_one.png";
-import AltDaoLogo from "../assets/images/images_home/strategies_item_two.png";
-import UltraDaoLogo from "../assets/images/images_home/strategies_item_three.png";
-import AirDaoLogo from "../assets/images/images_home/strategies_item_fore.png";
-import SafeDaoLogo from "../assets/images/images_home/strategies_item_five.png";
+
+// import BtcDaoLogo from "../assets/images/images_home/strategies_item_one.png";
+// import AltDaoLogo from "../assets/images/images_home/strategies_item_two.png";
+// import UltraDaoLogo from "../assets/images/images_home/strategies_item_three.png";
+// import AirDaoLogo from "../assets/images/images_home/strategies_item_fore.png";
+// import SafeDaoLogo from "../assets/images/images_home/strategies_item_five.png";
+
+
+
+import BtcDaoLogo from "../assets/tokenLogos/BTC.png";
+import AltDaoLogo from "../assets/tokenLogos/ALT.png";
+import UltraDaoLogo from "../assets/tokenLogos/ULTRA.png";
+import AirDaoLogo from "../assets/tokenLogos/AIRDROP.png";
+import SafeDaoLogo from "../assets/tokenLogos/SAFE.png";
+
+
 import { DAOs } from "../utils/blockchain";
 import { SupportedChainId } from "./chains";
 

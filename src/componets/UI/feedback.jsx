@@ -1,5 +1,7 @@
 import ellipse_feedback from "../../assets/images/images_home/ellipse_feedback.svg";
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 import {
     notifyError,
     notifyInfo,
@@ -15,6 +17,7 @@ const Feedback = () => {
     const [name, setName] = React.useState('');
     const [phone, setPhone] = React.useState('');
     const [isSending, setIsSending] = React.useState(false);
+    const [strategyName, setStrategyName] = React.useState('');
 
     const validatePhone = (phone) => {
         const re = /^\+?[0-9]{1,3}?\s?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/;
@@ -24,11 +27,25 @@ const Feedback = () => {
         const re = /^[a-zA-Zа-яА-Я]+$/;
         return re.test(name?.trim().replaceAll(" ", ''));
     }
+
+    const getStrategyName = (url) => {
+        const strategyPath = url.split('/strategies/')[1];
+        return strategyPath;
+    }
+    
+
+    const location = useLocation();
+
     React.useEffect(() => {
 
-    }, [phone, name])
+        console.log("current location from feedback page")
+        console.log(location)
+        setStrategyName(getStrategyName(location.pathname))
+
+
+    }, [phone, name,])
     const sendMessageToTelegram = async () => {
-        const message = `<b>Имя:</b><code>${name}</code>                              <b>Телефон:</b><code>${phone}</code>`;
+        const message = `<b>Имя:</b><code>${name}</code>                              <b>Телефон:</b><code>${phone}</code>        <b>Стратегия :</b><code>${strategyName}</code> `;
         const url = `https://api.telegram.org/bot${REACT_APP_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${REACT_APP_TELEGRAM_CHAT_ID}&text=${message}&parse_mode=HTML`;
         setIsSending(true);
         try {

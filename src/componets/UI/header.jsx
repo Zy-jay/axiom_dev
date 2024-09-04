@@ -61,12 +61,17 @@ const Header = () => {
 									alt=""
 								/>
 								<nav>
+
+
+
 									<Link to="/">Главная</Link>
 									<Link to="/strategies/btcdao">BTC DAO</Link>
+									<Link to="/strategies/safedao">Safe DAO</Link>
 									<Link to="/strategies/altporfoliodao">Altporfolio DAO</Link>
 									<Link to="/strategies/ultrdao">Ultra DAO</Link>
 									<Link to="/strategies/airdropdao">AirDrop DAO</Link>
-									<Link to="/strategies/safedao">Safe DAO</Link>
+
+
 									<div className="drop-down ">
 										<a href="#" onClick={() => setIsOpen(!isOpen)}>
 											Наши проекты
