@@ -4,13 +4,14 @@ import drop_down from "../../assets/images/images_home/drop-down.svg";
 import vector from "../../assets/images/images_home/vector.svg";
 import ellipse_header from "../../assets/images/images_home/ellipse_header.svg";
 import burger from "../../assets/images/images_home/burger.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
 import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
+import { shortenAddress } from "../../utils/shortenAddress";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
-	const { address } = useAccount();
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,6 +28,11 @@ const Header = () => {
 	const handleMouseLeave = () => {
 		setIsOpen(false);
 	};
+	const { address, isConnected, chain } = useAccount();
+	const { openConnectModal, connectModalOpen } = useConnectModal()
+	const navigate = useNavigate()
+
+
 
 	return (
 		<>
@@ -115,12 +121,17 @@ const Header = () => {
 										)}
 									</div>
 									{address ? (
-										<button className="button">
-											<Link to="/dashboard">{address}</Link>
+										<button onClick={() => {
+											navigate("/dashboard")
+										}} className="button">
+											{shortenAddress(address)}
 										</button>
 									) : (
-										<button className="button">
-											<Link to="/dashboard">Кошелек</Link>
+										<button onClick={() => {
+											navigate("/dashboard")
+											openConnectModal()
+										}} className="button">
+											Кошелек
 										</button>
 									)}
 								</nav>
@@ -177,12 +188,17 @@ const Header = () => {
 										</div>
 									</div>
 									{address ? (
-										<button className="button">
-											<Link to="/dashboard">{address}</Link>
+										<button onClick={() => {
+											navigate("/dashboard")
+										}} className="button">
+											{shortenAddress(address)}
 										</button>
 									) : (
-										<button className="button">
-											<Link to="/dashboard">Кошелек</Link>
+										<button onClick={() => {
+											navigate("/dashboard")
+											openConnectModal()
+										}} className="button">
+											Кошелек
 										</button>
 									)}
 								</nav>

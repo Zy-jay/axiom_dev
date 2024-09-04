@@ -8,8 +8,8 @@ import Dashboard from "./pages/Dashboard/DashboardPage.jsx";
 import { Provider } from "ankr-react";
 import { Providers } from "./Providers";
 import { ToastContainer, Bounce } from 'react-toastify'; // https://fkhadra.github.io/react-toastify/introduction
-import { useAccount, useConnect } from "wagmi";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+// import { useAccount, useConnect } from "wagmi";
+// import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { STRATEGI_KEYS } from "./constants/strategis.js";
 import SwapPage from "./pages/Swap/SwapPage.jsx";
 import { StrategiPage } from "./pages/Strategies/StrategiPage.jsx";
@@ -19,9 +19,9 @@ import { StrategiPage } from "./pages/Strategies/StrategiPage.jsx";
 
 function App() {
 
-	const { address, isConnected, chain } = useAccount();
-	const { openConnectModal, connectModalOpen } = useConnectModal()
-	const { connect } = useConnect();
+	// const { address, isConnected, chain } = useAccount();
+	// const { openConnectModal, connectModalOpen } = useConnectModal()
+	// const { connect } = useConnect();
 	// useEffect(() => {
 	// 	if (!isConnected && !address && !connectModalOpen) {
 	// 		connect()

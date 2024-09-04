@@ -491,9 +491,9 @@ img.howWeWorkRectangle_itemTwo {
   color: #fff;
   font-size: 16px;
   width: 100%;
-  padding: 1vw 0 1.5vw 0;
+  padding: 1vw 5px 1.5vw 0;
   display: flex;
-  max-width: 90%;
+  max-width: 98%;
   height: 70px;
 }
 
