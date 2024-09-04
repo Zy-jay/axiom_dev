@@ -62,6 +62,9 @@ const Header = () => {
 									alt=""
 								/>
 								<nav>
+
+
+
 									<Link to="/">Главная</Link>
 									{Object.values(STRATEGI_KEYS).map((key) => {
 										return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
