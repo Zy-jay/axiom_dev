@@ -171,6 +171,8 @@ const UserDashboard = () => {
 			});
 
 			// / Обновляем состояние complexCrowdData
+			console.log("displayUserShare")
+			console.log(displayUserShare)
 			setDisplayUserShare(displayShareData);
 
 			////

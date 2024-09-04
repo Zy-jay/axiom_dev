@@ -270,7 +270,21 @@ const HowWeWork = ({ isBtc, dao, daoKey, daoPrice }) => {
 
 	// const { daoPrice, isDaoPriceLoading } = useDaoPrice(currentDaoAddress, lpAddress, chainId);
 
+	function getTextFromLink(link) {
+		const regex = /\/strategies\/(\w+)\/swap/;
+		const match = link.match(regex);
+		if (match && match.length > 1) {
+		  return match[1];
+		}
+		return null;
+	  }
 
+	  if(getTextFromLink(pageData.link) == "btcdao" ) {
+		isBtc = true;
+	} else {
+		isBtc = false;
+	}
+	
 	let finPrice;
 
 
