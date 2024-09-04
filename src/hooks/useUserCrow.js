@@ -32,9 +32,7 @@ const quryFetch = (daoType) => {
 
 export function useUserCrowd(daoType) {
   const [queryKey, quryFetcher] = quryFetch(daoType);
-  const { data, isLoading, error } = useQuery(queryKey, quryFetcher, {
-    refetchInterval: 30000,
-  });
+  const { data, isLoading, error } = useQuery(queryKey, quryFetcher);
 
   return {
     userCrowd: data,

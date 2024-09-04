@@ -25,7 +25,9 @@ html {
 }
 
 .wrapper {
-  width: 67.45%;
+  width: 100%;
+  max-width: 1300px;
+  padding: 5;
   margin-left: auto;
   margin-right: auto;
 }
@@ -243,6 +245,8 @@ img.howWeWorkRectangle_safe {
 
 .safeDao-conteiner_safe {
   position: relative;
+  width: 67.45vw;
+  margin: auto;
 }
 
 .safeDao-conteiner_safe img {
@@ -384,13 +388,13 @@ img.howWeWorkRectangle_safe {
   font-weight: 700;
   color: #fff;
   font-size: 1.3vw;
-  padding-top: 13.8vw;
+  padding-top: 8vw;
   padding-bottom: 0.7vw;
 }
 
 .strategies-conteiner_safe {
   display: flex;
-  width: 100%;
+  width: 67vw;
   flex-direction: column;
 }
 
@@ -436,7 +440,7 @@ img.howWeWorkRectangle_safe {
   position: absolute;
   right: 0;
   width: 38vw;
-  top: 90vw;
+  top: 70vw;
   z-index: -1;
 }
 
@@ -784,6 +788,7 @@ img.howWeWorkRectangle_safe {
     width: 93.6vw;
     height: 80.8vw;
     margin-bottom: 7.47vw;
+    max-width: 583px;
   }
 
   .howWeWorkRectangle-item img {

@@ -65,8 +65,6 @@ import { useTokenBalance } from "../../hooks/useTokenBalances.js";
 const url =
 	"https://api.arbiscan.io/api?module=token&action=tokenholderlist&contractaddress=0x7f1Dd51843D8C4106213d0a4C3a7e96306C5d86F&&apikey=CC8VKJEZ5IES95BEMREN2FT3HUHITIS9IJ";
 
-const crowdAddress = "0x711E14eBC41A8f1595433FA4409a50BC9838Fc03";
-
 const GodObject = {
 	[STRATEGI_KEYS.ultrdao]: {
 		name: "ultraDao",
@@ -76,8 +74,8 @@ const GodObject = {
 		token1Logo: usdt,
 		token2Logo: ultraLogo,
 		logoBottom: ultraLogo,
-		addressDao: "0x92cb7baef8eddb1d6a02fa236b356124ad0530a5", // "0xe8740f7786ae2c674e484a71741247ee22fb125a",
-		addressLp: "0xcB87b5D12CE6239F90992196CedbFCbF8e78ea13", // "0x0a240713C9dB821C51f36F4621d6ac1F6e4D3745",
+		addressDao: DAOs.axUltra, // "0xe8740f7786ae2c674e484a71741247ee22fb125a",
+		addressLp: DAOs.axUltraLP, // "0x0a240713C9dB821C51f36F4621d6ac1F6e4D3745",
 		addressUSDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
 	},
 	[STRATEGI_KEYS.safedao]: {
@@ -88,8 +86,8 @@ const GodObject = {
 		chainId: 42161,
 		token2Logo: safeLogo,
 		logoBottom: safeLogo,
-		addressDao: "0xdb95465de86c947f7de927eb604bad526696881b",
-		addressLp: "0x72F2fE2dF156ab863200B011A0b008A8a306F926",
+		addressDao: DAOs.axSafe,
+		addressLp: DAOs.axSafeLP,
 		addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
 	},
 	[STRATEGI_KEYS.airdropdao]: {
@@ -100,7 +98,7 @@ const GodObject = {
 		token2Logo: airLogo,
 		logoBottom: airLogo,
 		chainId: 42161,
-		addressDao: "0xf958e82b5a8e615cb3476b59f9589c45df67acca",
+		addressDao: DAOs.axAirdrop,
 		addressLp: "0x24536722187680Eb71C270c7cC45A44C34162381",
 		addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
 	},
@@ -125,8 +123,8 @@ const GodObject = {
 		token2Logo: altLogo,
 		logoBottom: altLogo,
 		chainId: 1,
-		addressDao: "0xeebe6f7fd87ed28748f5e4d3e339ba0f28e90782",
-		addressLp: "0x8C3fce8E9bB082eFe5fB8922A45D0619Cae02435",
+		addressDao: DAOs.axAltPortfolio,
+		addressLp: DAOs.axAltPortfolioLP,
 		addressUSDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
 	},
 };
@@ -135,15 +133,6 @@ const GodObject = {
 const crowdModuleETH = '0x711e14ebc41a8f1595433fa4409a50bc9838fc03';
 const crowdModuleARB = '0x0cf784bba0FFA0a7006f3Ee7e4357E643a07F6e7';
 
-// function isChainSupported(chain, pathname) {
-// 	if (chain === undefined) {
-// 		return chain;
-// 	}
-// 	if (chain.id === 42161 && (pathname === "/strategies/altporfoliodao/swap" || pathname === "/strategies/ultrdao/swap")) {
-// 		return "eth";
-// 	}
-// 	return chain;
-// }
 
 const Swap = ({ daoKey, dao }) => {
 
@@ -249,7 +238,8 @@ const Swap = ({ daoKey, dao }) => {
 	const USDTDecimals = 6 // useDecimals({
 
 
-	const LPDecimals = useDecimals({ tokenAddress: addressLp });
+	const LPDecimals = 18
+	// useDecimals({ tokenAddress: addressLp });
 
 
 

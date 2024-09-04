@@ -35,7 +35,8 @@ html {
 }
 
 .wrapper {
-  width: 69%;
+  width: 100%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -298,6 +299,8 @@ a {
 
 .howWeWorkRectangle-conteiner {
   width: 100%;
+  max-width: 1300px;
+  margin: auto;
   height: 31.2vw;
   display: flex;
   margin-left: auto;
@@ -307,7 +310,8 @@ a {
 }
 
 img.howWeWorkRectangle {
-  width: 67.45vw;
+  width: 100%;
+  border-radius: 26px;
 }
 
 .howWeWorkRectangle-conteiner-title,
@@ -321,7 +325,7 @@ img.howWeWorkRectangle {
 .howWeWorkRectangle-conteiner-title-content {
   display: flex;
   width: 61.98vw;
-  margin-left: auto;
+  margin-left: 40px;
   margin-right: auto;
   padding-top: 3.07vw;
 }
@@ -330,7 +334,7 @@ img.howWeWorkRectangle {
   font-family: "Montserrat-Bold";
   font-weight: 700;
   color: #fff;
-  font-size: 2.08vw;
+  font-size: 40px;
   padding-right: 2.5vw;
 }
 
@@ -338,7 +342,7 @@ img.howWeWorkRectangle {
   font-family: "Montserrat";
   font-weight: 300;
   color: #fff;
-  font-size: 1.04vw;
+  font-size: 20px;
   padding-left: 1.82vw;
   padding-top: 0.6vw;
 }
@@ -352,18 +356,23 @@ img.howWeWorkRectangle {
 
 .howWeWorkRectangle-conteiner-content-items {
   display: flex;
-  width: 61.98vw;
+  width: 100%;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 10.5vw;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
+  height: fit-content;
 }
 
 .howWeWorkRectangle-item {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   width: 30.36vw;
-  height: 17.6vw;
+  height: fit-content;
+  max-width: 583px;
+  padding-bottom: 20px;
 }
 
 .howWeWorkRectangle-item img {
@@ -390,7 +399,7 @@ img.howWeWorkRectangle_itemTwo {
   font-family: "Montserrat";
   font-weight: 300;
   color: #fff;
-  font-size: 0.83vw;
+  font-size: 16px;
   padding-top: 1vw;
   line-height: 1.1vw;
 }
@@ -404,6 +413,8 @@ img.howWeWorkRectangle_itemTwo {
 .strategies-title h2 {
   font-family: "Montserrat-Bold";
   font-weight: 700;
+  width: 100%;
+  margin: auto;
   color: #fff;
   font-size: 2.08vw;
   padding-bottom: 2.97vw;
@@ -417,6 +428,7 @@ img.howWeWorkRectangle_itemTwo {
   margin: 0 auto; /* Центрирует контейнер */
   gap: 25px; /* Расстояние между элементами */
   justify-content: space-between;
+  padding-top: 20px;
 }
 
 .strategies-conteiner-item {
@@ -677,6 +689,17 @@ img.howWeWorkRectangle_itemTwo {
   position: relative;
   z-index: 2;
 }
+@media screen and (max-width: 1800px) {
+  .howWeWorkRectangle-item p {
+    font-size: 14px;
+  }
+  .howWeWorkRectangle-conteiner-title-content p {
+    font-size: 18px;
+  }
+  .howWeWorkRectangle-conteiner-title-content h2 {
+    font-size: 35px;
+  }
+}
 
 @media screen and (max-width: 767px) {
   html {
@@ -684,7 +707,9 @@ img.howWeWorkRectangle_itemTwo {
   }
 
   .wrapper {
-    width: 93.6%;
+    width: 100%;
+    max-width: 1300px;
+    height: max-content;
     margin-left: auto;
     margin-right: auto;
   }
@@ -877,8 +902,11 @@ img.howWeWorkRectangle_itemTwo {
   }
 
   .howWeWorkRectangle-conteiner-title-content p {
-    font-size: 3.2vw;
+    font-size: 16px;
     padding-left: 0;
+  }
+  .howWeWorkRectangle-conteiner-title-content h2 {
+    font-size: 30px;
   }
 
   .howWeWorkRectangle-conteiner-content-items {
@@ -905,10 +933,10 @@ img.howWeWorkRectangle_itemTwo {
   }
 
   .howWeWorkRectangle-item p {
-    font-size: 3.2vw;
-    padding-left: 4.53vw;
+    font-size: 12px;
+    /* padding-left: 4.53vw;
     line-height: 4vw;
-    padding-top: 6.67vw;
+    padding-top: 6.67vw; */
   }
 
   .strategies-conteiner {

@@ -3,6 +3,8 @@ import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 import xdao from "../../assets/images/tokenLogos/xdao.png";
 import wbtc from "../../assets/images/tokenLogos/wbtc.png";
 import dai from "../../assets/images/tokenLogos/dai.png";
+import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
+
 
 // import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 
@@ -50,7 +52,9 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 
 	return (
 		isToken ? <div style={{ display: "flex", alignItems: "center", gap: 10, color: "white", height: "fit-content" }}>
-			<img width={69} src={getLogo(token?.symbol) ?? token?.img} alt="" />
+			<img width={69} src={getLogo(token?.symbol) ?? token?.img}
+				style={{ borderRadius: "50%" }}
+				alt="" />
 			<span ><p>
 				{token.symbol}
 			</p>
@@ -59,36 +63,38 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 			{/* <div style={{ color: "white", fontWeight: "bold" }}>
 			10
 		</div> */}
-		</div> : <div style={{
-			background: "rgb(112 112 112 / 8%)",
-			borderRadius: 26,
-			border: "1px solid rgb(255 255 255 / 2%)",
-			padding: "20px 20px 10px 20px",
-			maxWidth: 410,
-			maxHeight: 252, color: "white",
-			boxSizing: "border-box",
-			backdropFilter: "blur(10px)",
+		</div>
+			:
+			<div style={{
+				background: "rgb(112 112 112 / 8%)",
+				borderRadius: 26,
+				border: "1px solid rgb(255 255 255 / 2%)",
+				padding: "20px 20px 10px 20px",
+				maxWidth: 410,
+				maxHeight: 252, color: "white",
+				boxSizing: "border-box",
+				backdropFilter: "blur(10px)",
 
-		}}>
-			<span style={{
-				color: "white", display: "flex", gap: 20,
-				alignItems: "center", marginBottom: 20
 			}}>
 				<span style={{
-					borderRadius: "26px",
-					width: "54px",
-					height: 54,
-					background: "rgb(112 112 112 / 10%)",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}} >
-					<img src={logo} alt={title} />
+					color: "white", display: "flex", gap: 20,
+					alignItems: "center", marginBottom: 20
+				}}>
+					<span style={{
+						borderRadius: "26px",
+						width: "54px",
+						height: 54,
+						background: "rgb(112 112 112 / 10%)",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+					}} >
+						<img src={logo} alt={title} />
+					</span>
+					<h3 >{title}</h3>
 				</span>
-				<h3 >{title}</h3>
-			</span>
-			<p style={{ marginTop: 20 }}>{text}</p>
-		</div>
+				<p style={{ marginTop: 20 }}>{text}</p>
+			</div>
 	);
 
 }
@@ -99,26 +105,28 @@ const Portfolio = ({ portfolio }) => {
 	return (
 		<>
 			<section className="strategies_safe">
-				<div className="wrapper-strategis">
+				<div className="wrapper-strategis"><div className="strategies-title_safe">
+					<h2>Состав портфеля</h2>
+					<div className="howWeWork-conteiner-line_safe"></div>
+				</div>
 					<div className="strategies-section_safe">
-						<div className="strategies-conteiner_safe" >
-							<div className="strategies-title_safe">
-								<h2>Состав портфеля</h2>
-								<div className="howWeWork-conteiner-line_safe"></div>
-							</div>
+						<div style={{ flexDirection: isTokens ? "row" : "column", justifyContent: "space-between" }} className="strategies-conteiner_safe" >
+
 							<div
 								style={{
 									display: "flex",
-									gap: 10,
+									gap: isTokens ? 20 : 10,
 									flexWrap: "wrap",
-									width: "100%",
+									width: isTokens ? "50%" : "100%",
 									maxWidth: 1300,
-									justifyContent: isTokens ? "left" : "space-evenly",
+									alignItems: isTokens ? "unset" : "center",
+									justifyContent: isTokens ? "unset" : "space-evenly",
 									minHeight: 800,
 									padding: isTokens ? 20 : "unset"
 									// margin: "auto",
 								}}
 							>
+
 								{portfolio ? (
 									<>
 										{portfolio.map((p, index) => (
@@ -135,6 +143,8 @@ const Portfolio = ({ portfolio }) => {
 									<div></div>
 								)}
 							</div>
+							{isTokens && <img style={{ width: "20vw", height: "20vw" }} src={circle_swap} alt="" />}
+
 						</div>
 						{/* <img className="circle_safe" src={circle} alt="" /> */}
 					</div>
