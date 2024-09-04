@@ -76,6 +76,7 @@ export const ALL_RPC_URLS = {
     "https://arbitrum-one-rpc.publicnode.com",
     "https://arbitrum.meowrpc.com",
     "https://api.stateless.solutions/arbitrum-one/v1/demo",
+    "https://arb-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
   ],
   [SupportedChainId.ZKEVM]: ["https://zkevm-rpc.com"],
   [SupportedChainId.ZKSYNC]: ["https://mainnet.era.zksync.io"],

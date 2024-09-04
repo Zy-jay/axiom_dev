@@ -71,7 +71,9 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 				border: "1px solid rgb(255 255 255 / 2%)",
 				padding: "20px 20px 10px 20px",
 				maxWidth: 410,
-				maxHeight: 252, color: "white",
+				maxHeight: 252,
+				height: 252,
+				color: "white",
 				boxSizing: "border-box",
 				backdropFilter: "blur(10px)",
 
@@ -110,7 +112,7 @@ const Portfolio = ({ portfolio }) => {
 					<div className="howWeWork-conteiner-line_safe"></div>
 				</div>
 					<div className="strategies-section_safe">
-						<div style={{ flexDirection: isTokens ? "row" : "column", justifyContent: "space-between" }} className="strategies-conteiner_safe" >
+						<div style={{ flexDirection: isTokens ? "row" : "column", justifyContent: "space-between", margin: "auto" }} className="strategies-conteiner_safe" >
 
 							<div
 								style={{
@@ -120,8 +122,8 @@ const Portfolio = ({ portfolio }) => {
 									width: isTokens ? "50%" : "100%",
 									maxWidth: 1300,
 									alignItems: isTokens ? "unset" : "center",
-									justifyContent: isTokens ? "unset" : "space-evenly",
-									minHeight: 800,
+									justifyContent: isTokens ? "flex-start" : "space-evenly",
+									// minHeight: ,
 									padding: isTokens ? 20 : "unset"
 									// margin: "auto",
 								}}

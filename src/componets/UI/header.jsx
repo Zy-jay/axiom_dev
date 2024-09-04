@@ -7,6 +7,7 @@ import burger from "../../assets/images/images_home/burger.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
+import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
 
 const Header = () => {
 	const { address } = useAccount();
@@ -62,11 +63,10 @@ const Header = () => {
 								/>
 								<nav>
 									<Link to="/">Главная</Link>
-									<Link to="/strategies/btcdao">BTC DAO</Link>
-									<Link to="/strategies/altporfoliodao">Altporfolio DAO</Link>
-									<Link to="/strategies/ultrdao">Ultra DAO</Link>
-									<Link to="/strategies/airdropdao">AirDrop DAO</Link>
-									<Link to="/strategies/safedao">Safe DAO</Link>
+									{Object.values(STRATEGI_KEYS).map((key) => {
+										return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
+
+									})}
 									<div className="drop-down ">
 										<a href="#" onClick={() => setIsOpen(!isOpen)}>
 											Наши проекты
@@ -125,11 +125,10 @@ const Header = () => {
 							<div className={isMenuOpen ? "active" : "hidden"}>
 								<nav>
 									<Link to="/">Главная</Link>
-									<Link to="/strategies/btcdao">BTC DAO</Link>
-									<Link to="/strategies/altporfoliodao">Altporfolio DAO</Link>
-									<Link to="/strategies/ultrdao">Ultra DAO</Link>
-									<Link to="/strategies/airdropdao">AirDrop DAO</Link>
-									<Link to="/strategies/safedao">Safe DAO</Link>
+									{Object.values(STRATEGI_KEYS).map((key) => {
+										return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
+
+									})}
 									<div className="drop-down ">
 										<div className="drop-down ">
 											<a href="#" onClick={() => setIsOpen(!isOpen)}>

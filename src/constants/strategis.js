@@ -23,10 +23,10 @@ import { SupportedChainId } from "./chains";
 
 export const STRATEGI_KEYS = {
   btcdao: "BTC DAO",
+  safedao: "SAFE DAO",
   altporfoliodao: "ALTPORFOLIO DAO",
   ultrdao: "ULTRA DAO",
   airdropdao: "AIR DROP DAO",
-  safedao: "SAFE DAO",
 };
 
 export const AIRDROP_DAO_PORTFOLIO_ITEMS = [
@@ -85,28 +85,32 @@ export const DAOs_DATA = {
     lpName: "axSAFE",
     img: SafeDaoLogo,
     img_mobil: safe_mobil,
+    name: "Safe DAO",
     title: "Консервативная стратегия",
     currentDaoAddress: DAOs.axSafe,
     lpAddress: DAOs.axSafeLP,
     decimals: 18,
-    symbol: "AXSAFE",
+    symbol: "axSAFE",
     portfolio: [],
     chainId: SupportedChainId.ARBITRUM_ONE,
   },
   [STRATEGI_KEYS.airdropdao]: {
     link: "/strategies/airdropdao/swap",
     text: "",
+    name: "AirDrop DAO",
     img: AirDaoLogo,
     lpName: "axAD",
     img_mobil: air_mobil,
+    chainId: SupportedChainId.ARBITRUM_ONE,
     title: "Агрессивная стратегия",
     currentDaoAddress: DAOs.axAirdrop,
-    symbol: "AXAIRDROP",
+    symbol: "axAIRDROP",
     decimals: 18,
     lpAddress: DAOs.axAirdropLP,
     portfolio: [],
   },
   [STRATEGI_KEYS.ultrdao]: {
+    name: "Ultra DAO",
     link: "/strategies/ultrdao/swap",
     text: "",
     img: UltraDaoLogo,
@@ -122,6 +126,7 @@ export const DAOs_DATA = {
   },
   [STRATEGI_KEYS.btcdao]: {
     link: "/strategies/btcdao/swap",
+    name: "BTC DAO",
     text: "",
     img: BtcDaoLogo,
     lpName: "axBTC",
@@ -140,6 +145,7 @@ export const DAOs_DATA = {
     img: AltDaoLogo,
     img_mobil: alt_mobil,
     lpName: "axALT",
+    name: "Altporfolio DAO",
     title: "Умеренная стратегия",
     chainId: SupportedChainId.MAINNET,
     symbol: "axALT",

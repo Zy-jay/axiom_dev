@@ -25,7 +25,7 @@ html {
 }
 
 .wrapper {
-  width: 100%;
+  width: 67vw;
   max-width: 1300px;
   padding: 5;
   margin-left: auto;
@@ -440,7 +440,7 @@ img.howWeWorkRectangle_safe {
   position: absolute;
   right: 0;
   width: 38vw;
-  top: 70vw;
+  top: 50vw;
   z-index: -1;
 }
 
