@@ -465,18 +465,16 @@ const Swap = ({ daoKey, dao }) => {
 											{isConnected &&
 
 												formattedTokenBalance !== undefined && !isNaN(formattedTokenBalance) ? (
-												<h3>
-													На кошельке:{" "}
-													<>
+												<h3 style={{ display: "flex", flexDirection: "column" }}>
+													<div>	На кошельке:{" "}
 														{toOptionalFixed(!isSwitched ? formattedTokenBalance : formattedLPBalanceUser, isBtcDao ? 6 : 3)}
-														<span> {!isSwitched ? token1Name : token2Name}</span>
-														<button
-															onClick={handleMax}
-															className="max-button button_swap"
-														>
-															Max
-														</button>
-													</>
+														<span> {!isSwitched ? token1Name : token2Name}</span></div>
+													<button
+														onClick={handleMax}
+														className="max-button button_swap"
+													>
+														Max
+													</button>
 
 												</h3>
 											) : (
