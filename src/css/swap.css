@@ -656,6 +656,7 @@ img.burger_swap {
   right: 0;
   bottom: 5vw;
   width: 29.76vw;
+  z-index: -1;
 }
 
 .footer-container_dash {
