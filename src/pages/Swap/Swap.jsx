@@ -201,11 +201,11 @@ const Swap = ({ daoKey, dao }) => {
 	const requiredXDAOTokens = 5000000000000000000;
 
 
-	const saleInfo = useSaleInfo({
-		xdaoAddress: xdaoAddress,
-		tokenAddress: addressDao,
-		index: CURRENT_DAO_INDEX,
-	});
+	// const saleInfo = useSaleInfo({
+	// 	xdaoAddress: xdaoAddress,
+	// 	tokenAddress: addressDao,
+	// 	index: CURRENT_DAO_INDEX,
+	// });
 
 	const fee = 0.95
 	const rate = isSwitched ? daoPrice : fee
@@ -271,19 +271,18 @@ const Swap = ({ daoKey, dao }) => {
 
 	const parsedAmount = useMemo(() => {
 		const decimals = isBtcDao ? WBTCDecimals : USDTDecimals;
-		if (isNaN(toValue) || toValue <= 0) return undefined;
+		if (isNaN(fromValue) || fromValue <= 0) return undefined;
 		const minAmount = 1 / Math.pow(10, decimals);
-		if (toValue < minAmount) {
+		if (fromValue < minAmount) {
 			return undefined;
 		}
 
 		try {
-			return parseUnits(String(toValue), decimals);
+			return parseUnits(String(fromValue), decimals);
 		} catch (error) {
 			return undefined;
 		}
-	}, [toValue, isBtcDao]);
-
+	}, [fromValue, isBtcDao]);
 
 	const {
 		data: approveData,
@@ -297,7 +296,7 @@ const Swap = ({ daoKey, dao }) => {
 			? addressWBTC
 			: addressUSDT,
 		spender: xdaoAddress,
-		toValue: parsedAmount,
+		amount: parsedAmount,
 	});
 
 	const {
@@ -308,7 +307,7 @@ const Swap = ({ daoKey, dao }) => {
 	} = useBuyWrite({
 		crowdModule: xdaoAddress,
 		tokenAddress: addressDao,
-		toValue: parsedAmount,
+		amount: parsedAmount,
 	});
 
 	const approveText = useMemo(() => {
