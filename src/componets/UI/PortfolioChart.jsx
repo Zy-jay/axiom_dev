@@ -1,5 +1,5 @@
-import { PureComponent, useReducer } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PureComponent } from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 
 export default class PortfolioChart extends PureComponent {

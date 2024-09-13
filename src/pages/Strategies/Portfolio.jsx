@@ -266,13 +266,14 @@ const Portfolio = observer(({ portfolio, dao }) => {
 
 										{data.map((entry, index) => (
 											<Cell
+												className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
 												key={`portfolio-${index}-${entry.name}`}
 												fill={entry.fill}
-												style={{
-													transform: `scale(${hoveringKey === entry.name ? "1.05" : 1})`,
-													transition: "transform 1s ease-in-out",
-													transformOrigin: "center"
-												}}
+											// style={{
+											// 	transform: `scale(${hoveringKey === entry.name ? "1.1" : 1})`,
+											// 	transition: "transform 2s ease",
+											// 	transformOrigin: "center"
+											// }}
 											/>
 										))}
 									</Pie>

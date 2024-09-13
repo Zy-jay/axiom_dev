@@ -74,6 +74,15 @@ a:hover {
   z-index: 1000;
   cursor: pointer;
 }
+
+.hovering {
+  transform-origin: center;
+  transition: scale 3s ease-in-out;
+}
+.active {
+  transform: scale(1.1);
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

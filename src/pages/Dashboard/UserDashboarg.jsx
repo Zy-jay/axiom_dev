@@ -95,12 +95,14 @@ const UserDashboard = observer(() => {
 												<Cell
 													key={`cell-${index}`}
 													fill={DAOs_DATA[entry.name]?.color}
-													style={{
-														transform: `scale(${hoveringKey === entry.name ? "1.05" : 1})`,
-														transition: "transform 1s ease-in-out",
-														transformOrigin: "center"
+													className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
+												// style={{
+												// 	transform: `scale(${hoveringKey === entry.name ? "1.2" : 1})`,
+												// 	transition: "transform 2s ease",
+												// 	transformOrigin: "center"
 
-													}} />
+												// }}
+												/>
 											))}
 										</Pie>
 										<Tooltip />

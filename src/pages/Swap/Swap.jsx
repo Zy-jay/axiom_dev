@@ -450,8 +450,10 @@ const Swap = ({ daoKey, dao }) => {
 										>
 											{data.map((entry, index) => (
 												<Cell
+
 													key={`swap-cell-${dao.replaceAll(" ", "-")}-${index}`}
 													fill={entry.fill}
+
 												// style={{
 												// 	transform: `scale(${hoveringKey === entry.name ? "1.05" : 1})`,
 												// 	transition: "transform 1s ease-in-out",
@@ -461,12 +463,8 @@ const Swap = ({ daoKey, dao }) => {
 												/>
 											))}
 											<LabelList dataKey="name" position="outside" angle="0" />
-
 										</Pie>
-
-
 										<Tooltip />
-
 									</PieChart>
 
 								</ResponsiveContainer></>}
@@ -679,7 +677,7 @@ const Swap = ({ daoKey, dao }) => {
 						alt=""
 					/>
 				</div>
-				<ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={() => buyWrite()} />
+				<ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={buyWrite} />
 			</section>
 		</>
 	);
