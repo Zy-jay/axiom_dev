@@ -2,6 +2,7 @@ import axiomlogo from "../../assets/images/images_swap/axiom_logo.svg";
 import React from 'react';
 import { DOCS } from "../../constants/docs";
 import ellipse_three_mobile from "../../assets/images/images_swap/ellipse_three_mobile.png";
+import ContactModal from "./ContactModal";
 
 
 const Footer = () => {
@@ -9,6 +10,7 @@ const Footer = () => {
         // URL вашего PDF-файла
         window.open(pdfUrl, '_blank');
     };
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
     return (
         <>
             <footer id="footer" className="footer_swap">
@@ -30,13 +32,16 @@ const Footer = () => {
                                     rel="noreferrer">
                                     {doc.title}
                                 </a>
-                                {index < DOCS.length - 1 && <span >|</span>}</>
+                                {index < DOCS.length && <span >|</span>}</>
 
-                            ))} </div>
+                            ))} <span onClick={() => setIsModalOpen(true)} className="support-form">
+                                Contact technical support</span> </div>
                     </div>
+                    <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                     <img className="ellipse_three_mobile_swap" src={ellipse_three_mobile} alt="" />
                 </div>
             </footer>
+
         </>
     );
 }

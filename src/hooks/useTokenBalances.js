@@ -8,8 +8,6 @@ const quryFetch = (address, owner, chainId) => {
     `token-balance-${address}-${owner}-${chainId}`,
     async () => {
       try {
-        console.log("balance", address, owner, chainId);
-
         const provider = getEthersProvider(chainId);
         const balance = await tryMultipleTimes(
           () => getTokenBalance(address, owner, chainId),

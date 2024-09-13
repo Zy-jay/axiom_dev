@@ -648,7 +648,7 @@ img.burger_swap {
   padding: 0.2vw 0.4vw;
   font-size: 0.8vw;
   cursor: pointer;
-  z-index: 100;
+  z-index: 0;
 }
 
 .right_oreng_circle {

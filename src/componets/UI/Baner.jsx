@@ -23,7 +23,10 @@ const Baner = () => {
 					src={ellipse_howWeWorkTwo}
 					alt=""
 				/>
-				<img className="up" src={up} alt="" />
+				<img onClick={() => window.scrollTo({
+					top: 0,
+					behavior: 'smooth' // Плавная прокрутка
+				})} style={{ cursor: "pointer" }} className="up" src={up} alt="" />
 				{/* <div className="social-conteiner">
                     <div className="social">
                         <img className="facebook" src={facebook} alt="" />

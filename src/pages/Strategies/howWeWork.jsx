@@ -288,17 +288,17 @@ const HowWeWork = ({ isBtc, dao, daoKey, daoPrice }) => {
 		const regex = /\/strategies\/(\w+)\/swap/;
 		const match = link.match(regex);
 		if (match && match.length > 1) {
-		  return match[1];
+			return match[1];
 		}
 		return null;
-	  }
+	}
 
-	  if(getTextFromLink(pageData.link) == "btcdao" ) {
+	if (getTextFromLink(pageData.link) == "btcdao") {
 		isBtc = true;
 	} else {
 		isBtc = false;
 	}
-	
+
 	let finPrice;
 
 
@@ -316,7 +316,10 @@ const HowWeWork = ({ isBtc, dao, daoKey, daoPrice }) => {
 					src={ellipse_howWeWorkTwo}
 					alt=""
 				/>
-				<img className="up_safe" src={up} alt="" />
+				<img onClick={() => window.scrollTo({
+					top: 0,
+					behavior: 'smooth' // Плавная прокрутка
+				})} className="up" src={up} alt="" />
 				{/* <div className="social-conteiner">
 					<div className="social">
 						<img className="facebook" src={facebook} alt="" />

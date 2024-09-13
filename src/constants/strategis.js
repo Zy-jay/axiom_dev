@@ -20,17 +20,15 @@ import ArbLogo from "../assets/images/images_home/arbitrum-nova-logo.png";
 // import AirDaoLogo from "../assets/images/images_home/strategies_item_fore.png";
 // import SafeDaoLogo from "../assets/images/images_home/strategies_item_five.png";
 
-
-
 import BtcDaoLogo from "../assets/tokenLogos/BTC.png";
 import AltDaoLogo from "../assets/tokenLogos/ALT.png";
 import UltraDaoLogo from "../assets/tokenLogos/ULTRA.png";
 import AirDaoLogo from "../assets/tokenLogos/AIRDROP.png";
 import SafeDaoLogo from "../assets/tokenLogos/SAFE.png";
 
-
 import { DAOs } from "../utils/blockchain";
 import { SupportedChainId } from "./chains";
+import { color } from "framer-motion";
 
 export const STRATEGI_KEYS = {
   btcdao: "BTC DAO",
@@ -98,6 +96,7 @@ export const DAOs_DATA = {
     img_mobil: safe_mobil,
     name: "Safe DAO",
     title: "Консервативная стратегия",
+    color: "#1E561E",
     currentDaoAddress: DAOs.axSafe,
     lpAddress: DAOs.axSafeLP,
     decimals: 18,
@@ -112,6 +111,7 @@ export const DAOs_DATA = {
     img: AirDaoLogo,
     lpName: "axAD",
     img_mobil: air_mobil,
+    color: "#636363",
     chainId: SupportedChainId.ARBITRUM_ONE,
     title: "Агрессивная стратегия",
     currentDaoAddress: DAOs.axAirdrop,
@@ -124,6 +124,7 @@ export const DAOs_DATA = {
     name: "Ultra DAO",
     link: "/strategies/ultrdao/swap",
     text: "",
+    color: "#800F49",
     img: UltraDaoLogo,
     lpName: "axULT",
     img_mobil: ultra_mobil,
@@ -147,6 +148,7 @@ export const DAOs_DATA = {
     decimals: 18,
     symbol: "axBTC",
     portfolio: [],
+    color: "#E86E20",
     lpAddress: DAOs.axBTCLP,
     chainId: SupportedChainId.ARBITRUM_ONE,
   },
@@ -161,6 +163,7 @@ export const DAOs_DATA = {
     chainId: SupportedChainId.MAINNET,
     symbol: "axALT",
     decimals: 18,
+    color: "#EF6B1F",
     portfolio: [],
     lpAddress: DAOs.axAltPortfolioLP,
     currentDaoAddress: DAOs.axAltPortfolio, // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44

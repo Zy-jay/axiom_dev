@@ -4,13 +4,20 @@ import xdao from "../../assets/images/tokenLogos/xdao.png";
 import wbtc from "../../assets/images/tokenLogos/wbtc.png";
 import dai from "../../assets/images/tokenLogos/dai.png";
 import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
+import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { observer } from 'mobx-react-lite';
+
 
 
 // import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 
 
-import React from "react";
+import React, { useReducer, useLayoutEffect, useMemo, useEffect, useState, useRef } from "react";
 import { toOptionalFixed } from "../../utils/converter";
+import { DAOs_DATA } from "../../constants/strategis";
+import { TOKENS_COLORS } from "../../constants/tokens";
+import { useStore } from "../../hooks/useStore";
+import { ethers } from "ethers";
 
 function getLogo(tokenName) {
 	if (tokenName == "aArbWBTC") {
@@ -48,13 +55,53 @@ function getLogo(tokenName) {
 
 const PortfolioItem = ({ logo, title, text, token }) => {
 	const isToken = token.symbol ? true : false;
-	console.log(token);
+	const store = useStore()
+
+	const [isHovered, setIsHovered] = useState(false);
+	const elementRef = useRef(null);
+
+	useEffect(() => {
+		const element = elementRef.current;
+
+		// Обработчики событий
+		const handleMouseEnter = () => setIsHovered(true);
+		const handleMouseLeave = () => setIsHovered(false);
+
+		if (element) {
+			element.addEventListener('mouseenter', handleMouseEnter);
+			element.addEventListener('mouseleave', handleMouseLeave);
+		}
+
+		// Очистка обработчиков при размонтировании
+		return () => {
+			if (element) {
+				element.removeEventListener('mouseenter', handleMouseEnter);
+				element.removeEventListener('mouseleave', handleMouseLeave);
+			}
+		};
+	}, []);
+
+	useEffect(() => {
+		store.setHoveringKey(isHovered ? token.symbol : "")
+	}, [isHovered])
 
 	return (
-		isToken ? <div style={{ display: "flex", alignItems: "center", gap: 10, color: "white", height: "fit-content" }}>
-			<img width={69} src={getLogo(token?.symbol) ?? token?.img}
+		isToken ? <div ref={elementRef} style={{
+			display: "flex",
+			alignItems: "center",
+			gap: 10,
+			color: "white",
+			height: "fit-content",
+			cursor: "pointer"
+		}}>
+			<img width={69} src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
 				style={{ borderRadius: "50%" }}
-				alt="" />
+				alt=""
+				onError={(e) => {
+					e.target.onError = null;
+					e.target.src = `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`;
+				}}
+			/>
 			<span ><p>
 				{token.symbol}
 			</p>
@@ -101,8 +148,46 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 
 }
 
-const Portfolio = ({ portfolio }) => {
+const Portfolio = observer(({ portfolio, dao }) => {
+
+	const store = useStore()
 	const isTokens = portfolio?.[0]?.symbol ? true : false;
+	const [renderCount, forceUpdate] = useReducer(x => x + 1, 0);
+	const [width, setWidth] = React.useState("unset");
+	const ref = React.useRef(null);
+	const data = useMemo(() => {
+		return isTokens ? portfolio?.map((p) => {
+			const isBtcDao = portfolio.length === 1 && p.symbol === "aArbWBTC";
+			return {
+				name: p.symbol,
+				value: isBtcDao ? Number(p.balance) / 10 ** 8 : Number(p.usdValue ?? 0),
+				fill: TOKENS_COLORS[p.symbol] ?? "#" + Math.floor(Math.random() * 16777215).toString(16)
+			}
+		}) : [];
+	}, [isTokens, portfolio]);
+
+	useLayoutEffect(() => {
+		forceUpdate(); // Call forceUpdate when data changes
+	}, [data, forceUpdate]);
+
+	useEffect(() => {
+		if (!ref.current) {
+			setWidth(width === "unset" ? "100%" : "unset")
+		} else {
+			setTimeout(() => setWidth("100%"), 500)
+
+		}
+	}, [width, ref, data])
+
+
+	const { hoveringKey } = store
+
+	useEffect(() => {
+		if (!ref.current) {
+			setWidth("unset")
+			setTimeout(() => setWidth("100%"), 500)
+		}
+	}, [hoveringKey])
 
 	return (
 		<>
@@ -112,7 +197,13 @@ const Portfolio = ({ portfolio }) => {
 					<div className="howWeWork-conteiner-line_safe"></div>
 				</div>
 					<div className="strategies-section_safe">
-						<div style={{ flexDirection: isTokens ? "row" : "column", justifyContent: "space-between", margin: "auto" }} className="strategies-conteiner_safe" >
+						<div style={{
+							minHeight: "19vw",
+							flexDirection: isTokens ? "row" : "column",
+							justifyContent: "space-between",
+							margin: "auto"
+						}}
+							className="strategies-conteiner_safe" >
 
 							<div
 								style={{
@@ -145,7 +236,49 @@ const Portfolio = ({ portfolio }) => {
 									<div></div>
 								)}
 							</div>
-							{isTokens && <img style={{ width: "20vw", height: "20vw" }} src={circle_swap} alt="" />}
+							{isTokens && <ResponsiveContainer
+								style={{
+									backgroundImage: `url(${DAOs_DATA[dao]?.img})`,
+									backgroundRepeat: "no-repeat",
+									backgroundSize: "30%",
+									backgroundPosition: "center",
+									minHeight: "19.48vw"
+								}}
+								key={"chart-container-" + data[0]?.symbol + "-" + renderCount}
+								width={"100%"} height={width}  >
+								<PieChart
+									key={"PieChart" + renderCount}
+								// width={600} height={600}
+								>
+									<Pie ref={ref}
+										data={data}
+										// cx={120}
+										// cy={230}
+
+										innerRadius={"85%"}
+										outerRadius={"95%"}
+										fill="#8884d8"
+										paddingAngle={5}
+										dataKey="value"
+										cursor={"pointer"}
+										key={"portfolio-chart-pie" + renderCount}
+									>
+
+										{data.map((entry, index) => (
+											<Cell
+												key={`portfolio-${index}-${entry.name}`}
+												fill={entry.fill}
+												style={{
+													transform: `scale(${hoveringKey === entry.name ? "1.05" : 1})`,
+													transition: "transform 1s ease-in-out",
+													transformOrigin: "center"
+												}}
+											/>
+										))}
+									</Pie>
+									<Tooltip />
+								</PieChart>
+							</ResponsiveContainer>}
 
 						</div>
 						{/* <img className="circle_safe" src={circle} alt="" /> */}
@@ -154,6 +287,6 @@ const Portfolio = ({ portfolio }) => {
 			</section>
 		</>
 	);
-};
+});
 
 export default Portfolio;

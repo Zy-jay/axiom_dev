@@ -4,13 +4,12 @@ import { useLocation } from 'react-router-dom';
 
 import {
     notifyError,
-    notifyInfo,
     notifySuccess,
 } from "./Toasts.jsx";
 import privacyPolicyPDF from '../../assets/docs/Privacy_Policy.pdf'; // 
+import { REACT_APP_TELEGRAM_BOT_TOKEN, REACT_APP_TELEGRAM_CHAT_ID } from "../../constants/env.js";
 
-const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
-const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
+
 
 
 const Feedback = () => {
@@ -32,7 +31,7 @@ const Feedback = () => {
         const strategyPath = url.split('/strategies/')[1];
         return strategyPath;
     }
-    
+
 
     const location = useLocation();
 

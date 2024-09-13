@@ -1,15 +1,15 @@
 import axiomlogo from "../../assets/images/images_home/axiom_logo.png";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import drop_down from "../../assets/images/images_home/drop-down.svg";
 import vector from "../../assets/images/images_home/vector.svg";
 import ellipse_header from "../../assets/images/images_home/ellipse_header.svg";
 import burger from "../../assets/images/images_home/burger.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
 import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
 import { shortenAddress } from "../../utils/shortenAddress";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
 
@@ -29,8 +29,24 @@ const Header = () => {
 		setIsOpen(false);
 	};
 	const { address, isConnected, chain } = useAccount();
+
 	const { openConnectModal, connectModalOpen } = useConnectModal()
+	const { openAccountModal } = useAccountModal()
+
 	const navigate = useNavigate()
+	// const location = useLocation();
+
+	const pathname = window.location.pathname
+	const pageName = useMemo(() => {
+		const pathSplit = pathname.split("/")
+		return pathSplit[pathSplit.length - 1]
+	}, [pathname])
+
+
+	const isDashboard = pageName === "dashboard"
+	const isSwap = pageName === "swap"
+
+	console.debug("pageName", pageName, isDashboard)
 
 
 
@@ -120,18 +136,16 @@ const Header = () => {
 											</div>
 										)}
 									</div>
-									{address ? (
-										<button onClick={() => {
-											navigate("/dashboard")
-										}} className="button">
-											{shortenAddress(address)}
+									{isDashboard || isSwap ? (
+										<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+											{address ? shortenAddress(address) : "Connect Wallet"}
 										</button>
 									) : (
 										<button onClick={() => {
 											navigate("/dashboard")
-											openConnectModal()
+											!address && openConnectModal()
 										}} className="button">
-											Кошелек
+											{"Dashboard"}
 										</button>
 									)}
 								</nav>
@@ -187,18 +201,16 @@ const Header = () => {
 											)}
 										</div>
 									</div>
-									{address ? (
-										<button onClick={() => {
-											navigate("/dashboard")
-										}} className="button">
-											{shortenAddress(address)}
+									{isDashboard || isSwap ? (
+										<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+											{address ? shortenAddress(address) : "Connect Wallet"}
 										</button>
 									) : (
 										<button onClick={() => {
 											navigate("/dashboard")
-											openConnectModal()
+											!address && openConnectModal()
 										}} className="button">
-											Кошелек
+											{"Dashboard"}
 										</button>
 									)}
 								</nav>

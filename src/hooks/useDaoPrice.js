@@ -51,7 +51,11 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
                 ).then((resp) => {
                   console.log("resp: ", resp);
                   const items = resp.data.items.filter(
-                    (i) => i.balance > 0 && i.contract_name !== "XDAO"
+                    (i) =>
+                      i.balance > 0 &&
+                      i.contract_name !== "XDAO" &&
+                      !i.contract_name.includes("https") &&
+                      !i.contract_ticker_symbol.includes("https")
                   );
                   tokens = items
                     .map((i) => ({

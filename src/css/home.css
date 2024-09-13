@@ -263,7 +263,8 @@ a {
   width: 3.02vw;
   top: 54.7vw;
   right: 2vw;
-  z-index: -1;
+  z-index: 1000;
+  cursor: pointer;
 }
 
 .howWeWork-conteiner {
@@ -653,6 +654,108 @@ img.howWeWorkRectangle_itemTwo {
   gap: 20px;
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.833vw; /* Default font size */
+}
+
+.docsFooter .support-form:hover {
+  color: #ef6b1f;
+  cursor: pointer;
+}
+
+.contact-conteiner-content {
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  background-color: rgb(39, 39, 39);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-conteiner-content h3 {
+  font-family: "Montserrat";
+  font-weight: 300;
+  color: #fff;
+  font-size: 0.83vw;
+  text-align: center;
+  padding-top: 1.3vw;
+}
+
+.contact-conteiner-content input {
+  font-family: "Montserrat";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  font-size: 0.73vw;
+  width: 27.71vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  border-radius: 10px;
+  height: 2vw;
+  background-color: transparent;
+  border: 0.1vw solid rgb(82, 81, 81);
+  margin-top: 1vw;
+  opacity: 0.2;
+  border-color: rgb(82, 81, 81);
+  text-align: center;
+}
+
+.contact-conteiner-content input:focus {
+  font-family: "Montserrat";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+  border: 0.1vw solid rgb(32, 32, 32);
+  text-align: center;
+  outline: none;
+}
+.contact-conteiner-content textarea {
+  font-family: "Montserrat";
+  box-sizing: border-box;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  font-size: 0.73vw;
+  width: 27.71vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  height: 2vw;
+  background-color: transparent;
+  border: 0.1vw solid rgb(82, 81, 81);
+  margin-top: 1vw;
+  opacity: 0.2;
+  border-color: rgb(82, 81, 81);
+  text-align: center;
+}
+.contact-conteiner-content textarea:focus {
+  font-family: "Montserrat";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+  border: 0.1vw solid rgb(32, 32, 32);
+  text-align: center;
+  outline: none;
+}
+
+.contact-conteiner-content p {
+  font-family: "Montserrat";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.52vw;
+  text-align: center;
+  padding-top: 1.3vw;
+  padding-bottom: 1.56vw;
+}
+
+.contact-conteiner-content span {
+  text-decoration: underline;
+}
+
+.contact-conteiner-content input:focus::placeholder {
+  color: transparent;
 }
 
 /* Media query for mobile devices */

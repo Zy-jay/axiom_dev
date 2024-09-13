@@ -1,16 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import { useAccount } from "wagmi";
 import { parseUnits, formatUnits } from "viem";
-import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
 import bitcoinLogo from "../../assets/images/images_swap/bitcoin-logo.svg";
-import BTCDaoLogo from "../../assets/images/images_swap/btcdaologo.png";
-import greenbitcoinlogo from "../../assets/images/images_swap/btcdaologo.png";
-import ellipse_one from "../../assets/images/images_swap/ellipse_one.svg";
 import { toast } from "react-toastify";
-import ellipse_two from "../../assets/images/images_swap/ellipse_two.svg";
-import ellipse_three from "../../assets/images/images_swap/ellipse_three.svg";
-import ellipse_fore from "../../assets/images/images_swap/ellipse_fore.svg";
-import token_icon from "../../assets/images/images_swap/token_icon.svg";
 import down_chevron from "../../assets/images/images_swap/down_chevron.svg";
 import vector from "../../assets/images/images_swap/vector.svg";
 import parameters_vector from "../../assets/images/images_swap/parameters_vector.svg";
@@ -19,37 +11,25 @@ import left_green_circle from "../../assets/images/images_swap/left_green_circle
 import right_oreng_circle from "../../assets/images/images_swap/right_oreng_circle.png";
 import vector_smart_object from "../../assets/images/images_swap/vector_smart_object.svg";
 import React from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
 import usdt from "../../assets/images/images_safe/usdt.svg";
-
-
 import { CustomConnectButton } from "../../componets/UI/CustomConnect.jsx";
 import {
-	useSaleInfo,
 	useBalanceOf,
-	useDecimals,
 	useAllowance,
 
 } from "../../hooks/useContactRead.js";
 import {
 	contracts,
-	CURRENT_DAO_INDEX,
 	DAOs,
 } from "../../utils/blockchain.js";
 import { useApproveWrite, useBuyWrite } from "../../hooks/useContractWrite.js";
 import { toOptionalFixed } from "../../utils/converter.js";
-
 import btcLogo from "../../assets/tokenLogos/BTC.png";
 import altLogo from "../../assets/tokenLogos/ALT.png";
 import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
 import airLogo from "../../assets/tokenLogos/AIRDROP.png";
 import safeLogo from "../../assets/tokenLogos/SAFE.png";
-
-
-
-import airDaoLogo from "../../assets/images/images_dashboard/air.webp";
-import ultraDaoLogo from "../../assets/images/images_dashboard/ultra.webp";
-import safeDaoLogo from "../../assets/images/images_dashboard/safedaologo.png";
-import altDaoLogo from "../../assets/images/images_dashboard/altportfolio.webp";
 import { useSwitchChain } from "wagmi";
 import ConfirmModal from "../../componets/UI/confirmModal.jsx";
 import {
@@ -59,6 +39,11 @@ import {
 import { useDaoPrice } from "../../hooks/useDaoPrice.js";
 import { STRATEGI_KEYS } from "../../constants/strategis.js";
 import { useTokenBalance } from "../../hooks/useTokenBalances.js";
+import { REACT_APP_TELEGRAM_BOT_TOKEN, REACT_APP_TELEGRAM_CHAT_ID } from "../../constants/env.js";
+import { useStore } from "../../hooks/useStore.js";
+import { TOKENS_COLORS } from "../../constants/tokens.js";
+import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
+
 
 
 
@@ -136,6 +121,8 @@ const crowdModuleARB = '0x0cf784bba0FFA0a7006f3Ee7e4357E643a07F6e7';
 
 const Swap = ({ daoKey, dao }) => {
 
+	const store = useStore()
+
 	const { chains, switchChain } = useSwitchChain();
 	const { address, isConnected, chain, } = useAccount();
 	const isBtcDao = dao === STRATEGI_KEYS.btcdao
@@ -156,8 +143,7 @@ const Swap = ({ daoKey, dao }) => {
 	const tokenAddress = isBtcDao ? addressWBTC : addressUSDT;
 	const xdaoAddress = chainId === 1 ? crowdModuleETH : crowdModuleARB;
 
-	const REACT_APP_TELEGRAM_BOT_TOKEN = "7473485923:AAFbC0hvSPoOMCbocIIS33C4PjF8HfyJIfY"
-	const REACT_APP_TELEGRAM_CHAT_ID = "-4589260105"
+
 
 	function getPayableTokenName() {
 		if (isBtcDao) {
@@ -188,7 +174,7 @@ const Swap = ({ daoKey, dao }) => {
 	}
 
 
-	const { daoPrice, } = useDaoPrice(addressDao, addressLp, chainId)
+	const { daoPrice, tokens } = useDaoPrice(addressDao, addressLp, chainId)
 	const [toValue, setToValue] = useState(0);
 	const [fromValue, setFromValue] = useState(0);
 	const [isTxLoading, setIsTxLoading] = useState(false);
@@ -406,6 +392,22 @@ const Swap = ({ daoKey, dao }) => {
 	}, [approveIsSuccess])
 
 	const isChainSupported = chain && chain.id === chainId;
+	const portfolio = tokens ?? store.daoPortfolios[daoKey]
+
+	useEffect(() => {
+		if (tokens !== undefined) store.setPortfolio(daoKey, tokens)
+	}, [tokens])
+
+	console.debug("portfolio", portfolio)
+
+	const data = portfolio?.map((p) => {
+		const isBtcDao = portfolio.length === 1 && p.symbol === "aArbWBTC";
+		return {
+			name: p.symbol,
+			value: isBtcDao ? Number(p.balance) / 10 ** 8 : Number(p.usdValue ?? 0),
+			fill: TOKENS_COLORS[p.symbol] ?? "#" + Math.floor(Math.random() * 16777215).toString(16)
+		}
+	}) ?? []
 
 	return (
 		<>
@@ -419,7 +421,57 @@ const Swap = ({ daoKey, dao }) => {
 						<div className="dashboard-conteiner-content">
 							<div className="conteiner-content-briefcase">
 								<h2>Инвестиционный портфель {name}</h2>
-								<img src={circle_swap} alt="" />
+
+								{!portfolio ? <img src={circle_swap} alt="" /> : <><ResponsiveContainer
+									style={{
+										backgroundImage: `url(${logoBottom})`,
+										backgroundRepeat: "no-repeat",
+										backgroundSize: "30%",
+										backgroundPosition: "center"
+									}}
+									key={`swap-pie-container-${dao.replaceAll(" ", "-")}-${data.length}`} width={"100%"} height={"90%"}>
+									<PieChart
+										key={`swap-pie-chart-${dao.replaceAll(" ", "-")}-${data.length}`}
+
+									// width={600} height={600} onMouseEnter={null}
+									>
+										<Pie
+											key={`swap-pie-${dao.replaceAll(" ", "-")}-${data.length}`}
+											data={data}
+											// cx={120}
+											// cy={230}
+
+											innerRadius={"65%"}
+											outerRadius={"75%"}
+											fill="#8884d8"
+											paddingAngle={5}
+											dataKey="value"
+											cursor={"pointer"}
+										>
+											{data.map((entry, index) => (
+												<Cell
+													key={`swap-cell-${dao.replaceAll(" ", "-")}-${index}`}
+													fill={entry.fill}
+												// style={{
+												// 	transform: `scale(${hoveringKey === entry.name ? "1.05" : 1})`,
+												// 	transition: "transform 1s ease-in-out",
+												// 	transformOrigin: "center"
+
+												// }}
+												/>
+											))}
+											<LabelList dataKey="name" position="outside" angle="0" />
+
+										</Pie>
+
+
+										<Tooltip />
+
+									</PieChart>
+
+								</ResponsiveContainer></>}
+
+
 							</div>
 							<div className="conteiner-content-deal">
 								<h2>Быстрая сделка</h2>
