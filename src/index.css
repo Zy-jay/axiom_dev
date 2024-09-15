@@ -13,7 +13,7 @@ code {
 }
 .center {
   margin: auto;
-  width: 69%;
+  /* width: 69%; */
 }
 a:hover {
   color: #d64f02;
