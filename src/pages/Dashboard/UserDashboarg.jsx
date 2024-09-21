@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import up from "../../assets/images/images_safe/up.svg";
 import upward_shift from "../../assets/images/images_swap/upward_shift.svg";
 import left_green_circle from "../../assets/images/images_swap/left_green_circle.png";
@@ -79,23 +79,26 @@ const UserDashboard = observer(() => {
 											paddingAngle={5}
 											dataKey="value"
 											cursor={"pointer"}
+
 										>
 
 											{data.map((entry, index) => (
-												<Cell
+												<>	<Cell
 													key={`cell-${index}`}
 													fill={DAOs_DATA[entry.name]?.color}
 													className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
+
 												// style={{
 												// 	transform: `scale(${hoveringKey === entry.name ? "1.2" : 1})`,
 												// 	transition: "transform 2s ease",
 												// 	transformOrigin: "center"
 
 												// }}
-												/>
+												/></>
 											))}
 										</Pie>
-										{/* <Tooltip /> */}
+										<Tooltip
+										/>
 									</PieChart>
 								</ResponsiveContainer>
 							</div>

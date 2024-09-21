@@ -43,7 +43,6 @@ export class Store {
   }
 
   getTokenColor(addressOrSymbol) {
-    console.log("addressOrSymbol", addressOrSymbol);
     if (this.tokenColors[addressOrSymbol]) {
       return this.tokenColors[addressOrSymbol];
     }

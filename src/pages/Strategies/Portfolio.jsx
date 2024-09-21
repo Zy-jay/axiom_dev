@@ -98,19 +98,29 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 			cursor: "pointer",
 			width: "170px"
 		}}>
-			<img
-				width={69}
-				src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
+			<span
 				style={{
 					borderRadius: "50%",
 					border: `5px solid ${store.getTokenColor(token.symbol)}`,
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					padding: 5
 				}}
-				alt=""
-				onError={(e) => {
-					e.target.onError = null;
-					e.target.src = `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`;
-				}}
-			/>
+			>
+				<img
+					width={69}
+					src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
+					style={{
+						borderRadius: "50%",
+					}}
+					alt=""
+					onError={(e) => {
+						e.target.onError = null;
+						e.target.src = `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`;
+					}}
+				/>
+			</span>
 			<span ><p>
 				{token.symbol}
 			</p>
@@ -269,13 +279,30 @@ const Portfolio = observer(({ portfolio, dao }) => {
 										// cx={120}
 										// cy={230}
 
-										innerRadius={"85%"}
-										outerRadius={"95%"}
+										innerRadius={"80%"}
+										outerRadius={"90%"}
 										fill="#8884d8"
 										paddingAngle={5}
 										dataKey="value"
 										cursor={"pointer"}
 										key={"portfolio-chart-pie-" + renderCount}
+									// label={({ cx, cy, midAngle, innerRadius, outerRadius, value, index }) => {
+									// 	const RADIAN = Math.PI / 180;
+									// 	const radius = 25 + innerRadius + (outerRadius - innerRadius);
+									// 	const x = cx + radius * Math.cos(-midAngle * RADIAN);
+									// 	const y = cy + radius * Math.sin(-midAngle * RADIAN);
+									// 	return (
+									// 		<text
+									// 			x={x}
+									// 			y={y}
+									// 			fill="white"
+									// 			textAnchor={x > cx ? "start" : "end"}
+									// 			dominantBaseline="central"
+									// 		>
+									// 			{data[index].name}
+									// 		</text>
+									// 	);
+									// }}
 									>
 
 										{data.map((entry, index) => (
@@ -291,7 +318,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 											/>
 										))}
 									</Pie>
-									{/* <Tooltip /> */}
+									<Tooltip />
 								</PieChart>
 							</ResponsiveContainer>}
 

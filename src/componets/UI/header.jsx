@@ -138,10 +138,14 @@ const Header = () => {
 									</div>
 									{
 
-										!address ? <button onClick={() => openConnectModal()} className="button">
-											{"Connect"}
+										!address ? <button onClick={() => {
+											openConnectModal();
+											!isDashboard && navigate("/dashboard")
+										}
+										} className="button">
+											{isDashboard ? "Connect" : "Dashboard"}
 										</button> : isDashboard ? (
-											<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+											<button onClick={() => openAccountModal()} className="button">
 												{shortenAddress(address)}
 											</button>
 
@@ -229,7 +233,7 @@ const Header = () => {
 						</div>
 					</div>
 				</div>
-			</header>
+			</header >
 		</>
 	);
 };
