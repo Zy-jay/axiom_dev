@@ -171,8 +171,8 @@ const altporfoliodaotext = `
 export const WalletCopyButton = (address, token) => {
 
 	const copyToClipboard = (e) => {
-		e.target.preventDefault();
-		e.target.stopPropagation();
+		e.preventDefault();
+		e.stopPropagation();
 		navigator.clipboard
 			.writeText(address)
 			.then(() => {

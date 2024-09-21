@@ -10,7 +10,6 @@ import { useAccount } from "wagmi";
 import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
 import { shortenAddress } from "../../utils/shortenAddress";
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
-import { WalletCopyButton } from "../../pages/Strategies/howWeWork";
 
 const Header = () => {
 
