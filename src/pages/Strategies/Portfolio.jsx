@@ -3,8 +3,7 @@ import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 import xdao from "../../assets/images/tokenLogos/xdao.png";
 import wbtc from "../../assets/images/tokenLogos/wbtc.png";
 import dai from "../../assets/images/tokenLogos/dai.png";
-import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
-import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { observer } from 'mobx-react-lite';
 
 
@@ -15,9 +14,10 @@ import { observer } from 'mobx-react-lite';
 import React, { useReducer, useLayoutEffect, useMemo, useEffect, useState, useRef } from "react";
 import { toOptionalFixed } from "../../utils/converter";
 import { DAOs_DATA } from "../../constants/strategis";
-import { TOKENS_COLORS } from "../../constants/tokens";
 import { useStore } from "../../hooks/useStore";
 import { ethers } from "ethers";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import ethLogo from "../../assets/tokenLogos/ethereum-logo.png"
 
 function getLogo(tokenName) {
 	if (tokenName == "aArbWBTC") {
@@ -37,6 +37,9 @@ function getLogo(tokenName) {
 	}
 	if (tokenName == "DAI") {
 		return dai;
+	}
+	if (tokenName == "ETH") {
+		return ethLogo;
 	}
 	return undefined
 }
@@ -92,10 +95,16 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 			gap: 10,
 			color: "white",
 			height: "fit-content",
-			cursor: "pointer"
+			cursor: "pointer",
+			width: "170px"
 		}}>
-			<img width={69} src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
-				style={{ borderRadius: "50%" }}
+			<img
+				width={69}
+				src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
+				style={{
+					borderRadius: "50%",
+					border: `5px solid ${store.getTokenColor(token.symbol)}`,
+				}}
 				alt=""
 				onError={(e) => {
 					e.target.onError = null;
@@ -161,7 +170,9 @@ const Portfolio = observer(({ portfolio, dao }) => {
 			return {
 				name: p.symbol,
 				value: isBtcDao ? Number(p.balance) / 10 ** 8 : Number(p.usdValue ?? 0),
-				fill: TOKENS_COLORS[p.symbol] ?? "#" + Math.floor(Math.random() * 16777215).toString(16)
+				fill: store.getTokenColor(p.symbol)
+				// Object.keys(TOKENS_COLORS).includes(p.symbol)
+
 			}
 		}) : [];
 	}, [isTokens, portfolio]);
@@ -170,14 +181,14 @@ const Portfolio = observer(({ portfolio, dao }) => {
 		forceUpdate(); // Call forceUpdate when data changes
 	}, [data, forceUpdate]);
 
-	useEffect(() => {
-		if (!ref.current) {
-			setWidth(width === "unset" ? "100%" : "unset")
-		} else {
-			setTimeout(() => setWidth("100%"), 500)
+	// useEffect(() => {
+	// 	if (!ref.current) {
+	// 		setWidth(width === "unset" ? "100%" : "unset")
+	// 	} else {
+	// 		setTimeout(() => setWidth("100%"), 500)
 
-		}
-	}, [width, ref, data])
+	// 	}
+	// }, [width, ref, data])
 
 
 	const { hoveringKey } = store
@@ -185,9 +196,12 @@ const Portfolio = observer(({ portfolio, dao }) => {
 	useEffect(() => {
 		if (!ref.current) {
 			setWidth("unset")
-			setTimeout(() => setWidth("100%"), 500)
+			setTimeout(() => setWidth("100%"), 1000)
 		}
 	}, [hoveringKey])
+
+	const { windowSize, isMobile } = useWindowSize()
+
 
 	return (
 		<>
@@ -199,23 +213,23 @@ const Portfolio = observer(({ portfolio, dao }) => {
 					<div className="strategies-section_safe">
 						<div style={{
 							minHeight: "19vw",
-							flexDirection: isTokens ? "row" : "column",
+							flexDirection: isTokens ? (isMobile ? "column" : "row") : "column",
 							justifyContent: "space-between",
-							margin: "auto"
+							margin: "auto",
+							width: "100%",
 						}}
 							className="strategies-conteiner_safe" >
-
 							<div
 								style={{
 									display: "flex",
 									gap: isTokens ? 20 : 10,
 									flexWrap: "wrap",
-									width: isTokens ? "50%" : "100%",
+									width: isTokens ? "90%" : "100%",
 									maxWidth: 1300,
 									alignItems: isTokens ? "unset" : "center",
 									justifyContent: isTokens ? "flex-start" : "space-evenly",
 									// minHeight: ,
-									padding: isTokens ? 20 : "unset"
+									padding: isTokens ? "20px 20px 20px 0px" : "unset"
 									// margin: "auto",
 								}}
 							>
@@ -261,7 +275,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 										paddingAngle={5}
 										dataKey="value"
 										cursor={"pointer"}
-										key={"portfolio-chart-pie" + renderCount}
+										key={"portfolio-chart-pie-" + renderCount}
 									>
 
 										{data.map((entry, index) => (
@@ -277,7 +291,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 											/>
 										))}
 									</Pie>
-									<Tooltip />
+									{/* <Tooltip /> */}
 								</PieChart>
 							</ResponsiveContainer>}
 

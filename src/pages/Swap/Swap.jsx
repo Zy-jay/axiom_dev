@@ -37,7 +37,7 @@ import {
 	notifySuccess,
 } from "../../componets/UI/Toasts.jsx";
 import { useDaoPrice } from "../../hooks/useDaoPrice.js";
-import { STRATEGI_KEYS } from "../../constants/strategis.js";
+import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis.js";
 import { useTokenBalance } from "../../hooks/useTokenBalances.js";
 import { REACT_APP_TELEGRAM_BOT_TOKEN, REACT_APP_TELEGRAM_CHAT_ID } from "../../constants/env.js";
 import { useStore } from "../../hooks/useStore.js";
@@ -126,6 +126,7 @@ const Swap = ({ daoKey, dao }) => {
 	const { chains, switchChain } = useSwitchChain();
 	const { address, isConnected, chain, } = useAccount();
 	const isBtcDao = dao === STRATEGI_KEYS.btcdao
+	const daoData = DAOs_DATA[dao]
 
 	const { chainId,
 		token2Logo,
@@ -137,7 +138,8 @@ const Swap = ({ daoKey, dao }) => {
 		token1Name,
 		token2Name,
 		token1Logo,
-		logoBottom } = GodObject[dao]
+	} = GodObject[dao]
+	const logoBottom = daoData?.img
 
 	// USDT or WBTC  address
 	const tokenAddress = isBtcDao ? addressWBTC : addressUSDT;
@@ -395,7 +397,12 @@ const Swap = ({ daoKey, dao }) => {
 	const portfolio = tokens ?? store.daoPortfolios[daoKey]
 
 	useEffect(() => {
-		if (tokens !== undefined) store.setPortfolio(daoKey, tokens)
+		if (tokens !== undefined) {
+			if (isBtcDao) {
+				store.setBtcRate(portfolio[0].price)
+			}
+			store.setPortfolio(dao, tokens)
+		}
 	}, [tokens])
 
 	console.debug("portfolio", portfolio)
@@ -424,7 +431,7 @@ const Swap = ({ daoKey, dao }) => {
 
 								{!portfolio ? <img src={circle_swap} alt="" /> : <><ResponsiveContainer
 									style={{
-										backgroundImage: `url(${logoBottom})`,
+										backgroundImage: `url(${daoData.img})`,
 										backgroundRepeat: "no-repeat",
 										backgroundSize: "30%",
 										backgroundPosition: "center"
@@ -617,7 +624,7 @@ const Swap = ({ daoKey, dao }) => {
 											<button
 												className="content-button button_swap"
 												disabled={isTxLoading}
-												onClick={() => approveWrite()}
+												onClick={() => setIsModalOpen(true)}
 											>
 												{approveText}
 											</button>
@@ -626,7 +633,7 @@ const Swap = ({ daoKey, dao }) => {
 												className={`content-button button_swap ${!parsedAmount ? "inactive" : ""
 													} `}
 												disabled={!parsedAmount || isTxLoading}
-												onClick={() => setIsModalOpen(true)}
+												onClick={() => buyWrite()}
 											>
 												{buyText}
 											</button>
@@ -677,7 +684,8 @@ const Swap = ({ daoKey, dao }) => {
 						alt=""
 					/>
 				</div>
-				<ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={buyWrite} />
+				<ConfirmModal isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)} onConfirm={approveWrite} />
 			</section>
 		</>
 	);

@@ -156,7 +156,7 @@ html {
   font-size: 0.829vw;
   border-radius: 4px;
   background: linear-gradient(90deg, #ef6b1f 0%, #d64f02 100%);
-  color: #fff;
+  color: #000000;
   border: none;
   margin-left: 0.5vw;
   cursor: pointer;
@@ -357,7 +357,6 @@ img.howWeWorkRectangle {
 
 .howWeWorkRectangle-conteiner-content-items {
   display: flex;
-  width: 100%;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -414,7 +413,7 @@ img.howWeWorkRectangle_itemTwo {
 .strategies-title h2 {
   font-family: "Montserrat-Bold";
   font-weight: 700;
-  width: 100%;
+  width: 69vw;
   margin: auto;
   color: #fff;
   font-size: 2.08vw;
@@ -430,6 +429,7 @@ img.howWeWorkRectangle_itemTwo {
   gap: 25px; /* Расстояние между элементами */
   justify-content: space-between;
   padding-top: 20px;
+  width: 69vw;
 }
 
 .strategies-conteiner-item {

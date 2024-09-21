@@ -28,7 +28,6 @@ import SafeDaoLogo from "../assets/tokenLogos/SAFE.png";
 
 import { DAOs } from "../utils/blockchain";
 import { SupportedChainId } from "./chains";
-import { color } from "framer-motion";
 
 export const STRATEGI_KEYS = {
   btcdao: "BTC DAO",

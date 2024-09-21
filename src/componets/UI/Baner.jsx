@@ -4,11 +4,11 @@ import howWeWorkRectangle_itemOne from "../../assets/images/images_home/howWeWor
 import howWeWorkRectangle_itemTwo from "../../assets/images/images_home/howWeWorkRectangle_itemTwo.svg";
 import ellipse_howWeWork from "../../assets/images/images_home/ellipse_howWeWork.svg";
 import ellipse_howWeWorkTwo from "../../assets/images/images_home/ellipse_howWeWorkTwo.svg";
-import youtube from "../../assets/images/images_home/youtube.svg";
-import x from "../../assets/images/images_home/x.svg";
-import telegram from "../../assets/images/images_home/telegram.svg";
-import instagram from "../../assets/images/images_home/instagram.svg";
-import facebook from "../../assets/images/images_home/facebook.svg";
+// import youtube from "../../assets/images/images_home/youtube.svg";
+// import x from "../../assets/images/images_home/x.svg";
+// import telegram from "../../assets/images/images_home/telegram.svg";
+// import instagram from "../../assets/images/images_home/instagram.svg";
+// import facebook from "../../assets/images/images_home/facebook.svg";
 import axiom_animate from "../../assets/images/images_home/axiom_animate.gif";
 import up from "../../assets/images/images_home/up.svg";
 import React from "react";

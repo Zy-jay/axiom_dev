@@ -66,7 +66,7 @@ const StrategiesItem = ({ logo, title, description, link, index }) => {
 	const navigate = useNavigate()
 	return (
 		<div className={"strategies-conteiner-item" + (index > 2 ? " full-width" : "")}>
-			<img src={logo} alt="" />
+			<img width={179} src={logo} alt="" />
 			<div className="strategies-conteiner-item-position">
 				<div className="strategies-conteiner-item-content">
 					<h2>{title}</h2>

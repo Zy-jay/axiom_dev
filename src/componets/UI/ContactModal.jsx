@@ -52,7 +52,7 @@ function ContactModal({ isOpen, onClose }) {
 
 
     useEffect(() => {
-        store.setFotmData({ name, phone, text })
+        store.setFormData({ name, phone, text })
     }, [name, phone, text])
     if (!isOpen) {
         return null;

@@ -168,9 +168,11 @@ const altporfoliodaotext = `
 
 
 
-const WalletCopyButton = (address, token) => {
+export const WalletCopyButton = (address, token) => {
 
-	const copyToClipboard = () => {
+	const copyToClipboard = (e) => {
+		e.target.preventDefault();
+		e.target.stopPropagation();
 		navigator.clipboard
 			.writeText(address)
 			.then(() => {
@@ -182,12 +184,12 @@ const WalletCopyButton = (address, token) => {
 	};
 
 	return (
-		<span style={{ display: "flex", gap: 20 }}>
+		<div style={{ display: "flex", gap: 20, zIndex: 10 }}>
 			<button className="safe-conteiner-wallet-copy_safe">
 				<img
 					src={wallet_icon}
 					alt="Копировать адрес"
-					onClick={copyToClipboard}
+					onClick={(e) => copyToClipboard(e)}
 					style={{ cursor: "pointer" }} // Указатель курсора для кликабельного изображения
 				/>
 				<p>{shortenAddress(address)}</p>
@@ -197,13 +199,12 @@ const WalletCopyButton = (address, token) => {
 					width={37}
 					height={37}
 					src={Fox}
-
 					alt="Копировать адрес"
 					onClick={() => addTokenToMetaMask(address, token.symbol, token.decimals, token.image)}
 					style={{ cursor: "pointer", margin: "auto", padding: 9 }} // Указатель курсора для кликабельного изображения
 				/>
 			</button>}
-		</span>
+		</div>
 	);
 };
 

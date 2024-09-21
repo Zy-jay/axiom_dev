@@ -12,7 +12,7 @@ export const DaoBalanceItem = ({ daoKey }) => {
 
     const { address } = useAccount()
 
-    const { daoPrice } = useDaoPrice(DAOs_DATA[daoKey].currentDaoAddress, DAOs_DATA[daoKey].lpAddress, DAOs_DATA[daoKey].chainId)
+    const { daoPrice, tokens } = useDaoPrice(DAOs_DATA[daoKey].currentDaoAddress, DAOs_DATA[daoKey].lpAddress, DAOs_DATA[daoKey].chainId)
 
     const { balance } = useTokenBalance(DAOs_DATA[daoKey].lpAddress, address, DAOs_DATA[daoKey].chainId)
 
@@ -47,9 +47,18 @@ export const DaoBalanceItem = ({ daoKey }) => {
     useEffect(() => {
         if (balance !== undefined) store.setDaoBalance(daoKey, balance)
     }, [balance])
+
     useEffect(() => {
         if (daoPrice !== undefined) store.setDaoPrice(daoKey, daoPrice)
     }, [daoPrice])
+    useEffect(() => {
+        if (tokens !== undefined) {
+            if (isBtcDao) {
+                store.setBtcRate(tokens[0].price)
+            }
+            store.setPortfolio(daoKey, tokens)
+        }
+    }, [tokens])
 
     const daoBalance = store.daoBalances[daoKey] ?? balance
 

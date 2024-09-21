@@ -25,7 +25,7 @@ html {
 }
 
 .wrapper {
-  width: 67vw;
+  width: 69vw;
   max-width: 1300px;
   padding: 5;
   margin-left: auto;
@@ -94,6 +94,53 @@ html {
   color: #fff;
   border: none;
   margin-left: 0.5vw;
+}
+.btns {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: fit-content;
+  justify-content: center;
+}
+.btns span {
+  position: absolute;
+  top: 100%; /* Позиционирование ниже основной кнопки */
+  opacity: 0;
+  transform: translateY(0px);
+  pointer-events: none; /* Отключаем события кликов пока кнопка скрыта */
+  transition: all 0.1s ease-in-out; /* Плавная анимация */
+  width: fit-content;
+  padding: 20px;
+  color: #fff;
+  border-radius: 8px;
+  background: black;
+}
+.btns span::before {
+  width: 130%;
+  height: 130%;
+  background-color: transparent;
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  z-index: -1;
+}
+.btns span:hover {
+  opacity: 1;
+  transform: translateY(15px); /* Возвращаем в начальное положение */
+  pointer-events: all; /* Включаем кликабельность */
+  z-index: 100;
+}
+
+.btns:hover span {
+  opacity: 1;
+  transform: translateY(15px); /* Возвращаем в начальное положение */
+  pointer-events: all; /* Включаем кликабельность */
+  z-index: 100;
+}
+
+.btns:hover svg {
+  transform: rotate(180deg);
 }
 
 .vector {
@@ -209,7 +256,7 @@ div.mobile {
 }
 
 img.howWeWorkRectangle_safe {
-  width: 67.45vw;
+  width: 69vw;
 }
 
 .howWeWorkRectangle-conteiner_safe {
@@ -245,12 +292,12 @@ img.howWeWorkRectangle_safe {
 
 .safeDao-conteiner_safe {
   position: relative;
-  width: 67.45vw;
+  width: 69vw;
   margin: auto;
 }
 
 .safeDao-conteiner_safe img {
-  width: 67.45vw;
+  width: 69vw;
   height: 19.48vw;
   border-radius: 26px;
 }
@@ -265,6 +312,10 @@ img.howWeWorkRectangle_safe {
   background-color: #fff;
   margin-top: 1.88vw;
   opacity: 0.5;
+}
+
+.safe-conteiner-button_safe {
+  display: inline-grid;
 }
 
 .safe-conteiner-button_safe h2 {
@@ -713,7 +764,7 @@ img.howWeWorkRectangle_safe {
     font-size: 4.27vw;
     padding-left: 25.87vw;
     letter-spacing: 0.6vw;
-    padding-top: 14.67vw;
+    padding-top: 10.67vw;
   }
 
   .safe-conteiner-button_safe h2 {

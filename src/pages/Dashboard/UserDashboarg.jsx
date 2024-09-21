@@ -9,13 +9,13 @@ import { DaoBalanceItem } from "./DaoItem.jsx";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { useStore } from "../../hooks/useStore.js";
 import { observer } from 'mobx-react-lite';
+import { toOptionalFixed } from "../../utils/converter.js";
 
 
 
 const UserDashboard = observer(() => {
 
 	const store = useStore()
-	const [width, setWidth] = React.useState("unset")
 	const ref = React.useRef(null)
 	const daoItems = Object.values(STRATEGI_KEYS).map((kdao) => {
 		return (
@@ -25,25 +25,15 @@ const UserDashboard = observer(() => {
 	})
 
 	const data = Object.values(STRATEGI_KEYS).map((kdao, i) => {
+		const isBtcDao = kdao === STRATEGI_KEYS.btcdao
+		const aaveBtcData = isBtcDao && store.daoPortfolios[kdao] ? store.daoPortfolios[kdao][0] : undefined
 		return {
 			key: Object.keys(STRATEGI_KEYS)[i],
 			name: kdao,
-			value: (Number(store.daoBalances[kdao] ?? 0) / 10 ** 18) * (store.daoPrices[kdao] ?? 0),
+			value: Number(toOptionalFixed(isBtcDao ? Number(aaveBtcData?.balance) / 10 ** 8 * aaveBtcData?.price : (Number(store.daoBalances[kdao] ?? 0) / 10 ** 18) * (store.daoPrices[kdao] ?? 0), 2)),
 		}
 	})
 
-
-
-
-	// React.useEffect(() => {
-	// 	console.debug("ref", ref, data)
-	// 	if (!ref.current) {
-	// 		setWidth(width === "unset" ? "90%" : "unset")
-	// 	} else {
-	// 		setTimeout(() => setWidth("90%"), 500)
-
-	// 	}
-	// }, [width, ref, data])
 
 	const { hoveringKey } = store
 
@@ -105,7 +95,7 @@ const UserDashboard = observer(() => {
 												/>
 											))}
 										</Pie>
-										<Tooltip />
+										{/* <Tooltip /> */}
 									</PieChart>
 								</ResponsiveContainer>
 							</div>

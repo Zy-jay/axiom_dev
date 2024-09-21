@@ -5,7 +5,7 @@ import Portfolio from "./Portfolio";
 import Feedback from "../../componets/UI/feedback";
 import Footer from "../../componets/UI/footer";
 import React, { useEffect } from 'react';
-import { DAOs_DATA, DAOs_PORTFOLIOS } from "../../constants/strategis";
+import { DAOs_DATA, DAOs_PORTFOLIOS, STRATEGI_KEYS } from "../../constants/strategis";
 import { useDaoPrice } from "../../hooks/useDaoPrice";
 import { useStore } from "../../hooks/useStore";
 
@@ -26,11 +26,17 @@ export const StrategiPage = ({ dao, daoKey }) => {
     const portfolio = DAOs_PORTFOLIOS[dao] ?? tokens ?? undefined
 
     useEffect(() => {
-        if (portfolio !== undefined) store.setPortfolio(daoKey, tokens)
+        if (portfolio !== undefined) {
+            if (dao === STRATEGI_KEYS.btcdao) {
+                store.setBtcRate(portfolio[0].price)
+            }
+            store.setPortfolio(dao, tokens)
+        }
     }, [tokens])
 
     useEffect(() => {
         if (daoPrice !== undefined) store.setDaoPrice(daoKey, daoPrice)
+
     }, [daoPrice])
 
     console.log(tokens)

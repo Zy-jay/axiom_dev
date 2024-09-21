@@ -38,7 +38,7 @@ export const contracts = {
     address: "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
   },
   AAVEWBTCToken: {
-    address: "0x078f358208685046a11C85e8ad32895DED33A249",
+    address: "0x078f358208685046a11c85e8ad32895ded33a249",
   },
   // AAVEWBTCToken: { // только для отображения внизу на фронте
   //   address: "0x078f358208685046a11C85e8ad32895DED33A249",

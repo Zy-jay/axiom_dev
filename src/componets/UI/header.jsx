@@ -4,12 +4,13 @@ import drop_down from "../../assets/images/images_home/drop-down.svg";
 import vector from "../../assets/images/images_home/vector.svg";
 import ellipse_header from "../../assets/images/images_home/ellipse_header.svg";
 import burger from "../../assets/images/images_home/burger.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
 import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
 import { shortenAddress } from "../../utils/shortenAddress";
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
+import { WalletCopyButton } from "../../pages/Strategies/howWeWork";
 
 const Header = () => {
 
@@ -136,18 +137,29 @@ const Header = () => {
 											</div>
 										)}
 									</div>
-									{isDashboard || isSwap ? (
-										<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
-											{address ? shortenAddress(address) : "Connect Wallet"}
-										</button>
-									) : (
-										<button onClick={() => {
-											navigate("/dashboard")
-											!address && openConnectModal()
-										}} className="button">
-											{"Dashboard"}
-										</button>
-									)}
+									{
+
+										!address ? <button onClick={() => openConnectModal()} className="button">
+											{"Connect"}
+										</button> : isDashboard ? (
+											<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+												{shortenAddress(address)}
+											</button>
+
+										) : (
+											<div className="btns">
+												<button onClick={() => {
+													navigate("/dashboard")
+													!address && openConnectModal()
+												}} className="button">
+													{"Dashboard"}
+												</button>
+												<span> <p style={{ cursor: "pointer" }} onClick={() => address ? openAccountModal() : openConnectModal()}>
+													{address ? shortenAddress(address) : "Connect Wallet"}
+												</p>
+												</span>
+											</div>
+										)}
 								</nav>
 							</div>
 							<div className={isMenuOpen ? "active" : "hidden"}>
