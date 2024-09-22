@@ -5,3 +5,8 @@
 .recharts-tooltip-item-value {
   display: none;
 }
+
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}

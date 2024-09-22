@@ -52,10 +52,11 @@ export default class PortfolioChart extends PureComponent {
                     >
 
                         {data.map((entry, index) => (
-                            <Cell key={`portfolio-${index}-${entry.name}`} fill={entry.fill} />
+                            <Cell
+                            style={{outline: 'none'}} key={`portfolio-${index}-${entry.name}`} fill={entry.fill} />
                         ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip  />
                 </PieChart>
             </ResponsiveContainer>
         );

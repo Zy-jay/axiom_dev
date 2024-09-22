@@ -317,6 +317,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 
 										{data.map((entry, index) => (
 											<Cell
+											style={{outline: 'none'}}
 												className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
 												key={`portfolio-${index}-${entry.name}`}
 												fill={entry.fill}

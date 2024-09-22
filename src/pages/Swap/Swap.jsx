@@ -457,6 +457,7 @@ const Swap = ({ daoKey, dao }) => {
 										>
 											{data.map((entry, index) => (
 												<Cell
+												style={{outline: 'none'}}
 
 													key={`swap-cell-${dao.replaceAll(" ", "-")}-${index}`}
 													fill={entry.fill}
@@ -471,7 +472,7 @@ const Swap = ({ daoKey, dao }) => {
 											))}
 											<LabelList dataKey="name" position="outside" angle="0" />
 										</Pie>
-										<Tooltip />
+										<Tooltip  />
 									</PieChart>
 
 								</ResponsiveContainer></>}

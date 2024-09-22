@@ -49,10 +49,10 @@ export const ALL_RPC_URLS = {
   ],
   [SupportedChainId.MAINNET]: [
     "https://eth-mainnet.g.alchemy.com/v2/yYTw1_F8WgexT7cSRC6NDltqftxhFaws",
-    "https://rpc.ankr.com/eth",
-    "https://eth.meowrpc.com",
-    "https://eth.merkle.io",
-    "https://api.stateless.solutions/ethereum/v1/demo",
+    // "https://rpc.ankr.com/eth",
+    // "https://eth.meowrpc.com",
+    // "https://eth.merkle.io",
+    // "https://api.stateless.solutions/ethereum/v1/demo",
   ],
   [SupportedChainId.OPTIMISM]: [
     "https://optimism.llamarpc.com",

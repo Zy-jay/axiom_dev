@@ -85,6 +85,7 @@ const UserDashboard = observer(() => {
 
 											{data.map((entry, index) => (
 												<>	<Cell
+												style={{outline: 'none'}}
 													key={`cell-${index}`}
 													fill={DAOs_DATA[entry.name]?.color}
 													className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
@@ -98,7 +99,7 @@ const UserDashboard = observer(() => {
 												/></>
 											))}
 										</Pie>
-										<Tooltip
+										<Tooltip 
 										/>
 									</PieChart>
 								</ResponsiveContainer>
