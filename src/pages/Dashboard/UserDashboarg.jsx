@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import up from "../../assets/images/images_safe/up.svg";
 import upward_shift from "../../assets/images/images_swap/upward_shift.svg";
 import left_green_circle from "../../assets/images/images_swap/left_green_circle.png";
@@ -10,6 +10,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { useStore } from "../../hooks/useStore.js";
 import { observer } from 'mobx-react-lite';
 import { toOptionalFixed } from "../../utils/converter.js";
+import "./style.css"
 
 
 
@@ -30,7 +31,7 @@ const UserDashboard = observer(() => {
 		return {
 			key: Object.keys(STRATEGI_KEYS)[i],
 			name: kdao,
-			value: Number(toOptionalFixed(isBtcDao ? Number(aaveBtcData?.balance) / 10 ** 8 * aaveBtcData?.price : (Number(store.daoBalances[kdao] ?? 0) / 10 ** 18) * (store.daoPrices[kdao] ?? 0), 2)),
+			value: Number(toOptionalFixed(isBtcDao ? (Number(store.daoBalances[kdao] ?? 0) / 10 ** 18) * aaveBtcData?.price : (Number(store.daoBalances[kdao] ?? 0) / 10 ** 18) * (store.daoPrices[kdao] ?? 0), 2)),
 		}
 	})
 

@@ -19,6 +19,15 @@ import { ethers } from "ethers";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import ethLogo from "../../assets/tokenLogos/ethereum-logo.png"
 
+const CustomTooltip = ({ active, payload, label }) => {
+	console.log("CustomTooltip", active, payload, label)
+	if (active && payload && payload.length) {
+		return <span>{label?.split(":")[0]}</span>
+
+	}
+
+	return null;
+};
 function getLogo(tokenName) {
 	if (tokenName == "aArbWBTC") {
 		return aarbwbtc;
@@ -87,6 +96,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 	useEffect(() => {
 		store.setHoveringKey(isHovered ? token.symbol : "")
 	}, [isHovered])
+
 
 	return (
 		isToken ? <div ref={elementRef} style={{
@@ -318,7 +328,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 											/>
 										))}
 									</Pie>
-									<Tooltip />
+									<Tooltip content={<CustomTooltip />} />
 								</PieChart>
 							</ResponsiveContainer>}
 

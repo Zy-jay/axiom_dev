@@ -147,7 +147,7 @@ export const DAOs_DATA = {
     decimals: 18,
     symbol: "axBTC",
     portfolio: [],
-    color: "#E86E20",
+    color: "#3DAF34",
     lpAddress: DAOs.axBTCLP,
     chainId: SupportedChainId.ARBITRUM_ONE,
   },
