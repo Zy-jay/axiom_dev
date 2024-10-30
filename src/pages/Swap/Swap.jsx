@@ -236,6 +236,11 @@ const Swap = ({ daoKey, dao }) => {
 		owner: !refetch && address,
 		spender: xdaoAddress,
 	});
+	const WBTCAllowance = useAllowance({
+		tokenAddress: addressWBTC,
+		owner: !refetch && address,
+		spender: xdaoAddress,
+	});
 
 	const XDAOTokenConditions = useMemo(() => {
 		return XDAOTokenBalance >= requiredXDAOTokens;
@@ -457,7 +462,7 @@ const Swap = ({ daoKey, dao }) => {
 										>
 											{data.map((entry, index) => (
 												<Cell
-												style={{outline: 'none'}}
+													style={{ outline: 'none' }}
 
 													key={`swap-cell-${dao.replaceAll(" ", "-")}-${index}`}
 													fill={entry.fill}
@@ -472,7 +477,7 @@ const Swap = ({ daoKey, dao }) => {
 											))}
 											<LabelList dataKey="name" position="outside" angle="0" />
 										</Pie>
-										<Tooltip  />
+										<Tooltip />
 									</PieChart>
 
 								</ResponsiveContainer></>}
@@ -621,7 +626,7 @@ const Swap = ({ daoKey, dao }) => {
 											<button className="content-button inactive button_swap">
 												Недостаточно {token1Name}
 											</button>
-										) : USDTAllowance < parsedAmount ? (
+										) : (isBtcDao ? WBTCAllowance : USDTAllowance) < parsedAmount ? (
 											<button
 												className="content-button button_swap"
 												disabled={isTxLoading}
