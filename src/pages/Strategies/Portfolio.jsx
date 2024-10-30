@@ -97,7 +97,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 		store.setHoveringKey(isHovered ? token.symbol : "")
 	}, [isHovered])
 
-
+const balance = Number(token.balance) / 10 ** token.decimals
 	return (
 		isToken ? <div ref={elementRef} style={{
 			display: "flex",
@@ -106,7 +106,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 			color: "white",
 			height: "fit-content",
 			cursor: "pointer",
-			width: "170px"
+			width: "120px"
 		}}>
 			<span
 				style={{
@@ -119,7 +119,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 				}}
 			>
 				<img
-					width={69}
+					width={50}
 					src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
 					style={{
 						borderRadius: "50%",
@@ -135,7 +135,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 				{token.symbol}
 			</p>
 
-				<p>{token.balance && token.decimals ? toOptionalFixed(Number(token.balance) / 10 ** token.decimals, +token.decimals < 8 ? 2 : 4) : ""}</p></span>
+				<p>{token.balance && token.decimals ? toOptionalFixed(balance, balance > 1000 ? 0 : 4 ) : ""}</p></span>
 			{/* <div style={{ color: "white", fontWeight: "bold" }}>
 			10
 		</div> */}
@@ -317,10 +317,11 @@ const Portfolio = observer(({ portfolio, dao }) => {
 
 										{data.map((entry, index) => (
 											<Cell
-											style={{outline: 'none'}}
+												style={{ outline: 'none'}}
 												className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
 												key={`portfolio-${index}-${entry.name}`}
 												fill={entry.fill}
+												
 											// style={{
 											// 	transform: `scale(${hoveringKey === entry.name ? "1.1" : 1})`,
 											// 	transition: "transform 2s ease",
@@ -329,7 +330,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 											/>
 										))}
 									</Pie>
-									<Tooltip content={<CustomTooltip />} />
+									<Tooltip />
 								</PieChart>
 							</ResponsiveContainer>}
 

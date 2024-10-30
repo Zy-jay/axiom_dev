@@ -78,11 +78,15 @@ a:hover {
 .hovering {
   transform-origin: center;
   transition: scale 3s ease-in-out;
+  border: none;
 }
 .active {
   transform: scale(1.1);
 }
 
+.recharts-sector {
+border: #02d633 solid 1px;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

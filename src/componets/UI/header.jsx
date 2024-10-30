@@ -7,6 +7,7 @@ import burger from "../../assets/images/images_home/burger.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
+import WalletImg from "../../assets/images/images_home/wallet_icon.png";
 import { DAOs_DATA, STRATEGI_KEYS } from "../../constants/strategis";
 import { shortenAddress } from "../../utils/shortenAddress";
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
@@ -136,7 +137,21 @@ const Header = () => {
 											</div>
 										)}
 									</div>
-									{
+									{address ? 
+									<span
+									onClick={() => openAccountModal()}
+									 style={{ color: "#FFFFFF", fontSize: 14, textAlign: "center", marginTop: "auto", marginBottom: "auto", width: "fit-content" }}>
+										{shortenAddress(address)}
+									</span> : <button style={{ background: "#B6B6B6", color: "#000000", width: "160px", padding: "unset" }} onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+										<span > <img src={WalletImg} alt="" /> Connect Wallet</span>
+									</button>}
+									<button onClick={() => {
+											navigate("/dashboard")
+											!address && openConnectModal()
+										}} className="button">
+											{"Dashboard"}
+										</button>
+									{/* {
 
 										!address ? <button onClick={() => {
 											openConnectModal();
@@ -162,7 +177,7 @@ const Header = () => {
 												</p>
 												</span>
 											</div>
-										)}
+										)} */}
 								</nav>
 							</div>
 							<div className={isMenuOpen ? "active" : "hidden"}>
@@ -218,7 +233,7 @@ const Header = () => {
 									</div>
 									{isDashboard || isSwap ? (
 										<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
-											{address ? shortenAddress(address) : "Connect Wallet"}
+											{address ? <span> <img src={WalletImg} alt="" /> {shortenAddress(address)}</span> : "Connect Wallet"}
 										</button>
 									) : (
 										<button onClick={() => {
