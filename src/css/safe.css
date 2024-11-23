@@ -57,6 +57,7 @@ html {
   backdrop-filter: blur(10px);
   padding: 1vw 1.5vw;
   display: flex;
+  border-radius: 20px;
 }
 
 .axiomlogo {
@@ -75,7 +76,7 @@ html {
   font-family: "Montserrat";
   font-weight: 300;
   color: #fff;
-  font-size: 0.729vw;
+  font-size: 14px;
   line-height: 2.4vw;
 }
 
@@ -87,14 +88,21 @@ html {
 
 .button {
   font-family: "Montserrat";
-  width: 7.3vw;
-  font-size: 0.829vw;
+  width: fit-content;
+  font-size: 14px;
   border-radius: 8px;
   background: linear-gradient(90deg, #ef6b1f 0%, #d64f02 100%);
   color: #fff;
   border: none;
   margin-left: 0.5vw;
+  padding: 10px;
+  height: 50px;
 }
+
+.button:hover {
+  background: linear-gradient(90deg, #d64f02 0%, #ef6b1f 100%);
+}
+
 .btns {
   display: flex;
   position: relative;
@@ -617,6 +625,17 @@ img.howWeWorkRectangle_safe {
 .footer {
   position: relative;
   z-index: 2;
+}
+
+@media screen and (max-width: 1223px) {
+  .button {
+    font-size: 12px;
+    max-height: 30px;
+    padding: 5px;
+  }
+  .header-nav nav a {
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 767px) {

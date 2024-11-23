@@ -60,98 +60,125 @@ const Header = () => {
 				>
 					<img className="vector" src={vector} alt="" />
 				</motion.div>
-				<img className="ellipse_header" src={ellipse_header} alt="" />
-				<div className="wrapper_">
-					<div
-						className={
-							isMenuOpen
-								? " header-nav-bar header-nav-active"
-								: "header-nav-bar"
-						}
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
-					>
-						<div className="fixed">
-							<div className="header-nav">
-								<div style={{ display: "flex", alignContent: "center" }} className="image-container">
-									<a href="/" style={{ cursor: "pointer" }}>
-										<img width={231} src={axiomlogo} alt="Главная страница" />
-									</a>
-								</div>
-								<img
-									className="burger"
-									src={burger}
-									onClick={toggleMenu}
-									alt=""
-								/>
-								<nav>
+				<div style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					flexDirection: "column",
+					flexWrap: "wrap",
+					margin: "auto",
+					width: "100%",
+					padding: "20px",
+					zIndex: 100,
+				}}>
 
+					<div style={{
+						display: "flex",
+						justifyContent: "right",
+						alignItems: "right",
+						position: "fixed",
+						margin: "auto",
+						width: "70.42vw",
+						zIndex: 100,
 
-
-									<Link to="/">Главная</Link>
-									{Object.values(STRATEGI_KEYS).map((key) => {
-										return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
-
-									})}
-									<div className="drop-down ">
-										<a href="#" onClick={() => setIsOpen(!isOpen)}>
-											Наши проекты
+					}}>
+						<div className="drop-down " style={{ zIndex: 100 }}>
+							<div className="drop-down ">
+								<a href="#" onClick={() => setIsOpen(!isOpen)}>
+									Наши проекты
+								</a>
+								<img src={drop_down} alt="" />
+								{isOpen && (
+									<div
+										className="drop-down-content"
+										onMouseEnter={handleMouseEnter}
+										onMouseLeave={handleMouseLeave}
+									>
+										<a
+											href="https://axiom-wm.com/"
+											target="_blank"
+											rel="noopener"
+										>
+											Family Office
 										</a>
-										<img src={drop_down} alt="" />
-										{isOpen && (
-											<div className="drop-down-conteiner-content">
-												<div
-													className="drop-down-content"
-													onMouseEnter={handleMouseEnter}
-													onMouseLeave={handleMouseLeave}
-												>
-													<a
-														href="https://axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Family Office
-													</a>
-													<a
-														href="http://datacenter.axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Data Center
-													</a>
-													<a
-														href="https://fund.axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Dividend’s Fund
-													</a>
-													<a
-														href="https://axiom-wm.com/international-estate-asset-management"
-														target="_blank"
-														rel="noopener"
-													>
-														Real Estate
-													</a>
-												</div>
-											</div>
-										)}
+										<a
+											href="http://datacenter.axiom-wm.com/"
+											target="_blank"
+											rel="noopener"
+										>
+											Data Center
+										</a>
+										<a
+											href="https://fund.axiom-wm.com/"
+											target="_blank"
+											rel="noopener"
+										>
+											Dividend’s Fund
+										</a>
+										<a
+											href="https://axiom-wm.com/international-estate-asset-management"
+											target="_blank"
+											rel="noopener"
+										>
+											Real Estate
+										</a>
 									</div>
-									{address ? 
-									<span
-									onClick={() => openAccountModal()}
-									 style={{ color: "#FFFFFF", fontSize: 14, textAlign: "center", marginTop: "auto", marginBottom: "auto", width: "fit-content" }}>
-										{shortenAddress(address)}
-									</span> : <button style={{ background: "#B6B6B6", color: "#000000", width: "160px", padding: "unset" }} onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
-										<span > <img src={WalletImg} alt="" /> Connect Wallet</span>
-									</button>}
-									<button onClick={() => {
+								)}
+							</div>
+						</div>
+					</div>
+
+					<img className="ellipse_header" src={ellipse_header} alt="" />
+					<div className="wrapper_" style={{ zIndex: 10, width: "100%", margin: "auto" }}>
+						<div
+							className={
+								isMenuOpen
+									? " header-nav-bar header-nav-active"
+									: "header-nav-bar"
+							}
+							onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}
+						>
+							<div className="fixed">
+
+
+								<div className="header-nav">
+									<div style={{ display: "flex", alignContent: "center" }} className="image-container">
+										<a href="/" style={{ cursor: "pointer" }}>
+											<img width={231} src={axiomlogo} alt="Главная страница" />
+										</a>
+									</div>
+									<img
+										className="burger"
+										src={burger}
+										onClick={toggleMenu}
+										alt=""
+									/>
+									<nav>
+
+
+
+										<Link to="/">Главная</Link>
+										{Object.values(STRATEGI_KEYS).map((key) => {
+											return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
+
+										})}
+
+										{address ?
+											<span
+												onClick={() => openAccountModal()}
+												style={{ color: "#FFFFFF", fontSize: 14, textAlign: "center", marginTop: "auto", marginBottom: "auto", width: "fit-content" }}>
+												{shortenAddress(address)}
+											</span> : <button style={{ background: "#B6B6B6", color: "#000000" }} onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+												<span > <img src={WalletImg} alt="" /> Connect Wallet</span>
+											</button>}
+										<button onClick={() => {
 											navigate("/dashboard")
 											!address && openConnectModal()
 										}} className="button">
 											{"Dashboard"}
 										</button>
-									{/* {
+										{/* {
 
 										!address ? <button onClick={() => {
 											openConnectModal();
@@ -178,72 +205,30 @@ const Header = () => {
 												</span>
 											</div>
 										)} */}
-								</nav>
-							</div>
-							<div className={isMenuOpen ? "active" : "hidden"}>
-								<nav>
-									<Link to="/">Главная</Link>
-									{Object.values(STRATEGI_KEYS).map((key) => {
-										return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
+									</nav>
+								</div>
+								<div className={isMenuOpen ? "active" : "hidden"}>
+									<nav>
+										<Link to="/">Главная</Link>
+										{Object.values(STRATEGI_KEYS).map((key) => {
+											return <Link to={DAOs_DATA[key].link?.replace("/swap", "")}>{DAOs_DATA[key].name}</Link>
 
-									})}
-									<div className="drop-down ">
-										<div className="drop-down ">
-											<a href="#" onClick={() => setIsOpen(!isOpen)}>
-												Наши проекты
-											</a>
-											<img src={drop_down} alt="" />
-											{isOpen && (
-												<div
-													className="drop-down-content"
-													onMouseEnter={handleMouseEnter}
-													onMouseLeave={handleMouseLeave}
-												>
-													<a
-														href="https://axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Family Office
-													</a>
-													<a
-														href="http://datacenter.axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Data Center
-													</a>
-													<a
-														href="https://fund.axiom-wm.com/"
-														target="_blank"
-														rel="noopener"
-													>
-														Dividend’s Fund
-													</a>
-													<a
-														href="https://axiom-wm.com/international-estate-asset-management"
-														target="_blank"
-														rel="noopener"
-													>
-														Real Estate
-													</a>
-												</div>
-											)}
-										</div>
-									</div>
-									{isDashboard || isSwap ? (
-										<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
-											{address ? <span> <img src={WalletImg} alt="" /> {shortenAddress(address)}</span> : "Connect Wallet"}
-										</button>
-									) : (
-										<button onClick={() => {
-											navigate("/dashboard")
-											!address && openConnectModal()
-										}} className="button">
-											{"Dashboard"}
-										</button>
-									)}
-								</nav>
+										})}
+
+										{isDashboard || isSwap ? (
+											<button onClick={() => address ? openAccountModal() : openConnectModal()} className="button">
+												{address ? <span> <img src={WalletImg} alt="" /> {shortenAddress(address)}</span> : "Connect Wallet"}
+											</button>
+										) : (
+											<button onClick={() => {
+												navigate("/dashboard")
+												!address && openConnectModal()
+											}} className="button">
+												{"Dashboard"}
+											</button>
+										)}
+									</nav>
+								</div>
 							</div>
 						</div>
 					</div>

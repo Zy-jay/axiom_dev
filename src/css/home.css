@@ -68,13 +68,16 @@ html {
 
 .fixed {
   position: fixed;
+  top: 50px;
   background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .header-nav {
   backdrop-filter: blur(10px);
   padding: 1vw 1.5vw;
   display: flex;
+  border-radius: 10px;
 }
 
 .axiomlogo {
@@ -87,13 +90,14 @@ html {
   width: 52.29vw;
   justify-content: space-between;
   display: flex;
+  align-items: center;
 }
 
 .header-nav nav a {
   font-family: "Montserrat";
   font-weight: 300;
   color: #fff;
-  font-size: 0.629vw;
+  font-size: 14px;
   line-height: 2.4vw;
 }
 
@@ -106,6 +110,7 @@ html {
 .drop-down {
   position: relative;
   display: inline-block;
+  font-size: 14px;
 }
 
 .drop-down-content {
@@ -114,9 +119,10 @@ html {
   padding: 10px;
   top: 144%;
   left: 0;
-  z-index: 4;
-  width: 7vw;
-  height: 9.5vw;
+  gap: 15px;
+  z-index: 100;
+  width: fit-content;
+  height: fit-content;
   border-width: 1px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.7);
@@ -133,6 +139,17 @@ html {
 .drop-down-content a {
   color: #fff;
   font-family: "Montserrat";
+  font-size: 14px;
+}
+
+.drop-down-content a:hover {
+  opacity: 0.5;
+}
+
+.drop-down a {
+  color: #fff;
+  font-family: "Montserrat";
+  font-size: 14px;
 }
 
 .drop-down:hover .drop-down-content,
@@ -758,11 +775,26 @@ img.howWeWorkRectangle_itemTwo {
   color: transparent;
 }
 
+@media screen and (max-width: 1200px) {
+  .drop-down a {
+    font-size: 14px;
+  }
+  .drop-down-content a {
+    font-size: 14px;
+  }
+}
+
 /* Media query for mobile devices */
 @media (max-width: 768px) {
   /* Adjust the max-width as needed */
   .docsFooter {
     font-size: 2.833vw; /* Font size for mobile */
+  }
+  .drop-down a {
+    font-size: 12px;
+  }
+  .drop-down-content a {
+    font-size: 12px;
   }
 }
 
