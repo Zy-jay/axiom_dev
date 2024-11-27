@@ -52,4 +52,7 @@ export class Store {
     this.tokenColors[addressOrSymbol] = color;
     return color;
   }
+  setTokenColor(addressOrSymbol, color){
+  this.tokenColors[addressOrSymbol] = color
+  }
 }

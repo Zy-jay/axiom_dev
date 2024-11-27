@@ -8,6 +8,8 @@ import { observer } from 'mobx-react-lite';
 
 
 
+
+
 // import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
 
 
@@ -18,6 +20,12 @@ import { useStore } from "../../hooks/useStore";
 import { ethers } from "ethers";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import ethLogo from "../../assets/tokenLogos/ethereum-logo.png"
+import { formatNumber } from "../../utils/formatNumber";
+import ColorThief from "color-thief-browser";
+
+
+
+
 
 const CustomTooltip = ({ active, payload, label }) => {
 	console.log("CustomTooltip", active, payload, label)
@@ -97,7 +105,9 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 		store.setHoveringKey(isHovered ? token.symbol : "")
 	}, [isHovered])
 
-const balance = Number(token.balance) / 10 ** token.decimals
+  
+
+const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
 	return (
 		isToken ? <div ref={elementRef} style={{
 			display: "flex",
@@ -111,31 +121,33 @@ const balance = Number(token.balance) / 10 ** token.decimals
 			<span
 				style={{
 					borderRadius: "50%",
-					border: `5px solid ${store.getTokenColor(token.symbol)}`,
+					border: `5px solid ${ store.getTokenColor(token.symbol)}`,
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
-					padding: 5
+					padding: 5,
+					minHeight: 40
 				}}
 			>
+
 				<img
-					width={50}
+					width={40}
 					src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
 					style={{
 						borderRadius: "50%",
 					}}
-					alt=""
+					alt="Изображение"
 					onError={(e) => {
 						e.target.onError = null;
 						e.target.src = `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`;
 					}}
 				/>
 			</span>
-			<span ><p>
+			<span ><p className="asset-symbol">
 				{token.symbol}
 			</p>
 
-				<p>{token.balance && token.decimals ? toOptionalFixed(balance, balance > 1000 ? 0 : 4 ) : ""}</p></span>
+				<p className="asset-balance">{token.balance && token.decimals ? balance : ""}</p></span>
 			{/* <div style={{ color: "white", fontWeight: "bold" }}>
 			10
 		</div> */}
