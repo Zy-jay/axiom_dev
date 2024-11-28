@@ -175,7 +175,6 @@ html {
   background: linear-gradient(90deg, #ef6b1f 0%, #d64f02 100%);
   color: #000000;
   border: none;
-  margin-left: 0.5vw;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;

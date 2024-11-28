@@ -41,18 +41,21 @@ export class Store {
   setBtcRate(rate) {
     this.btcRate = rate;
   }
-
+  getRandomRgbColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
   getTokenColor(addressOrSymbol) {
     if (this.tokenColors[addressOrSymbol]) {
       return this.tokenColors[addressOrSymbol];
     }
-    const color =
-      TOKENS_COLORS[addressOrSymbol] ??
-      "#" + Math.floor(Math.random() * 16777215).toString(16);
+    const color = TOKENS_COLORS[addressOrSymbol] ?? this.getRandomRgbColor();
     this.tokenColors[addressOrSymbol] = color;
     return color;
   }
-  setTokenColor(addressOrSymbol, color){
-  this.tokenColors[addressOrSymbol] = color
+  setTokenColor(addressOrSymbol, color) {
+    this.tokenColors[addressOrSymbol] = color;
   }
 }

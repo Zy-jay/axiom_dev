@@ -53,7 +53,7 @@ export const DaoBalanceItem = ({ daoKey }) => {
     }, [daoPrice])
     useEffect(() => {
         if (tokens !== undefined) {
-            if (isBtcDao) {
+            if (isBtcDao && tokens[0]?.price) {
                 store.setBtcRate(tokens[0].price)
             }
             store.setPortfolio(daoKey, tokens)

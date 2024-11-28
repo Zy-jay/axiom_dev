@@ -26,8 +26,8 @@ export const StrategiPage = ({ dao, daoKey }) => {
     const portfolio = DAOs_PORTFOLIOS[dao] ?? tokens ?? undefined
 
     useEffect(() => {
-        if (portfolio !== undefined) {
-            if (dao === STRATEGI_KEYS.btcdao) {
+        if (portfolio !== undefined && portfolio[0]?.price !== undefined) {
+            if (dao === STRATEGI_KEYS.btcdao && portfolio[0]?.price) {
                 store.setBtcRate(portfolio[0].price)
             }
             store.setPortfolio(dao, tokens)

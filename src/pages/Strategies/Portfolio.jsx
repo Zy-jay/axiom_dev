@@ -5,7 +5,7 @@ import wbtc from "../../assets/images/tokenLogos/wbtc.png";
 import dai from "../../assets/images/tokenLogos/dai.png";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { observer } from 'mobx-react-lite';
-
+import DefoultTokenLogo from "../../assets/images/tokenLogos/defoult-token-log.png";
 
 
 
@@ -14,14 +14,12 @@ import { observer } from 'mobx-react-lite';
 
 
 import React, { useReducer, useLayoutEffect, useMemo, useEffect, useState, useRef } from "react";
-import { toOptionalFixed } from "../../utils/converter";
 import { DAOs_DATA } from "../../constants/strategis";
 import { useStore } from "../../hooks/useStore";
 import { ethers } from "ethers";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import ethLogo from "../../assets/tokenLogos/ethereum-logo.png"
 import { formatNumber } from "../../utils/formatNumber";
-import ColorThief from "color-thief-browser";
 
 
 
@@ -105,9 +103,8 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 		store.setHoveringKey(isHovered ? token.symbol : "")
 	}, [isHovered])
 
-  
 
-const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
+	const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
 	return (
 		isToken ? <div ref={elementRef} style={{
 			display: "flex",
@@ -121,7 +118,7 @@ const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
 			<span
 				style={{
 					borderRadius: "50%",
-					border: `5px solid ${ store.getTokenColor(token.symbol)}`,
+					border: `5px solid ${store.tokenColors[token.symbol] ?? store.getTokenColor(token.symbol)}`,
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
@@ -139,7 +136,7 @@ const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
 					alt="Изображение"
 					onError={(e) => {
 						e.target.onError = null;
-						e.target.src = `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`;
+						e.target.src = DefoultTokenLogo;
 					}}
 				/>
 			</span>
@@ -202,7 +199,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 			return {
 				name: p.symbol,
 				value: isBtcDao ? Number(p.balance) / 10 ** 8 : Number(p.usdValue ?? 0),
-				fill: store.getTokenColor(p.symbol)
+				fill: store.tokenColors[p.symbol] ?? store.getTokenColor(p.symbol)
 				// Object.keys(TOKENS_COLORS).includes(p.symbol)
 
 			}
@@ -329,11 +326,11 @@ const Portfolio = observer(({ portfolio, dao }) => {
 
 										{data.map((entry, index) => (
 											<Cell
-												style={{ outline: 'none'}}
+												style={{ outline: 'none' }}
 												className={`hovering ${hoveringKey === entry.name ? "active" : ""}`}
 												key={`portfolio-${index}-${entry.name}`}
 												fill={entry.fill}
-												
+
 											// style={{
 											// 	transform: `scale(${hoveringKey === entry.name ? "1.1" : 1})`,
 											// 	transition: "transform 2s ease",

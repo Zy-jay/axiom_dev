@@ -46,39 +46,42 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
             //       chainId
             //     ).then((balance) => Number(balance) / 10 ** 8)
             client.BalanceService.getTokenBalancesForWalletAddress(
-              chainId === 1 ? "eth-mainnet" : "arbitrum-mainnet",
+              chainId,
               daoAddress
-            ).then((resp) => {
-              console.log("resp: ", resp);
-              const items = resp.data.items.filter(
-                (i) =>
-                  i.balance > 0 &&
-                  i.contract_name !== "XDAO" &&
-                  !i.contract_name.includes("https") &&
-                  !i.contract_ticker_symbol.includes("https") &&
-                  (isBtcDao
-                    ? i.contract_address === contracts.AAVEWBTCToken.address
-                    : true)
-              );
-              tokens = items
-                .map((i) => ({
-                  img: i.logo_url,
-                  symbol: i.contract_ticker_symbol,
-                  usdValue: i.quote,
-                  address: i.contract_address,
-                  decimals: i.contract_decimals,
-                  balance: i.balance,
-                  name: i.contract_name,
-                  price: i.quote_rate,
+            )
+              .then((resp) => {
+                console.log("resp: ", resp);
+                const items =
+                  resp.data?.items.filter(
+                    (i) =>
+                      i.balance > 0 &&
+                      i.contract_name !== "XDAO" &&
+                      !i.contract_name.includes("https") &&
+                      !i.contract_ticker_symbol.includes("https") &&
+                      (isBtcDao
+                        ? i.contract_address === contracts.AAVEWBTCToken.address
+                        : true)
+                  ) || [];
+                tokens = items
+                  .map((i) => ({
+                    img: i.logo_url,
+                    symbol: i.contract_ticker_symbol,
+                    usdValue: i.quote,
+                    address: i.contract_address,
+                    decimals: i.contract_decimals,
+                    balance: i.balance,
+                    name: i.contract_name,
+                    price: i.quote_rate,
 
-                  // amount: i.pretty_quote,
-                }))
-                .filter((t) => t.token !== "XDAO");
+                    // amount: i.pretty_quote,
+                  }))
+                  .filter((t) => t.token !== "XDAO");
 
-              return isBtcDao
-                ? Number(items[0]?.balance) / 10 ** 8
-                : items?.map((i) => i.quote).reduce((x, y) => x + y, 0);
-            }),
+                return isBtcDao
+                  ? Number(items[0]?.balance) / 10 ** 8
+                  : items?.map((i) => i.quote).reduce((x, y) => x + y, 0);
+              })
+              .catch(console.error),
           3,
           1000
         );
@@ -122,7 +125,7 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
         // }
         if (sumDao !== undefined && sumUsersLpTokens !== undefined) {
           const res = sumDao / (Number(sumUsersLpTokens) / 10 ** 18) ?? 1;
-          return { price: res, tokens };
+          return { price: res ?? undefined, tokens };
         }
       } catch (err) {
         // filterRpc(provider._getConnection().url, chainId);
