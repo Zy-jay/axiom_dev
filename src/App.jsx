@@ -10,7 +10,7 @@ import { Providers } from "./Providers";
 import { ToastContainer, Bounce } from 'react-toastify'; // https://fkhadra.github.io/react-toastify/introduction
 import { STRATEGI_KEYS } from "./constants/strategis";
 import SwapPage from "./pages/Swap/SwapPage";
-import { StrategiPage } from "./pages/Strategies/StrategiPage";
+import StrategiPage from "./pages/Strategies/StrategiPage";
 import { Store } from "./store";
 
 

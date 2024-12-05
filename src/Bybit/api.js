@@ -1,5 +1,5 @@
 import axios from "axios";
-import crypto from "crypto";
+import crypto from "crypto-js";
 
 var recvWindow = 5000;
 const url = "https://api.bybit.com/v5/";

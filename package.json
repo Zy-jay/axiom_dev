@@ -16,6 +16,7 @@
     "buffer": "^6.0.3",
     "color-thief-browser": "^2.0.2",
     "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "ethers": "^6.13.2",
     "force": "^0.0.3",
     "framer-motion": "^11.3.28",
