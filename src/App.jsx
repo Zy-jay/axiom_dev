@@ -12,7 +12,7 @@ import { ToastContainer, Bounce } from 'react-toastify'; // https://fkhadra.gith
 // import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { STRATEGI_KEYS } from "./constants/strategis.js";
 import SwapPage from "./pages/Swap/SwapPage.jsx";
-import { StrategiPage } from "./pages/Strategies/StrategiPage.jsx";
+import { StrategiPage } from "./pages/Strategies/StrategiPage";
 import { Store } from "./store";
 
 
