@@ -1,6 +1,5 @@
 import axios from "axios";
 import crypto from "crypto";
-import { BYBIT_API_KEY } from "../constants/env";
 
 var recvWindow = 5000;
 const url = "https://api.bybit.com/v5/";
