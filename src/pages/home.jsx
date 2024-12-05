@@ -1,7 +1,7 @@
 import "../css/home.css";
 import Header from "../componets/UI/header.jsx";
 import Baner from "../componets/UI/Baner.jsx";
-import Strategies from "./Strategies/Strategies.jsx";
+import Strategies from "./Strategies/Strategies_.jsx";
 import Feedback from "../componets/UI/feedback.jsx";
 import Footer from "../componets/UI/footer.jsx";
 

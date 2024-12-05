@@ -6,13 +6,6 @@ import dai from "../../assets/images/tokenLogos/dai.png";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import DefoultTokenLogo from "../../assets/images/tokenLogos/defoult-token-log.png";
-
-
-
-
-// import aarbwbtc from "../../assets/images/tokenLogos/aarbwbtc.png";
-
-
 import React, { useReducer, useLayoutEffect, useMemo, useEffect, useState, useRef } from "react";
 import { DAOs_DATA } from "../../constants/strategis";
 import { useStore } from "../../hooks/useStore";
@@ -187,7 +180,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 
 }
 
-const Portfolio = observer(({ portfolio, dao }) => {
+export const Portfolio = observer(({ portfolio, dao }) => {
 
 	const store = useStore()
 	const isTokens = portfolio?.[0]?.symbol ? true : false;
