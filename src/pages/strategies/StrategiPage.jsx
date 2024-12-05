@@ -7,9 +7,9 @@ import React, { useEffect } from 'react';
 import { DAOs_DATA, DAOs_PORTFOLIOS, STRATEGI_KEYS } from "../../constants/strategis";
 import { useDaoPrice } from "../../hooks/useDaoPrice";
 import { useStore } from "../../hooks/useStore";
-import Portfolio  from "./Portfolio_";
+import Portfolio from "./Portfolio_";
 
-export const StrategiPage = ({ dao, daoKey }) => {
+const StrategiPage = ({ dao, daoKey }) => {
 
     const store = useStore()
 
@@ -53,3 +53,5 @@ export const StrategiPage = ({ dao, daoKey }) => {
         </div>
     );
 };
+
+export default StrategiPage;
