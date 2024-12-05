@@ -5,8 +5,12 @@ import { tryMultipleTimes } from "../utils/tryMultipleTimes";
 import { getTokenTotalSuply } from "../utils/getTokenTotalSuply";
 import { getTokenBalance } from "./getTokenBalance";
 import { CrowdModuleARB, CrowdModuleETH } from "../constants/addresses";
-const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+import { DAOs_DATA } from "../constants/strategis";
+import { getBybitBalance, getAssetInfo } from "../Bybit/endpoints";
 
+const TokensSymbolsExclude = ["DOGE"];
+
+const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
 const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
   return [
     `dao-price-${daoAddress}-${axAltPortfolioLpAddress}`,
@@ -14,8 +18,24 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
       let tokens = undefined;
       if (!daoAddress || !axAltPortfolioLpAddress) return undefined;
       if (daoAddress === DAOs.axAirdrop) return { price: 1, tokens };
+      const dao = Object.values(DAOs_DATA).find(
+        (d) => d.currentDaoAddress === daoAddress
+      );
+      if (!dao) return undefined;
+      const BYBIT_API_KEY =
+        process.env["REACT_APP_BYBIT_API_KEY_" + dao.symbol];
+      const BYBIT_API_SECRET =
+        process.env["REACT_APP_BYBIT_API_SECRET_" + dao.symbol];
+      let bybitBalance = undefined;
+      if (BYBIT_API_KEY && BYBIT_API_SECRET) {
+        bybitBalance = await tryMultipleTimes(
+          async () => getBybitBalance(BYBIT_API_KEY, BYBIT_API_SECRET),
+          5,
+          1000
+        );
+      }
       try {
-        console.debug(axAltPortfolioLpAddress, chainId);
+        // console.debug(axAltPortfolioLpAddress, chainId);
 
         const crowdModuleAddress =
           chainId === 1 ? CrowdModuleETH : CrowdModuleARB;
@@ -37,7 +57,9 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
 
         const isBtcDao = daoAddress === DAOs.axBTC;
         console.debug(totalSupply, crowdModuleBalance);
-        const sumDao = await tryMultipleTimes(
+        if (!totalSupply || !crowdModuleBalance) return undefined;
+
+        let sumDao = await tryMultipleTimes(
           () =>
             // isBtcDao
             //   ? getTokenBalance(
@@ -63,30 +85,76 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
                         : true)
                   ) || [];
                 tokens = items
-                  .map((i) => ({
-                    img: i.logo_url,
-                    symbol: i.contract_ticker_symbol,
-                    usdValue: i.quote,
-                    address: i.contract_address,
-                    decimals: i.contract_decimals,
-                    balance: i.balance,
-                    name: i.contract_name,
-                    price: i.quote_rate,
+                  .map((i) => {
+                    let symbol = i.contract_ticker_symbol;
+                    if (
+                      TokensSymbolsExclude.includes(i.contract_ticker_symbol)
+                    ) {
+                      symbol = i.contract_ticker_symbol.toLowerCase();
+                    }
+                    const t = bybitBalance
+                      ? bybitBalance?.find(
+                          (b) => b.coin === i.contract_ticker_symbol
+                        )
+                      : undefined;
+                    const balance =
+                      Number(i.balance) / 10 ** i.contract_decimals +
+                      (t ? Number(t.walletBalance) : 0);
+                    return {
+                      img: i.logo_url,
+                      symbol,
+                      usdValue: !t ? i.quote : balance * i.quote_rate,
+                      address: i.contract_address,
+                      decimals: i.contract_decimals,
+                      balance,
+                      name: i.contract_name,
+                      price: i.quote_rate,
+                    };
 
                     // amount: i.pretty_quote,
-                  }))
+                  })
                   .filter((t) => t.token !== "XDAO");
 
                 return isBtcDao
                   ? Number(items[0]?.balance) / 10 ** 8
-                  : items?.map((i) => i.quote).reduce((x, y) => x + y, 0);
+                  : undefined;
               })
               .catch(console.error),
           3,
           1000
         );
+        console.log("bybitBalance", bybitBalance, tokens);
 
-        if (!totalSupply || !crowdModuleBalance) return undefined;
+        sumDao = isBtcDao
+          ? sumDao
+          : tokens?.map((i) => i.usdValue).reduce((x, y) => x + y, 0);
+        if (!isBtcDao && bybitBalance?.length > 0 && tokens?.length > 0)
+          for (const t of bybitBalance) {
+            if (tokens.find((i) => i.symbol === t.coin)) continue;
+            const tokenInfo = await getAssetInfo(
+              BYBIT_API_KEY,
+              BYBIT_API_SECRET,
+              t.coin
+            );
+            if (!tokenInfo?.data?.result?.list) continue;
+            const price = Number(
+              tokenInfo.data.result.list[0][4] ??
+                tokenInfo.data.result.list[0][1]
+            );
+            const balance = Number(t.walletBalance);
+            tokens.push({
+              img: undefined,
+              symbol: t.coin,
+              usdValue: balance * price,
+              address: undefined,
+              decimals: 8,
+              balance: balance,
+              name: t.coin,
+              price: price,
+            });
+            console.log("tokenInfo", tokenInfo, price, balance);
+          }
+
         const sumUsersLpTokens = totalSupply - crowdModuleBalance;
         // if (isBtcDao) {
         //   const aaveWbtcBalanceDao =

@@ -15,8 +15,26 @@ export const TOKENS_COLORS = {
   ARB: "#2C374B",
   WBNB: "#F3BA2F",
   WAVAX: "#E84142",
-  POL: "#F266AF",
   CRV: "#7AFF7B",
   TON: "#018FD7",
   TONCOIN: "#018FD7",
+  ADA: "#0838B0",
+  Bonk: "#FED402",
+  POL: "#6C00F6",
+  TRX: "#FF0013",
+};
+
+export const TOKENS_LOGO_URL = {
+  ADA: "https://s2.coinmarketcap.com/static/img/coins/64x64/2010.png",
+  DOGE: "https://s2.coinmarketcap.com/static/img/coins/64x64/74.png",
+  ["doge"]: "https://s2.coinmarketcap.com/static/img/coins/64x64/32778.png",
+  ZRO: "https://s2.coinmarketcap.com/static/img/coins/64x64/26997.png",
+  Bonk: "https://s2.coinmarketcap.com/static/img/coins/64x64/23095.png",
+  TRUMP: "https://s2.coinmarketcap.com/static/img/coins/64x64/27872.png",
+  POL: "https://s2.coinmarketcap.com/static/img/coins/64x64/28321.png",
+  UNI: "https://s2.coinmarketcap.com/static/img/coins/64x64/7083.png",
+  PEPE: "https://s2.coinmarketcap.com/static/img/coins/64x64/24478.png",
+  FTW: "https://s2.coinmarketcap.com/static/img/coins/64x64/32993.png",
+  KAS: "https://s2.coinmarketcap.com/static/img/coins/64x64/20396.png",
+  TRX: "https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png",
 };

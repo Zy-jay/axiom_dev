@@ -20,6 +20,7 @@ import { ethers } from "ethers";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import ethLogo from "../../assets/tokenLogos/ethereum-logo.png"
 import { formatNumber } from "../../utils/formatNumber";
+import { TOKENS_LOGO_URL } from "../../constants/tokens";
 
 
 
@@ -104,7 +105,7 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 	}, [isHovered])
 
 
-	const balance = formatNumber(Number(token.balance) / 10 ** token.decimals)
+	const balance = formatNumber(Number(token.balance ?? 0))
 	return (
 		isToken ? <div ref={elementRef} style={{
 			display: "flex",
@@ -129,14 +130,14 @@ const PortfolioItem = ({ logo, title, text, token }) => {
 
 				<img
 					width={40}
-					src={getLogo(token?.symbol) ?? token.img ?? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png`}
+					src={getLogo(token?.symbol) ?? token.img ?? TOKENS_LOGO_URL[token.symbol] ?? (token.address ? `https://tokens.pancakeswap.finance/images/${ethers.getAddress(token.address)}.png` : DefoultTokenLogo)}
 					style={{
 						borderRadius: "50%",
 					}}
 					alt="Изображение"
 					onError={(e) => {
 						e.target.onError = null;
-						e.target.src = DefoultTokenLogo;
+						e.target.src = TOKENS_LOGO_URL[token.symbol] ?? DefoultTokenLogo;
 					}}
 				/>
 			</span>
@@ -198,7 +199,7 @@ const Portfolio = observer(({ portfolio, dao }) => {
 			const isBtcDao = portfolio.length === 1 && p.symbol === "aArbWBTC";
 			return {
 				name: p.symbol,
-				value: isBtcDao ? Number(p.balance) / 10 ** 8 : Number(p.usdValue ?? 0),
+				value: isBtcDao ? p.balance : Number(p.usdValue ?? 0),
 				fill: store.tokenColors[p.symbol] ?? store.getTokenColor(p.symbol)
 				// Object.keys(TOKENS_COLORS).includes(p.symbol)
 

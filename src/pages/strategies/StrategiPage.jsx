@@ -8,6 +8,7 @@ import React, { useEffect } from 'react';
 import { DAOs_DATA, DAOs_PORTFOLIOS, STRATEGI_KEYS } from "../../constants/strategis";
 import { useDaoPrice } from "../../hooks/useDaoPrice";
 import { useStore } from "../../hooks/useStore";
+import { useByBitCoinsBalance } from "../../hooks/useByBitCoinsBalance";
 
 
 export const StrategiPage = ({ dao, daoKey }) => {
@@ -25,6 +26,9 @@ export const StrategiPage = ({ dao, daoKey }) => {
 
     const portfolio = DAOs_PORTFOLIOS[dao] ?? tokens ?? undefined
 
+    // const { res, } = useByBitCoinsBalance()
+    // console.log(res)
+
     useEffect(() => {
         if (portfolio !== undefined && portfolio[0]?.price !== undefined) {
             if (dao === STRATEGI_KEYS.btcdao && portfolio[0]?.price) {
@@ -39,7 +43,7 @@ export const StrategiPage = ({ dao, daoKey }) => {
 
     }, [daoPrice])
 
-    console.log(tokens)
+    // console.log(tokens)
     return (
         <div className="main" key={daoKey + "swap"}>
             <Header />
