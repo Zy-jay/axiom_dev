@@ -2,14 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import React, { createContext } from "react";
 
-import Home from "./pages/home.jsx";
+import Home from "./pages/home";
 
-import Dashboard from "./pages/Dashboard/DashboardPage.jsx";
+import Dashboard from "./pages/Dashboard/DashboardPage";
 import { Provider } from "ankr-react";
 import { Providers } from "./Providers";
 import { ToastContainer, Bounce } from 'react-toastify'; // https://fkhadra.github.io/react-toastify/introduction
-import { STRATEGI_KEYS } from "./constants/strategis.js";
-import SwapPage from "./pages/Swap/SwapPage.jsx";
+import { STRATEGI_KEYS } from "./constants/strategis";
+import SwapPage from "./pages/Swap/SwapPage";
 import { StrategiPage } from "./pages/Strategies/StrategiPage";
 import { Store } from "./store";
 
@@ -18,6 +18,19 @@ const store = new Store();
 export const Context = createContext({ store });
 
 function App() {
+
+	// const { address, isConnected, chain } = useAccount();
+	// const { openConnectModal, connectModalOpen } = useConnectModal()
+	// const { connect } = useConnect();
+	// useEffect(() => {
+	// 	if (!isConnected && !address && !connectModalOpen) {
+	// 		connect()
+	// 		openConnectModa
+	// 	}
+	// 	console.debug("App", { address, isConnected, chain });
+
+	// }, [isConnected])
+
 
 	return (
 		<Context.Provider value={{ store }}>
