@@ -19,15 +19,15 @@ import { TOKENS_LOGO_URL } from "../../constants/tokens";
 
 
 
-const CustomTooltip = ({ active, payload, label }) => {
-	console.log("CustomTooltip", active, payload, label)
-	if (active && payload && payload.length) {
-		return <span>{label?.split(":")[0]}</span>
+// const CustomTooltip = ({ active, payload, label }) => {
+// 	console.log("CustomTooltip", active, payload, label)
+// 	if (active && payload && payload.length) {
+// 		return <span>{label?.split(":")[0]}</span>
 
-	}
+// 	}
 
-	return null;
-};
+// 	return null;
+// };
 function getLogo(tokenName) {
 	if (tokenName == "aArbWBTC") {
 		return aarbwbtc;
