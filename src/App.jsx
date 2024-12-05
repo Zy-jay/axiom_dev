@@ -19,19 +19,6 @@ export const Context = createContext({ store });
 
 function App() {
 
-	// const { address, isConnected, chain } = useAccount();
-	// const { openConnectModal, connectModalOpen } = useConnectModal()
-	// const { connect } = useConnect();
-	// useEffect(() => {
-	// 	if (!isConnected && !address && !connectModalOpen) {
-	// 		connect()
-	// 		openConnectModa
-	// 	}
-	// 	console.debug("App", { address, isConnected, chain });
-
-	// }, [isConnected])
-
-
 	return (
 		<Context.Provider value={{ store }}>
 
