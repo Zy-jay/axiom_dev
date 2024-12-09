@@ -125,9 +125,6 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
         );
         console.log("bybitBalance", bybitBalance, tokens);
 
-        sumDao = isBtcDao
-          ? sumDao
-          : tokens?.map((i) => i.usdValue).reduce((x, y) => x + y, 0);
         if (!isBtcDao && bybitBalance?.length > 0 && tokens?.length > 0)
           for (const t of bybitBalance) {
             if (tokens.find((i) => i.symbol === t.coin)) continue;
@@ -141,6 +138,7 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
               tokenInfo.data.result.list[0][4] ??
                 tokenInfo.data.result.list[0][1]
             );
+            console.log("tokenInfo", tokenInfo, price);
             const balance = Number(t.walletBalance);
             tokens.push({
               img: undefined,
@@ -154,7 +152,9 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
             });
             console.log("tokenInfo", tokenInfo, price, balance);
           }
-
+        sumDao = isBtcDao
+          ? sumDao
+          : tokens?.map((i) => i.usdValue).reduce((x, y) => x + y, 0);
         const sumUsersLpTokens = totalSupply - crowdModuleBalance;
         // if (isBtcDao) {
         //   const aaveWbtcBalanceDao =
