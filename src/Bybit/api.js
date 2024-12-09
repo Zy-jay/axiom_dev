@@ -1,16 +1,14 @@
 import axios from "axios";
-import crypto from "crypto-js";
+import CryptoJS from "crypto-js";
 
-var recvWindow = 5000;
+var recvWindow = 10000;
 const url = "https://api.bybit.com/v5/";
 
-const timeDiff = 1368;
+const timeDiff = 1733740748268 - 1733740744184;
 
 export function getSignature(parameters, timestamp, apiKey, apiSecret) {
-  return crypto
-    .createHmac("sha256", apiSecret)
-    .update(timestamp + apiKey + recvWindow + parameters)
-    .digest("hex");
+  const data = timestamp + apiKey + recvWindow + parameters;
+  return CryptoJS.HmacSHA256(data, apiSecret).toString(CryptoJS.enc.Hex);
 }
 export async function fetchBybitApi(apiKey, apiSecret, parameters, endpoint) {
   if (!apiKey || !apiSecret) return undefined;
