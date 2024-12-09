@@ -123,7 +123,7 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
           3,
           1000
         );
-        console.log("bybitBalance", bybitBalance, tokens);
+        // console.log("bybitBalance", bybitBalance, tokens);
 
         if (!isBtcDao && bybitBalance?.length > 0 && tokens?.length > 0)
           for (const t of bybitBalance) {
@@ -134,11 +134,11 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
               t.coin
             );
             if (!tokenInfo?.data?.result?.list) continue;
+            // console.log("tokenInfo", tokenInfo);
             const price = Number(
-              tokenInfo.data.result.list[0][4] ??
-                tokenInfo.data.result.list[0][1]
+              tokenInfo.data.result?.list[0] ?  (tokenInfo.data.result.list[0][4] ?? tokenInfo.data.result.list[0][1]) : 0
             );
-            console.log("tokenInfo", tokenInfo, price);
+            // console.log("price", price);
             const balance = Number(t.walletBalance);
             tokens.push({
               img: undefined,
