@@ -7,10 +7,12 @@ import { getTokenBalance } from "./getTokenBalance";
 import { CrowdModuleARB, CrowdModuleETH } from "../constants/addresses";
 import { DAOs_DATA } from "../constants/strategis";
 import { getBybitBalance, getAssetInfo } from "../Bybit/endpoints";
+import { COVALENT_API_KEY } from "../constants/env";
+import { useMemo } from "react";
 
 const TokensSymbolsExclude = ["DOGE"];
 
-const client = new GoldRushClient("cqt_rQD8qf993P8D6rGM68tRFqYVbdbM");
+const client = new GoldRushClient(COVALENT_API_KEY);
 const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
   return [
     `dao-price-${daoAddress}-${axAltPortfolioLpAddress}`,
@@ -136,7 +138,10 @@ const quryFetch = (daoAddress, axAltPortfolioLpAddress, chainId) => {
             if (!tokenInfo?.data?.result?.list) continue;
             // console.log("tokenInfo", tokenInfo);
             const price = Number(
-              tokenInfo.data.result?.list[0] ?  (tokenInfo.data.result.list[0][4] ?? tokenInfo.data.result.list[0][1]) : 0
+              tokenInfo.data.result?.list[0]
+                ? tokenInfo.data.result.list[0][4] ??
+                    tokenInfo.data.result.list[0][1]
+                : 0
             );
             // console.log("price", price);
             const balance = Number(t.walletBalance);
@@ -213,10 +218,12 @@ export function useDaoPrice(daoAddress, axAltPortfolioLpAddress, chainId) {
   );
   const { data, isLoading, error } = useQuery(queryKey, quryFetcher);
 
-  return {
-    daoPrice: data?.price,
-    tokens: data?.tokens,
-    isDaoPriceLoading: isLoading,
-    daoPriceErr: error,
-  };
+  return useMemo(() => {
+    return {
+      daoPrice: data?.price,
+      tokens: data?.tokens,
+      isDaoPriceLoading: isLoading,
+      daoPriceErr: error,
+    };
+  }, [data, isLoading, error]);
 }

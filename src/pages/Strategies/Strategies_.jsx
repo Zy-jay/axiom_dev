@@ -15,6 +15,7 @@ import altLogo from "../../assets/tokenLogos/ALT.png";
 import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
 import airLogo from "../../assets/tokenLogos/AIRDROP.png";
 import safeLogo from "../../assets/tokenLogos/SAFE.png";
+import depositLogo from "../../assets/images/images_home/deposit_dao-logo.png";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -57,6 +58,15 @@ const daoStrategis = [
 		description:
 			"Подходит для инвесторов с низким уровнем риска, которые стремятся сохранить капитал с минимальной волатильностью к рынку и высокой ликвидностью криптоактивов.",
 		link: "/strategies/safedao",
+		width: 633,
+
+	},
+	{
+		logo: depositLogo,
+		title: "DEPOSIT DAO",
+		description:
+			"Это внесение денежных средств в валюте электронного доллара (USDT) для хранения активов в DAO фонде AXIOM с целью ежемесячного получения дивидендов.",
+		link: "/strategies/depositdao",
 		width: 633,
 
 	},

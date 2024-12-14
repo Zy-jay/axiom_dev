@@ -25,6 +25,7 @@ import AltDaoLogo from "../assets/tokenLogos/ALT.png";
 import UltraDaoLogo from "../assets/tokenLogos/ULTRA.png";
 import AirDaoLogo from "../assets/tokenLogos/AIRDROP.png";
 import SafeDaoLogo from "../assets/tokenLogos/SAFE.png";
+import DepositDaoLogo from "../assets/images/images_home/deposit_dao-logo.png";
 
 import { DAOs } from "../utils/blockchain";
 import { SupportedChainId } from "./chains";
@@ -35,6 +36,7 @@ export const STRATEGI_KEYS = {
   altporfoliodao: "ALTPORFOLIO DAO",
   ultrdao: "ULTRA DAO",
   airdropdao: "AIR DROP DAO",
+  depositdao: "DEPOSIT DAO",
 };
 
 export const AIRDROP_DAO_PORTFOLIO_ITEMS = [
@@ -166,6 +168,22 @@ export const DAOs_DATA = {
     portfolio: [],
     lpAddress: DAOs.axAltPortfolioLP,
     currentDaoAddress: DAOs.axAltPortfolio, // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
+  },
+  [STRATEGI_KEYS.depositdao]: {
+    link: "/strategies/depositdao/swap",
+    text: "",
+    img: DepositDaoLogo,
+    img_mobil: DepositDaoLogo,
+    lpName: "axDD",
+    name: "Deposit DAO",
+    title: "Консервативная стратегия",
+    chainId: SupportedChainId.ARBITRUM_ONE,
+    symbol: "axDD",
+    decimals: 18,
+    color: "#EF6B1F",
+    portfolio: [],
+    lpAddress: DAOs.axDDLP,
+    currentDaoAddress: DAOs.axDD, // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
   },
 };
 

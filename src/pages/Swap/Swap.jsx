@@ -30,6 +30,7 @@ import altLogo from "../../assets/tokenLogos/ALT.png";
 import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
 import airLogo from "../../assets/tokenLogos/AIRDROP.png";
 import safeLogo from "../../assets/tokenLogos/SAFE.png";
+import depositDaoImg from "../../assets/images/images_home/deposit_dao-logo.png";
 import { useSwitchChain } from "wagmi";
 import ConfirmModal from "../../componets/UI/confirmModal.jsx";
 import {
@@ -111,6 +112,18 @@ const GodObject = {
 		addressDao: DAOs.axAltPortfolio,
 		addressLp: DAOs.axAltPortfolioLP,
 		addressUSDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+	},
+	[STRATEGI_KEYS.depositdao]: {
+		name: "axDD",
+		token1Name: "USDT",
+		token2Name: "axDD",
+		token1Logo: usdt,
+		token2Logo: depositDaoImg,
+		logoBottom: depositDaoImg,
+		chainId: 42161,
+		addressDao: DAOs.axDD,
+		addressLp: DAOs.axDDLP,
+		addressUSDT: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
 	},
 };
 
@@ -318,9 +331,9 @@ const Swap = ({ daoKey, dao }) => {
 		} else return "Обменять";
 	}, [buyStatus, buyData, buyTxStatus]);
 
-	const handleSwitch = () => {
-		setIsSwitched((prev) => !prev);
-	};
+	// const handleSwitch = () => {
+	// 	setIsSwitched((prev) => !prev);
+	// };
 
 	const handleSell = () => {
 		toast("Заявка отправлена на обработку");

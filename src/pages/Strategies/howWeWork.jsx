@@ -1,10 +1,5 @@
 import ellipse_howWeWork from "../../assets/images/images_safe/ellipse_howWeWork.svg";
 import ellipse_howWeWorkTwo from "../../assets/images/images_safe/ellipse_howWeWorkTwo.svg";
-import youtube from "../../assets/images/images_safe/youtube.svg";
-import x from "../../assets/images/images_safe/x.svg";
-import telegram from "../../assets/images/images_safe/telegram.svg";
-import instagram from "../../assets/images/images_safe/instagram.svg";
-import facebook from "../../assets/images/images_safe/facebook.svg";
 import up from "../../assets/images/images_safe/up.svg";
 
 import safe_dao from "../../assets/images/images_home/safe1.png";
@@ -18,8 +13,8 @@ import alt_mobil from "../../assets/images/images_safe/alt_mobil.png";
 import btc_mobil from "../../assets/images/images_safe/btc_mobil.png";
 import ultra_mobil from "../../assets/images/images_safe/ultra_mobil.png";
 import ultra from "../../assets/images/images_home/ultra1.png";
-import safe_dao_mobile from "../../assets/images/images_safe/safe_dao_mobile.webp";
-import drop_down from "../../assets/images/images_safe/drop-down.svg";
+import ddImg from "../../assets/images/images_home/deposit_dd.png";
+
 import wallet from "../../assets/images/images_safe/wallet.svg";
 import wallet_icon from "../../assets/images/images_safe/wallet_icon.svg";
 import close from "../../assets/images/images_safe/close.svg";
@@ -33,13 +28,6 @@ import { SupportedChainId } from "../../constants/chains.js";
 
 import { DAOs } from "../../utils/blockchain.js";
 import { Spinner } from "../../componets/UI/Spiner.jsx";
-
-
-import btcLogo from "../../assets/tokenLogos/BTC.png";
-import altLogo from "../../assets/tokenLogos/ALT.png";
-import ultraLogo from "../../assets/tokenLogos/ULTRA.png";
-import airLogo from "../../assets/tokenLogos/AIRDROP.png";
-import safeLogo from "../../assets/tokenLogos/SAFE.png";
 
 
 
@@ -95,6 +83,9 @@ function MyComponentUltra({ ultrdaotext }) {
 
 function MyComponentaltporfolio({ altporfoliodaotext }) {
 	return <div dangerouslySetInnerHTML={{ __html: altporfoliodaotext }} />;
+}
+function MyComponentDd({ text }) {
+	return <div dangerouslySetInnerHTML={{ __html: text }} />;
 }
 const safedaotext = `
     <p>
@@ -162,6 +153,11 @@ const altporfoliodaotext = `
  продажу на высоких для получения прибыли.
 
 
+		</p>
+	`;
+const depositdaoText = `
+		<p>
+		Это внесение денежных средств в валюте электронного доллара (USDT) для хранения активов в DAO фонде AXIOM с целью ежемесячного получения дивидендов.
 		</p>
 	`;
 
@@ -273,6 +269,19 @@ const DAO_PAGE_DATA = {
 		portfolio: [],
 		lpAddress: DAOs.axAltPortfolioLP,
 		currentDaoAddress: DAOs.axAltPortfolio, // 0xbf60a62a31f72df0806eaaf73d698a3862c8aa44
+	},
+	"DEPOSIT DAO": {
+		link: "/strategies/depositdao/swap",
+		text: <MyComponentDd text={depositdaoText} />,
+		img: <img src={ddImg} alt="" />,
+		img_mobil: <img src={ddImg} alt="" />,
+		title: <h2>Консервативная стратегия</h2>,
+		chainId: SupportedChainId.MAINNET,
+		symbol: "axALT",
+		decimals: 18,
+		portfolio: [],
+		lpAddress: DAOs.axDD,
+		currentDaoAddress: DAOs.axDDLP, 
 	},
 
 }
