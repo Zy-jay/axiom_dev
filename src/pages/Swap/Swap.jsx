@@ -44,6 +44,7 @@ import { REACT_APP_TELEGRAM_BOT_TOKEN, REACT_APP_TELEGRAM_CHAT_ID } from "../../
 import { useStore } from "../../hooks/useStore.js";
 import { TOKENS_COLORS } from "../../constants/tokens.js";
 import circle_swap from "../../assets/images/images_swap/circle_swap.webp";
+import { Spinner } from "../../componets/UI/Spiner.jsx";
 
 
 
@@ -680,7 +681,7 @@ const Swap = ({ daoKey, dao }) => {
 						<div className="parameters-conteiner-content">
 							<div className="content_item btc">
 								<img src={logoBottom} alt="" />
-								<h3>Current share price: {(toOptionalFixed(daoPrice, isBtcDao ? 3 : 3))}</h3>
+								<h3>Current share price: {daoPrice ? (toOptionalFixed(daoPrice, isBtcDao ? 3 : 3)) : <Spinner />}</h3>
 							</div>
 
 							<a href="">
@@ -691,7 +692,7 @@ const Swap = ({ daoKey, dao }) => {
 							<div className="conteiner-content-item">
 								<div className="content_item btc">
 									<img src={logoBottom} alt="" />
-									<h3>Current share price: {toOptionalFixed(daoPrice, isBtcDao ? 3 : 3)}</h3>
+									<h3>Current share price: {daoPrice ? toOptionalFixed(daoPrice, isBtcDao ? 3 : 3) : <Spinner />}</h3>
 								</div>
 							</div>
 						</div>
