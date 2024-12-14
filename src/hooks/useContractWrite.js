@@ -1,7 +1,6 @@
 import {
   useWriteContract,
   useWaitForTransactionReceipt,
-  useChainId,
 } from "wagmi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
